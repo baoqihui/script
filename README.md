@@ -1,6 +1,6 @@
 # 此处存放个人编写的常用shell脚本，其中可能使用到其他项目源码，若侵权联系删除
 ## 一、acme证书申请一键脚本
-目前测试系统：`armv/amd Ubuntu`
+目前测试系统：`arm/amd Ubuntu`
 ### 1.用到的官仓：
 + Acme官方: https://github.com/acmesh-official/acme.sh 
 
