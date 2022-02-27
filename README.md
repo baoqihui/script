@@ -14,7 +14,24 @@
   + ![image](https://user-images.githubusercontent.com/50536515/155873415-fac78fce-3a6e-4772-9012-8b8729ec4b55.png)
 ---
 
-## 二、acme证书申请一键脚本
+## 二、一键初始化常用系统设置
+目前测试系统：`arm/amd Ubuntu`
+### 1.一键脚本
++ ```bash <(curl -Ls https://github.com/baoqihui/script/raw/main/init.sh)```
+### 2.功能
+1. 开放所有端口
+2. 统一本地时间
+3. 更新及安装组件
+4. 关闭Iptable规则
+### 3.示例图
+1. 信息定制
+  + ![image](https://user-images.githubusercontent.com/50536515/155874923-9d744812-f92a-4737-a362-61b0dd1be2db.png)
+
+2. 结果生成
+  + ![image](https://user-images.githubusercontent.com/50536515/155874947-9c2ab7da-0832-4824-826f-8079b81063cc.png)
+---
+
+## 三、acme证书申请一键脚本
 目前测试系统：`arm/amd Ubuntu`
 ### 1.用到的官仓：
 + Acme官方: https://github.com/acmesh-official/acme.sh 
