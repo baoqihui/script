@@ -3,7 +3,7 @@ echo -e " ------------------------ \033[33m一键修改root账户密码\033[0m -
 echo " --------------------------------------------------------------------"
 
 echo -e "\033[32m 开始执行... \033[0m"
-
+sudo passwd root
 read -p " 请输入你root密码:" password                                   
 password=${password}
 if test ! -z "${password}"
