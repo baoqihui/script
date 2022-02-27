@@ -13,4 +13,8 @@ if test ! -z "${password}"
 		echo -e "\033[33m password为空，退出程序... \033[0m"
 		exit
 fi
+sudo -i
 echo root:$password|chpasswd
+sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /etc/ssh/sshd_config;
+sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /etc/ssh/sshd_config;
+service sshd restart
