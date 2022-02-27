@@ -3,17 +3,20 @@ echo -e " ---------------------- \033[33m一键初始化常用系统设置\033[0
 echo -e " ------- \033[33m功能 1、开放所有端口\033[0m --------------------------------------- "
 echo -e " ------- \033[33m功能 2、统一本地时间\033[0m --------------------------------------- "
 echo -e " ------- \033[33m功能 3、更新及安装组件\033[0m ------------------------------------- "
-echo -e " ------- \033[33m功能 4、关闭Iptable规则\033[0m ------------------------------------ "
+echo -e " ------- \033[33m功能 4、开启BBR加速\033[0m ------------------------------------ "
+echo -e " ------- \033[33m功能 5、测速\033[0m ------------------------------------- "
+echo -e " ------- \033[33m功能 6、关闭Iptable规则\033[0m ------------------------------------ "
 echo " --------------------------------------------------------------------"
 
 echo -e "\033[32m 1.开放所有端口 \033[0m"
 echo -e "\033[32m 2.统一本地时间 \033[0m"
 echo -e "\033[32m 3.更新及安装组件 \033[0m"
-echo -e "\033[32m 4.关闭Iptable规则 \033[0m"
-echo -e "\033[32m 5.依次执行1~4 \033[0m"
-
-read -p " 请选择你要执行的项(默认'5'):" index
-index=${index:-'5'}
+echo -e "\033[32m 4.开启BBR加速 \033[0m"
+echo -e "\033[32m 5.测速 \033[0m"
+echo -e "\033[32m 6.关闭Iptable规则 \033[0m"
+echo -e "\033[32m 7.依次执行1~6 \033[0m"
+read -p " 请选择你要执行的项(默认'7'):" index
+index=${index:-'7'}
 
 case $index in
     1)
@@ -35,6 +38,19 @@ case $index in
 		echo -e "\033[32m 已更新及安装组件！！！ \033[0m"
         ;;
     4)
+		echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+		echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+		sysctl -p
+		sysctl net.ipv4.tcp_available_congestion_control
+		sysctl net.ipv4.tcp_congestion_control
+		echo -e "\033[32m 开启BBR加速完成！！！ \033[0m"
+	;;
+    5)
+		apt install speedtest-cli
+		speedtest-cli
+		echo -e "\033[32m 测速完成！！！ \033[0m"
+	;;
+    6)
 		apt-get purge -y  netfilter-persistent
 		echo -e "\033[32m 已关闭Iptable规则(重启生效)！！！ \033[0m"
 		
@@ -49,7 +65,7 @@ case $index in
 		        reboot
 		fi
         ;;
-    5)
+    7)
 		iptables -P INPUT ACCEPT
 		iptables -P FORWARD ACCEPT
 		iptables -P OUTPUT ACCEPT
@@ -64,6 +80,17 @@ case $index in
 		apt install -y curl
 		apt install -y socat
 		echo -e "\033[32m 已更新及安装组件！！！ \033[0m"
+		
+		echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+		echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+		sysctl -p
+		sysctl net.ipv4.tcp_available_congestion_control
+		sysctl net.ipv4.tcp_congestion_control
+		echo -e "\033[32m 开启BBR加速完成！！！ \033[0m"
+		
+		apt install speedtest-cli
+		speedtest-cli
+		echo -e "\033[32m 测速完成！！！ \033[0m"
 		
 		apt-get purge -y  netfilter-persistent
 		echo -e "\033[32m 已关闭Iptable规则(重启生效)！！！ \033[0m"
