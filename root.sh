@@ -11,7 +11,7 @@ echo -e "\033[32m 修改成功！！！ \033[0m"
 sudo sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /etc/ssh/sshd_config;
 sudo sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /etc/ssh/sshd_config;
 sudo service sshd restart
-
+sudo -i
 
 
 
