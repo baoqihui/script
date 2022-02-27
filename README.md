@@ -23,12 +23,16 @@
 2. 统一本地时间
 3. 更新及安装组件
 4. 关闭Iptable规则
+5. 开启BBR加速
+6. 测速
 ### 3.示例图
 1. 信息定制
-  + ![image](https://user-images.githubusercontent.com/50536515/155874923-9d744812-f92a-4737-a362-61b0dd1be2db.png)
+  + ![image](https://user-images.githubusercontent.com/50536515/155878543-1592d57b-2d56-461f-b3af-bc185f1a43f3.png)
 
 2. 结果生成
-  + ![image](https://user-images.githubusercontent.com/50536515/155874947-9c2ab7da-0832-4824-826f-8079b81063cc.png)
+  + ![image](https://user-images.githubusercontent.com/50536515/155878570-152590ec-2c7a-4ddb-9464-8a69a2ab0441.png)
+  + ![image](https://user-images.githubusercontent.com/50536515/155878606-05a93768-9977-4777-9838-dacdb04e264d.png)
+
 ---
 
 ## 三、acme证书申请一键脚本
