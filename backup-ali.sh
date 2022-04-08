@@ -1,0 +1,1 @@
+./aliyunpan backup -delete -exn "\.log$" /out /opt/minio/data /opt/config /opt/cert /Backup
