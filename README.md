@@ -59,7 +59,7 @@
 + mysql
 ### 2. 功能
 + 备份docker容器中的mysql数据库
-+ 搭配上定时任务可以自动备份,例如每天0点备份： `echo "0 0 * * * bash /root/backup-ali.sh > /out/backup-ali.log 2&1 &" >>/var/spool/cron/crontabs/root`
++ 搭配上定时任务可以自动备份,例如每两小时备份： `echo "0 */2 * * * bash /root/backup-mysql.sh > /out/backup-mysql.log 2&1 &" >>/var/spool/cron/crontabs/root`
 ### 3. 使用
 1. 下载脚本并配置：`wget -O /root/backup-mysql.sh https://raw.githubusercontent.com/baoqihui/script/main/backup-mysql.sh`
 ### 4.示例图
