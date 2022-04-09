@@ -52,3 +52,19 @@
 2. 结果生成
   + ![image](https://user-images.githubusercontent.com/50536515/154844580-602b13c4-255f-4b64-96ad-8f1601fd8fe4.png)
 
+---
+## 四、aliyunpan备份脚本
+
+---
+## 五、aliyunpan恢复脚本
+### 1.用刀的官仓
++ zip
++ aliyunpan
+### 2. 功能
++ 一键恢复并解压到原始目录
+### 3. 使用
+1. 由于zip工具可能不自带，先下载：`apt install zip`
+2. 一键脚本：`bash <(curl -Ls https://raw.githubusercontent.com/baoqihui/script/main/recover-ali.sh)`
+### 4.示例图
++ 
+
