@@ -17,5 +17,5 @@ do
 	echo -e "\033[32m 下载$i到$outFilePath完成... \033[0m"
 	#zip解压
 	unzip -o -d / $outFilePath 
-	echo -e "\033[32m $nowTime: $outFilePath还原完成!!! \033[0m"
+	echo -e "\033[32m $nowTime: $i还原完成!!! \033[0m"
 done 
