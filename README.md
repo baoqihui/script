@@ -75,7 +75,8 @@
 + 搭配上定时任务可以自动备份,例如每天0点备份： `echo "0 0 * * * bash /root/backup-ali.sh > /out/backup-ali.log 2&1 &" >>/var/spool/cron/crontabs/root`
 ### 3. 使用
 1. 由于zip工具可能不自带，先下载：`apt install zip`
-2. 下载脚本并配置：`wget -O /root/backup-ali.sh https://raw.githubusercontent.com/baoqihui/script/main/backup-ali.sh`
+2. 自行去下载配置aliyunpan到root目录：https://github.com/tickstep/aliyunpan
+3. 下载脚本并配置：`wget -O /root/backup-ali.sh https://raw.githubusercontent.com/baoqihui/script/main/backup-ali.sh`
 ### 4.示例图
 ![image](https://user-images.githubusercontent.com/50536515/162558220-fbf1afc4-68b2-4b56-85c5-5d7205b4e68a.png)
 
@@ -88,7 +89,8 @@
 + 一键恢复并解压到原始目录
 ### 3. 使用
 1. 由于zip工具可能不自带，先下载：`apt install zip`
-2. 一键脚本：`bash <(curl -Ls https://raw.githubusercontent.com/baoqihui/script/main/recover-ali.sh)`
+2. 自行去下载配置aliyunpan到root目录：https://github.com/tickstep/aliyunpan
+3. 一键脚本：`bash <(curl -Ls https://raw.githubusercontent.com/baoqihui/script/main/recover-ali.sh)`
 ### 4.示例图
 + ![image](https://user-images.githubusercontent.com/50536515/162557393-4fb3eb6a-704c-4d10-b95c-5322efccc84f.png)
 
