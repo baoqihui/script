@@ -1,9 +1,20 @@
-read -p " 起始根目录:" B1
-B1=/${B1:-'Backup'}
-read -p " 起始次级目录:" B2
-B2=/${B2}
-read -p " 目标路径:" B3
-B3=${B3}
-echo -e "\033[32m ${B1}${B2}->${B3} \033[0m"
-./aliyunpan d ${B1}${B2} --saveto ${B3}
-mv -f ${B3}${B1}${B2}/* ${B3} && rm -r ${B3}${B1} && rm -r ${B3}${B2}
+#需要还原的文件列表
+read -p " 请输入你要还原的文件绝对路径(多个空格隔开):" datas
+datas=${datas:-'/backup/config.zip /backup/data.zip /backup/cert.zip'}
+#还原位置
+outDir="/out/recover"
+mkdir -p $outDir
+
+for i in $datas;  
+do  
+	nowTime=$(date "+%Y-%m %d-%H:%M:%S")
+	#获取文件名字
+	fileName=${i##*/}
+	#最终的文件存放路径
+	outFilePath=$outDir/$fileName
+	
+	./aliyunpan d $i --saveto $outDir 
+	echo "下载$i到$outFilePath完成..."
+	unzip -o -d / $outFilePath 
+	echo "$nowTime: $outFilePath还原完成..."
+done 
