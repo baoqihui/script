@@ -53,8 +53,21 @@
   + ![image](https://user-images.githubusercontent.com/50536515/154844580-602b13c4-255f-4b64-96ad-8f1601fd8fe4.png)
 
 ---
-## 四、aliyunpan备份脚本(建议aliyunpan在root目录下)
-### 1.用刀的官仓
+## 四、docker容器中的mysql备份脚本
+### 1.用到的官仓
++ docker
++ mysql
+### 2. 功能
++ 备份docker容器中的mysql数据库
++ 搭配上定时任务可以自动备份,例如每天0点备份： `echo "0 0 * * * bash /root/backup-ali.sh > /out/backup-ali.log 2&1 &" >>/var/spool/cron/crontabs/root`
+### 3. 使用
+1. 下载脚本并配置：`wget -O /root/backup-mysql.sh https://raw.githubusercontent.com/baoqihui/script/main/backup-mysql.sh`
+### 4.示例图
+![image](https://user-images.githubusercontent.com/50536515/162558815-0a5f5868-9c17-4d14-a65e-0cca0e519c58.png)
+
+---
+## 五、aliyunpan备份脚本(建议aliyunpan在root目录下)
+### 1.用到的官仓
 + aliyunpan：https://github.com/tickstep/aliyunpan
 + zip
 ### 2. 功能
@@ -67,8 +80,8 @@
 ![image](https://user-images.githubusercontent.com/50536515/162558220-fbf1afc4-68b2-4b56-85c5-5d7205b4e68a.png)
 
 ---
-## 五、aliyunpan恢复脚本(建议aliyunpan在root目录下)
-### 1.用刀的官仓
+## 六、aliyunpan恢复脚本(建议aliyunpan在root目录下)
+### 1.用到的官仓
 + aliyunpan：https://github.com/tickstep/aliyunpan
 + zip
 ### 2. 功能
