@@ -59,6 +59,7 @@
 + zip
 ### 2. 功能
 + 一键压缩打包并上传到到阿里云盘
++ 搭配上定时任务可以自动备份,例如每天0点备份： `echo "0 0 * * * bash /root/backup-ali.sh > /out/backup-ali.log 2&1 &" >>/var/spool/cron/crontabs/root`
 ### 3. 使用
 1. 由于zip工具可能不自带，先下载：`apt install zip`
 2. 下载脚本并配置：`wget -O /root/backup-ali.sh https://raw.githubusercontent.com/baoqihui/script/main/backup-ali.sh`
