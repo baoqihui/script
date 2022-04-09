@@ -1,5 +1,4 @@
 #需要备份的目录，多个空格隔开
-#datas="/opt/config /opt/minio/data /opt/cert /out/mysql/$(date +%Y%m%d)"
 datas="/opt/config"
 #备份文件生成路径
 outdir="/out/backup"
