@@ -1,6 +1,6 @@
 #需要还原的文件列表
 read -p " 请输入你要还原的文件绝对路径(多个空格隔开):" datas
-datas=${datas:-'/backup/config.zip /backup/data.zip /backup/cert.zip'}
+datas=${datas:-'/backup/opt.zip'}
 #还原位置
 outDir="/out/recover"
 mkdir -p $outDir
