@@ -53,10 +53,20 @@
   + ![image](https://user-images.githubusercontent.com/50536515/154844580-602b13c4-255f-4b64-96ad-8f1601fd8fe4.png)
 
 ---
-## 四、aliyunpan备份脚本
+## 四、aliyunpan备份脚本(建议aliyunpan在root目录下)
+### 1.用刀的官仓
++ aliyunpan：https://github.com/tickstep/aliyunpan
++ zip
+### 2. 功能
++ 一键压缩打包并上传到到阿里云盘
+### 3. 使用
+1. 由于zip工具可能不自带，先下载：`apt install zip`
+2. 下载脚本并配置：`wget -O /root/backup-ali.sh https://raw.githubusercontent.com/baoqihui/script/main/backup-ali.sh`
+### 4.示例图
+![image](https://user-images.githubusercontent.com/50536515/162558220-fbf1afc4-68b2-4b56-85c5-5d7205b4e68a.png)
 
 ---
-## 五、aliyunpan恢复脚本
+## 五、aliyunpan恢复脚本(建议aliyunpan在root目录下)
 ### 1.用刀的官仓
 + aliyunpan：https://github.com/tickstep/aliyunpan
 + zip
