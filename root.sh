@@ -1,21 +1,17 @@
-#需要还原的文件列表
-read -p " 请输入你要还原的文件绝对路径(多个空格隔开):" datas
-datas=${datas:-'/backup/config.zip /backup/data.zip /backup/cert.zip'}
-#还原位置
-outDir="/out/recover"
-mkdir -p $outDir
 
-for i in $datas;  
-do  
-	nowTime=$(date "+%Y-%m %d-%H:%M:%S")
-	#获取文件名字
-	fileName=${i##*/}
-	#最终的文件存放路径
-	outFilePath=$outDir/$fileName
-	#阿里云盘下载
-	./aliyunpan d $i --saveto $outDir 
-	echo -e "\033[32m 下载$i到$outFilePath完成... \033[0m"
-	#zip解压
-	unzip -o -d / $outFilePath 
-	echo -e "\033[32m $nowTime: $outFilePath还原完成!!! \033[0m"
-done 
+echo " --------------------------------------------------------------------"
+echo -e " ---------------------- \033[33m一键修改root账户密码\033[0m ------------------------ "
+echo -e " ------- \033[33m功能 1、修改Ubuntu的root密码\033[0m ------------------------------- "
+echo -e " ------- \033[33m功能 2、持久化root密码，可永久连接\033[0m ------------------------- "
+echo " --------------------------------------------------------------------"
+
+
+echo -e "\033[32m 确认你的root密码（两次输入且无提示）... \033[0m"
+sudo passwd root
+
+echo -e "\033[32m 修改成功！！！ \033[0m"
+
+sudo sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /etc/ssh/sshd_config;
+sudo sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /etc/ssh/sshd_config;
+sudo service sshd restart
+sudo -i
