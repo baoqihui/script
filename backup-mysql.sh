@@ -23,6 +23,6 @@ done
 
 # 删除过期数据
 if [ "$need_delete" == "ON" -a  "$outDir" != "" ];then
-   find $outDir/* -type d -mtime +1 | xargs rm -rf
+   find $outDir/* -type d -mtime +$expire_days | xargs rm -rf
    echo "$nowTime: Expired backup data delete complete!"
 fi
