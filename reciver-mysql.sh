@@ -1,4 +1,6 @@
-datas="admin alist backend cms cms-plus demo student teacher wms"
+#需要还原的文件列表
+read -p " 请输入你要还原的数据库(多个空格隔开):" datas
+datas=${datas:-'admin alist backend cms cms-plus demo student teacher wms'}
 #遍历数据库进行还原
 for i in $datas;  
 do  
