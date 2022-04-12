@@ -76,11 +76,11 @@ services:
     container_name: xue
     restart: always
     ports:
-      - '81:8080'
+      - '82:8080'
     environment:
       - TZ=Asia/Shanghai
       - JAVA_OPTS=-Xmx1g
-      - ALIYUNDRIVE_REFRESH_TOKEN=0586e5ff2f944361adcbbd5dc0ad49d4
+      - ALIYUNDRIVE_REFRESH_TOKEN=796520ae8cad4b10a9681554cd1437c2
       - ALIYUNDRIVE_AUTH_PASSWORD=HBQ521521cf*
     volumes:
       - '/etc/localtime:/etc/localtime'
