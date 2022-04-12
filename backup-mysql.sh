@@ -3,7 +3,7 @@ datas="demo"
 # 备份文件存放地址(根据实际情况填写)
 outDir="/out/mysql"
 # 是否删除过期数据
-need_delete="YES"
+need_delete="ON"
 #过期时长，单位 天
 expire_days=2
 #当前日期，用于生成目录
