@@ -56,15 +56,16 @@
   + ![image](https://user-images.githubusercontent.com/50536515/154844580-602b13c4-255f-4b64-96ad-8f1601fd8fe4.png)
 
 ---
-## 四、docker容器中的mysql备份脚本
+## 四、docker容器中的mysql备份/还原脚本
 ### 1.用到的官仓
 + docker
 + mysql
 ### 2. 功能
-+ 备份docker容器中的mysql数据库
++ 备份/还原docker容器中的mysql数据库
 + 搭配上定时任务可以自动备份,例如每两小时备份： `echo "0 */2 * * * bash /root/backup-mysql.sh > /out/backup-mysql.log 2&1 &" >>/var/spool/cron/crontabs/root`
 ### 3. 使用
 1. 下载脚本并配置：`wget -O /root/backup-mysql.sh https://raw.githubusercontent.com/baoqihui/script/main/backup-mysql.sh`
+2. 还原：`bash <(curl -Ls https://raw.githubusercontent.com/baoqihui/script/main/reciver-mysql.sh)`
 ### 4.示例图
 ![image](https://user-images.githubusercontent.com/50536515/162558815-0a5f5868-9c17-4d14-a65e-0cca0e519c58.png)
 
