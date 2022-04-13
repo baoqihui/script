@@ -106,5 +106,5 @@ services:
       - '83:80'
       - '35601:35601'
     volumes:
-      - '/opt/ServerStatus/config.json:/ServerStatus/server/config.json'
+      - '/opt/config/status.json:/ServerStatus/server/config.json'
     image: stilleshan/serverstatus
