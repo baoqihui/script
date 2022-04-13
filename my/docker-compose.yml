@@ -99,3 +99,12 @@ services:
     volumes:
       - '/etc/localtime:/etc/localtime'
     image: baoqihui/webdav-aliyundriver
+  status:
+    container_name: status
+    restart: always
+    ports:
+      - '83:80'
+      - '35601:35601'
+    volumes:
+      - '/opt/ServerStatus/config.json:/ServerStatus/server/config.json'
+    image: stilleshan/serverstatus
