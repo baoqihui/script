@@ -59,6 +59,20 @@ services:
     ports:
       - '5244:5244'
     image: xhofe/alist:latest
+  ql:
+    container_name: ql
+    restart: always
+    volumes:
+      - /opt/ql/data:/ql/data
+    ports:
+      - "87:5700"
+    image: whyour/qinglong:latest
+  speedtest:
+    container_name: speedtest
+    restart: always
+    ports:
+      - '88:80'
+    image: run
   hui:
     container_name: hui
     restart: always
