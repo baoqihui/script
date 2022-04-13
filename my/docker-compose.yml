@@ -66,13 +66,13 @@ services:
       - /opt/ql/data:/ql/data
     ports:
       - "87:5700"
-    image: whyour/qinglong:latest
+    image: whyour/qinglong
   speedtest:
     container_name: speed
     restart: always
     ports:
       - '88:80'
-    image: run
+    image: stilleshan/speedtest-x
   hui:
     container_name: hui
     restart: always
