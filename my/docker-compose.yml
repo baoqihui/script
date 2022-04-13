@@ -68,7 +68,7 @@ services:
       - "87:5700"
     image: whyour/qinglong:latest
   speedtest:
-    container_name: speedtest
+    container_name: speed
     restart: always
     ports:
       - '88:80'
