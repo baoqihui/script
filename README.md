@@ -1,35 +1,35 @@
 # 有帮助记得先Star，感谢!!!
-- [此处存放个人编写的常用shell脚本，其中可能使用到其他项目源码，若侵权联系删除](#-----------shell------------------------)
-    * [一、一键修改Ubuntu系统root密码](#------ubuntu--root--)
-        + [1.一键脚本](#1----)
-        + [2.功能](#2--)
-        + [3.示例图](#3---)
-    * [二、一键初始化常用系统设置](#-------------)
-        + [1.一键脚本](#1-----1)
-        + [2.功能](#2---1)
-        + [3.示例图](#3----1)
-    * [三、acme证书申请一键脚本](#--acme--------)
-        + [1.用到的官仓：](#1------)
-        + [2.功能](#2---2)
-        + [3.一键脚本](#3----)
-        + [4.示例图](#4---)
-    * [四、docker容器中的mysql备份/还原脚本](#--docker----mysql-------)
-        + [1.用到的官仓](#1-----)
-        + [2. 功能](#2---)
-        + [3. 使用](#3---)
-        + [4.示例图](#4----1)
-    * [五、aliyunpan备份脚本(建议aliyunpan在root目录下)](#--aliyunpan-------aliyunpan-root----)
-        + [1.用到的官仓](#1------1)
-        + [2. 功能](#2----1)
-        + [3. 使用](#3----1)
-        + [4.示例图](#4----2)
-    * [六、aliyunpan恢复脚本(建议aliyunpan在root目录下)](#--aliyunpan-------aliyunpan-root----)
-        + [1.用到的官仓](#1------2)
-        + [2. 功能](#2----2)
-        + [3. 使用](#3----2)
-        + [4.示例图](#4----3)
-
+- [此处存放个人编写的常用shell脚本，其中可能使用到其他项目源码，若侵权联系删除](#此处存放个人编写的常用shell脚本，其中可能使用到其他项目源码，若侵权联系删除)
+    * [一、一键修改Ubuntu系统root密码](#一、一键修改Ubuntu系统root密码)
+        + [1.一键脚本](#1.一键脚本)
+        + [2.功能](#2.功能)
+        + [3.示例图](#3.示例图)
+    * [二、一键初始化常用系统设置](#二、一键初始化常用系统设置)
+        + [1.一键脚本](#1.一键脚本)
+        + [2.功能](#2.功能)
+        + [3.示例图](#3.示例图)
+    * [三、acme证书申请一键脚本](#三、acme证书申请一键脚本)
+        + [1.用到的官仓：](#1.用到的官仓：)
+        + [2.功能](#2.功能)
+        + [3.一键脚本](#3.一键脚本)
+        + [4.示例图](#4.示例图)
+    * [四、docker容器中的mysql备份/还原脚本](#四、docker容器中的mysql备份/还原脚本)
+        + [1.用到的官仓](#1.用到的官仓)
+        + [2.功能](#2.功能)
+        + [3.使用](#3.使用)
+        + [4.示例图](#4.示例图)
+    * [五、aliyunpan备份脚本(建议aliyunpan在root目录下)](#五、aliyunpan备份脚本(建议aliyunpan在root目录下))
+        + [1.用到的官仓](#1.用到的官仓)
+        + [2.功能](#2.功能)
+        + [3.使用](#3.使用)
+        + [4.示例图](#4.示例图)
+    * [六、aliyunpan恢复脚本(建议aliyunpan在root目录下)](#六、aliyunpan恢复脚本(建议aliyunpan在root目录下))
+        + [1.用到的官仓](#1.用到的官仓)
+        + [2.功能](#2.功能)
+        + [3.使用](#3.使用)
+        + [4.示例图](#4.示例图)
 ---
+
 # 此处存放个人编写的常用shell脚本，其中可能使用到其他项目源码，若侵权联系删除
 ## 一、一键修改Ubuntu系统root密码
 目前测试系统：`arm/amd Ubuntu`
@@ -89,10 +89,10 @@
 ### 1.用到的官仓
 + docker
 + mysql
-### 2. 功能
+### 2.功能
 + 备份/还原docker容器中的mysql数据库
 + 搭配上定时任务可以自动备份,例如每两小时备份： `echo "0 */2 * * * bash /root/backup-mysql.sh > /out/backup-mysql.log 2&1 &" >>/var/spool/cron/crontabs/root`
-### 3. 使用
+### 3.使用
 1. 下载脚本并配置：`wget -O /root/backup-mysql.sh https://raw.githubusercontent.com/baoqihui/script/main/backup-mysql.sh`
 2. 还原：`bash <(curl -Ls https://raw.githubusercontent.com/baoqihui/script/main/reciver-mysql.sh)`
 ### 4.示例图
@@ -103,10 +103,10 @@
 ### 1.用到的官仓
 + aliyunpan：https://github.com/tickstep/aliyunpan
 + zip
-### 2. 功能
+### 2.功能
 + 一键压缩打包并上传到到阿里云盘
 + 搭配上定时任务可以自动备份,例如每天0点备份： `echo "0 0 * * * bash /root/backup-ali.sh > /out/backup-ali.log 2&1 &" >>/var/spool/cron/crontabs/root`
-### 3. 使用
+### 3.使用
 1. 由于zip工具可能不自带，先下载：`apt install zip`
 2. 自行去下载配置aliyunpan到root目录：https://github.com/tickstep/aliyunpan
 3. 下载脚本并配置：`wget -O /root/backup-ali.sh https://raw.githubusercontent.com/baoqihui/script/main/backup-ali.sh`
@@ -118,13 +118,12 @@
 ### 1.用到的官仓
 + aliyunpan：https://github.com/tickstep/aliyunpan
 + zip
-### 2. 功能
+### 2.功能
 + 一键恢复并解压到原始目录
-### 3. 使用
+### 3.使用
 1. 由于zip工具可能不自带，先下载：`apt install zip`
 2. 自行去下载配置aliyunpan到root目录：https://github.com/tickstep/aliyunpan
 3. 一键脚本：`bash <(curl -Ls https://raw.githubusercontent.com/baoqihui/script/main/recover-ali.sh)`
 ### 4.示例图
 + ![image](https://user-images.githubusercontent.com/50536515/162557393-4fb3eb6a-704c-4d10-b95c-5322efccc84f.png)
-
 
