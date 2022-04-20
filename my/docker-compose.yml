@@ -11,6 +11,17 @@ services:
     environment:
       - 'MYSQL_ROOT_PASSWORD=HBQ521521cf*'
     image: biarms/mysql:5.7.30-linux-arm64v8
+  mysql8:
+    container_name: mysql8
+    restart: always
+    volumes:
+      - '/opt/config/mysqld8.cnf:/etc/my.cnf'
+      - '/out/mysql8/:/out/mysql8/'
+    ports:
+      - '3307:3306'
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=HBQ521521cf*'
+    image: mysql/mysql-server:8.0.27
   redis:
     container_name: redis
     restart: always
