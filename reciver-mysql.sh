@@ -1,10 +1,10 @@
-read -r " 请输入你要还原的数据库容器名:" name
+read -p " 请输入你要还原的数据库容器名:" name
 name=${name:-"mysql"}
 #需要还原的文件列表
 nowDate=$(date "+%Y%m%d")
-read -r " 请输入你要还原的数据库容器中绝对路径(多个空格隔开):" datas
+read -p " 请输入你要还原的数据库容器中绝对路径(多个空格隔开):" datas
 datas=${datas:-"/out/mysql/all-db-$nowDate.sql"}
-read -r " 请输入数据库密码(脚本不记录):" password
+read -p " 请输入数据库密码(脚本不记录):" password
 password=${password:-"HBQ521521cf*"}
 #遍历数据库进行还原
 for i in $datas;
