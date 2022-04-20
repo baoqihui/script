@@ -1,5 +1,5 @@
 #需要备份的目录，多个空格隔开
-datas="/opt /out/mysql"
+datas="/opt /out/mysql /out/mysql8"
 #备份文件生成路径
 outdir="/out/backup"
 #阿里云盘存储路径

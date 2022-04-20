@@ -11,5 +11,5 @@ for i in $datas;
 do  
 	nowTime=$(date "+%Y-%m %d-%H:%M:%S")
 	echo -e "\033[32m $nowTime: 还原 $i -> $name \033[0m"
-	docker exec "$name" sh -c "mysql -uroot -p$password < $i";
+	docker exec $name sh -c "mysql -uroot -p$password < $i";
 done  
