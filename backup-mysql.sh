@@ -10,7 +10,8 @@ expire_days=2
 nowDate=$(date "+%Y%m%d")
 #记录当前时间
 nowTime=$(date "+%Y-%m %d-%H:%M:%S")
-
+#mysql密码
+password="123456"
 # 创建目录
 mkdir -p $outDir/$nowDate
 
@@ -18,7 +19,7 @@ mkdir -p $outDir/$nowDate
 for i in $datas;  
 do  
 	echo "$nowTime: 备份$i数据库到'$outDir/$nowDate/$i.sql'"
-	docker exec -i mysql mysqldump -B $i > $outDir/$nowDate/$i.sql
+	docker exec -i mysql mysqldump -uroot -p$password -B $i > $outDir/$nowDate/$i.sql
 done  
 
 # 删除过期数据
