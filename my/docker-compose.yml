@@ -16,7 +16,7 @@ services:
     restart: always
     volumes:
       - '/opt/config/mysqld7.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf'
-      - '/out/mysql/:/out/mysql/'
+      - '/out/mysql7/:/out/mysql7/'
     ports:
       - '3307:3306'
     environment:
