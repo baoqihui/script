@@ -5,7 +5,7 @@ outDir="/out/mysql"
 # 是否删除过期数据
 need_delete="ON"
 #过期时长，单位 天
-expire_days=2
+expire_days=0
 #记录当前时间
 nowTime=$(date "+%Y%m%d")
 #最终文件名

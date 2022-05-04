@@ -1,7 +1,7 @@
 #备份数据库名字
 name="all-db"
 # 备份文件存放地址(根据实际情况填写)
-outDir="/out/mysql8"
+outDir="/out/mysql7"
 # 是否删除过期数据
 need_delete="ON"
 #过期时长，单位 天
@@ -18,7 +18,7 @@ mkdir -p $outDir
 
 #进行备份
 echo "$nowTime: 备份所有数据库到：$finalPath"
-docker exec -i mysql8 mysqldump -A > $finalPath
+docker exec -i mysql7 mysqldump -A > $finalPath
  
 
 # 删除过期数据
