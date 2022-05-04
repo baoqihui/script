@@ -130,3 +130,11 @@ services:
     volumes:
       - '/opt/config/status.json:/ServerStatus/server/config.json'
     image: stilleshan/serverstatus
+  halo:
+    container_name: halo
+    restart: always
+    ports:
+      - '8000:8000'
+    volumes:
+      - '/opt/halo:/root/.halo'
+    image: halohub/halo:1.5.2
