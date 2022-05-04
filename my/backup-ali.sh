@@ -1,5 +1,5 @@
 #需要备份的目录，多个空格隔开
-datas="/opt /out/mysql /out/mysql8"
+datas="/opt /out/mysql /out/mysql7 /out/mysql8"
 #备份文件生成路径
 outdir="/out/backup"
 #阿里云盘存储路径
@@ -19,4 +19,5 @@ do
 	echo "打包$fileName到$outfilePath完成..."
 done 
 ./aliyunpan backup -sync $outdir $aliDir
+rm -rf $outdir
 echo "$nowTime: $outdir备份完成..."
