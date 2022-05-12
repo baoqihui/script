@@ -13,6 +13,7 @@ do
 	#最终的文件存放路径
 	outFilePath=$outDir/$fileName
 	#阿里云盘下载
+	echo -e "\033[32m 下载$i到$outFilePath开始... \033[0m"
 	rclone sync cch2:$i $outDir
 	echo -e "\033[32m 下载$i到$outFilePath完成... \033[0m"
 	#zip解压
