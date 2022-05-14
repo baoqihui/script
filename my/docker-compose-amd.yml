@@ -1,0 +1,60 @@
+version: '3.3'
+services:
+  hui:
+    container_name: hui
+    restart: always
+    ports:
+      - '81:8080'
+    environment:
+      - TZ=Asia/Shanghai
+      - JAVA_OPTS=-Xmx1g
+      - ALIYUNDRIVE_AUTH_USERNAME=admin
+      - ALIYUNDRIVE_AUTH_PASSWORD=HBQ521521cf*
+      - ALIYUNDRIVE_REFRESH_TOKEN=dea9215b0d504e50acf3495a86e3ef54
+    image: baoqihui/webdav-aliyundriver:amd
+  mysql:
+    container_name: mysql
+    restart: always
+    volumes:
+      - 'D:\opt\config\mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf'
+      - 'D:\out\mysql\:/out/mysql/'
+    ports:
+      - '3306:3306'
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=HBQ521521cf*'
+    image: mysql:5.7.29
+  shard:
+    image: apache/shardingsphere-proxy:5.1.0
+    container_name: shard
+    ports:
+      - "3307:3307"
+    volumes:
+      - D:\opt\sharding\conf:/opt/shardingsphere-proxy/conf
+      - D:\opt\sharding\ext-lib:/opt/shardingsphere-proxy/ext-lib
+#  mysql8:
+#    container_name: mysql8
+#    restart: always
+#    volumes:
+#      - 'D:\opt\config\mysqld8.cnf:/etc/mysql/conf.d/mysql.cnf'
+#      - 'D:\out\mysql8\:/out/mysql8/'
+#    ports:
+#      - '3308:3306'
+#    environment:
+#      - 'MYSQL_ROOT_PASSWORD=HBQ521521cf*'
+#    image: mysql:8.0.27
+#  redis:
+#    container_name: redis
+#    restart: always
+#    ports:
+#      - '6379:6379'
+#    volumes:
+#      - '/opt/config/redis.conf:/etc/redis/redis.conf'
+#      - '/out/data:/data'
+#    command: redis-server /etc/redis/redis.conf --requirepass HBQ521521cf* --appendonly yes
+#    image: redis:5.0.3
+#  mongo:
+#    container_name: mongo
+#    restart: always
+#    ports:
+#      - '27017:27017'
+#    image: mongo
