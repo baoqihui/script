@@ -106,11 +106,10 @@ services:
     environment:
       - TZ=Asia/Shanghai
       - JAVA_OPTS=-Xmx1g
-      - ALIYUNDRIVE_REFRESH_TOKEN=0586e5ff2f944361adcbbd5dc0ad49d4
+      - ALIYUNDRIVE_AUTH_USERNAME=admin
       - ALIYUNDRIVE_AUTH_PASSWORD=HBQ521521cf*
-    volumes:
-      - '/etc/localtime:/etc/localtime'
-    image: baoqihui/webdav-aliyundriver
+      - ALIYUNDRIVE_REFRESH_TOKEN=dea9215b0d504e50acf3495a86e3ef54
+    image: baoqihui/webdav-aliyundriver:arm
   xue:
     container_name: xue
     restart: always
