@@ -18,7 +18,7 @@ mkdir -p $outDir
 
 #进行备份
 echo "$nowTime: 备份所有数据库到：$finalPath"
-#docker exec -i mysql8 mysqldump -A > $finalPath
+docker exec -i mysql8 mysqldump -A > $finalPath
 
 
 # 删除过期数据
