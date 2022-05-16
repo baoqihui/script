@@ -5,7 +5,8 @@ outdir="/opt/minio/data/backup"
 
 #记录当前时间
 nowTime=$(date "+%Y-%m %d-%H:%M:%S")
-# 创建目录
+# 删除原有内容并创建目录
+rm -rf $outdir
 mkdir -p $outdir
 
 #遍历目录进行压缩备份
@@ -17,5 +18,4 @@ do
 	echo "打包$fileName到$outfilePath完成..."
 done
 rclone sync -v cch1:backup ali:backup --log-file=/out/backup-rclone.log
-rm -rf $outdir
 echo "$nowTime: $outdir备份完成..."
