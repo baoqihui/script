@@ -5,7 +5,7 @@ outDir="/out/mysql7"
 # 是否删除过期数据
 need_delete="ON"
 #过期时长，单位 天
-expire_days=0
+expire_days=7
 #记录当前时间
 nowTime=$(date "+%Y%m%d")
 #最终文件名
@@ -23,6 +23,6 @@ docker exec -i mysql7 mysqldump -A > $finalPath
 
 # 删除过期数据
 if [ "$need_delete" == "ON" -a  "$outDir" != "" ];then
-   find $outDir -type f -mtime +$expire_days | xargs rm -rf
+   find $outDir -type f -mtime +$[expire_days-2] | xargs rm -rf
    echo "$nowTime: Expired backup data delete complete!"
 fi

@@ -17,4 +17,5 @@ do
 	echo "打包$fileName到$outfilePath完成..."
 done
 rclone sync -v cch1: cch2: --log-file=/out/backup-rclone.log
+rm -rf $outdir
 echo "$nowTime: $outdir备份完成..."
