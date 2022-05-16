@@ -16,6 +16,6 @@ do
 	zip -r $outfilePath $i
 	echo "打包$fileName到$outfilePath完成..."
 done
-rclone sync -v cch1: ali:backup --log-file=/out/backup-rclone.log
+rclone sync -v cch1:backup ali:backup --log-file=/out/backup-rclone.log
 rm -rf $outdir
 echo "$nowTime: $outdir备份完成..."
