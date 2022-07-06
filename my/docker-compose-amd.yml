@@ -31,6 +31,15 @@ services:
     volumes:
       - D:\opt\sharding\conf:/opt/shardingsphere-proxy/conf
       - D:\opt\sharding\ext-lib:/opt/shardingsphere-proxy/ext-lib
+  redis:
+    container_name: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'D:\opt\config\redis.conf:/etc/redis/redis.conf'
+    command: redis-server /etc/redis/redis.conf --requirepass HBQ521521cf* --appendonly yes
+    image: redis:5.0.3
 #  mysql8:
 #    container_name: mysql8
 #    restart: always
