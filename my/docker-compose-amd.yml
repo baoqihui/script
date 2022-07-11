@@ -40,6 +40,18 @@ services:
       - 'D:\opt\config\redis.conf:/etc/redis/redis.conf'
     command: redis-server /etc/redis/redis.conf --requirepass HBQ521521cf* --appendonly yes
     image: redis:5.0.3
+  clickhouse-server:
+    container_name: ch-server
+    restart: always
+    ports:
+      - '8123:8123'
+      - '9009:9009'
+      - '9090:9000'
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    image: 'yandex/clickhouse-server:22.1.2.2'
 #  mysql8:
 #    container_name: mysql8
 #    restart: always
