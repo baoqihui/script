@@ -104,24 +104,16 @@ services:
     ports:
       - '81:8080'
     environment:
-      - TZ=Asia/Shanghai
-      - JAVA_OPTS=-Xmx1g
-      - ALIYUNDRIVE_AUTH_USERNAME=admin
-      - ALIYUNDRIVE_AUTH_PASSWORD=HBQ521521cf*
-      - ALIYUNDRIVE_REFRESH_TOKEN=dea9215b0d504e50acf3495a86e3ef54
-    image: baoqihui/webdav-aliyundriver:arm
+      - 'REFRESH_TOKEN=10846b5dbc3a42809b204e45aea6eb49'
+    image: baoqihui/aliyundrive-webdav:arm
   xue:
     container_name: xue
     restart: always
     ports:
       - '82:8080'
     environment:
-      - TZ=Asia/Shanghai
-      - JAVA_OPTS=-Xmx1g
-      - ALIYUNDRIVE_AUTH_USERNAME=admin
-      - ALIYUNDRIVE_AUTH_PASSWORD=HBQ521521cf*
-      - ALIYUNDRIVE_REFRESH_TOKEN=6acc31f89a944b1bb4cf46a0c77df925
-    image: baoqihui/webdav-aliyundriver:arm
+      - 'REFRESH_TOKEN=24c20b7b68374f2e9e60eb22bdf7c491'
+    image: baoqihui/aliyundrive-webdav:arm
   status:
     container_name: status
     restart: always
