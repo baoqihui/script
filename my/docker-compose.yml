@@ -130,4 +130,4 @@ services:
       - '8000:8000'
     volumes:
       - '/opt/halo:/root/.halo'
-    image: halohub/halo:1.5.2
+    image: halohub/halo
