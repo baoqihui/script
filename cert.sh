@@ -48,11 +48,11 @@ if test ! -z "${dockername}"
 		for i in $domains;  
 		do  
 		echo -e "\033[32m 安装$i证书到'$path/$i'............................. \033[0m"
-		docker stop nginx
+		docker stop $dockername
 		
 		mkdir -p $path/$i
 		~/.acme.sh/acme.sh --issue -d $i --standalone
-		~/.acme.sh/acme.sh --install-cert -d $i --key-file $path/$i/private.key --fullchain-file $path/$i/cert.crt --reloadcmd "docker restart nginx"
+		~/.acme.sh/acme.sh --install-cert -d $i --key-file $path/$i/private.key --fullchain-file $path/$i/cert.crt --reloadcmd "docker restart $dockername"
 		done  
 	else
 		echo -e "\033[33m 普通安装... \033[0m"
