@@ -1,0 +1,10 @@
+.idea
+.git
+my
+blog/node_modules
+init.sh
+cert.sh
+root.sh
+README.md
+reciver*
+backup*
