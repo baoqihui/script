@@ -2,228 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fef6c440-ae24-4ef0-b165-7377559d5c46" name="变更" comment="blog">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/76a514c2-f802-4baa-b0a0-9e81bd7ae2dd.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/76a514c2-f802-4baa-b0a0-9e81bd7ae2dd/storage_v2/_src_/schema/seer_dev.VSrJOw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/76a514c2-f802-4baa-b0a0-9e81bd7ae2dd/storage_v2/_src_/schema/system.L3Icyw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/学习笔记/Java中使用图片验证码 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/学习笔记/mes学习笔记/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/学习笔记/ssm框架完整pom依赖（附加 redis、fastDFS、阿里短信验证、poi、hadoop） --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/学习笔记/法务部学习笔记/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/安装配置/Eclipse+idea修改maven仓库到自定义位置+添加阿里依赖秒下jar包 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/安装配置/IDEA2022.1破解教程/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/安装配置/Navicat破解/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/安装配置/idea+jrebel配置springboot+mybatis plus项目热部署。（含xml无法自动部署 解决方案）/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/安装配置/windows安装mysql5.7/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/安装配置/《重装系统》Windows纯净装机+常用工具（最简单易懂教程）--菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/安装配置/使用nginx一分钟配置一个文件服务器（附：阿里oss文件服务使用、fastDFS文件服务使用）/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/安装配置/小书匠绑定阿里云oss+阿里云oss图片url永久有效设置--菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/拉勾笔记/记一次手写IOC,AOP实现类spring 功能/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/车车笔记/Gradle/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/车车笔记/Spring Data JPA/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/车车笔记/code-generator-persion使用/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/车车笔记/postman/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/车车笔记/web报价接口调用整理/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/车车笔记/停给利二期复盘/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/车车笔记/天境/公告/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/车车笔记/天境/用户中心项目/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/车车笔记/天境/项目骨架/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/车车笔记/天境/风控/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/车车笔记/编码风格/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/车车笔记/车车项目启动笔记/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/CentOS7修改密码 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/Centos中修改，访问java工程直接通过ip，除去端口号和项目名访问。 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/Jenkins脚本集/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/从docker安装到前后端分离项目启动完成（docker安装mysql、nginx；启动jar包）/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/内网centos 7安装mysql及问题记录/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/备份恢复/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/常用Docker/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/服务器部署---《fastDFS篇》 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/服务器部署---《nginx篇》 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/服务器部署---《redis篇》 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/服务器部署---《tomcat篇》 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/服务器部署—《linux加载git仓库代码打包并运行》--菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/服务器配置篇汇总（linux）+（jdk）+（tomcat）+（mysql）+（nginx）+（redis）+（fastDFS）+（mycat）+（git）+(maven) --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/虚拟机安装centos7并配置网络/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/运维/阿里云服务器配置   Linuxs系统安装 jdk、tomcat、MySQL汇总详细教程   项目上线发布中的部分小bug解决方案 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/18/BookMark/面试/JAVA基础/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/20/BookMark/安装配置/Windows调取Bartender使用教程/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/20/BookMark/车车笔记/并行流/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/20/BookMark/车车笔记/订阅消息/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/21/BookMark/学习笔记/Jenkins项目启动教程/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/21/BookMark/学习笔记/java中使用redis（含json类型与java类型装换） --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/21/BookMark/学习笔记/业务清单/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/21/BookMark/翻墙刷机/miui12.5 root刷面具+线刷降级+卡米教程（测试机小米10至尊版）/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/21/BookMark/翻墙刷机/《XP、面具框架玩机》小米手机玩机教程--菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/21/BookMark/翻墙刷机/翻墙v2ray windows客户端使用教程/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/21/BookMark/面试/JVM/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/README/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/config/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/package/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/学习笔记/java中使用fastDFS上传图片(前端ajax+后端ssm) --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/安装配置/IDEA2021.2及以下版本破解教程/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/安装配置/IDEA快捷键/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/安装配置/MySQL免安装版配置 dos基础命令创建MySQL Navicat编辑器破解--菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/安装配置/mac/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/安装配置/无水印上传本地图片到网络获取地址+小书匠使用 +github和 七牛云 图床绑定--菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/异常/解决：Error java 无效的源发行版 12 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/异常/项目异常/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/拉勾笔记/1-2.IoC容器设计实现及Spring源码分析/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/拉勾笔记/通过房屋租赁流程理解设计模式（单例模式，代理模式，工厂模式）/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/翻墙刷机/甲骨文vps搭建/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/车车笔记/天境/常用脚本代码段/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/车车笔记/笔记/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/车车笔记/统计信息/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/运维/VMware中centos7网络配置（桥接自定义ip）/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/运维/idea中spring boot配置一键docker/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/运维/云服务器伪分布式hadoop配置+javaAPI上传下载删除操纵（踩坑总结） --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/运维/服务器部署---《jdk篇》 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/运维/服务器部署---《mycat篇》 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/运维/服务器部署---《mysql篇》 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/07/25/BookMark/面试/面试准备/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/08/18/BookMark/车车笔记/天境/天境上线/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/08/18/BookMark/运维/git/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/08/26/BookMark/运维/宝塔/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Code Demo/Hutool/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Code Demo/Mybatis Plus/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Code Demo/Stream&amp;Lambda/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Code Demo/sql中上下移置顶置底置换的排序实现/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Code Demo/常用js/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Code Demo/常用sql/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/SSM项目转Spring Boot项目详细过程（含eclipse转idea注意事项）--菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot &amp; Jenkins 实现自动化部署（centos7&amp;windows，涵盖防jenkins杀死的脚本）/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot &amp; MinIo进行分布式文件服务/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot &amp; Mybatis Plus代码生成器/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot &amp; RabbitMq 延迟消息队列死信队列实现定时任务/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot &amp; Slf4j &amp; logback 彩色日志打印（功能点：1、分运行环境生成日志文件 2、日志文件目录分类 3、日志文件按日输出）/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot &amp; poi 导出Excel表格、Txt到浏览器下载/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot &amp; 拦截参数 &amp; 全局异常处理 &amp; 统一结果返回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot &amp; 支付宝支付（手机端，web端）/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot &amp; 自定义注解 实现从配置文件自选择redis db数据源/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot &amp; 过滤器 &amp; 拦截器 &amp; 注册/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot &amp; 阿里OSS文件服务/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot &amp; 阿里短信服务（Redis+短信验证码）/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot与Spring Clound 微服务项目搭建流程/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot与Spring Clound项目四层pom以及基础配置文件/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/Spring Boot项目maven分环境打包/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/2022/09/05/BookMark/Spring Boot/idea新建一个Spring Boot项目+项目目录简单介绍+项目打包运行+导入Module项目无法识别问题（全部报红或灰色）解决 --菜鸟小回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/about/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/07/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/07/page/2/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/07/page/3/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/07/page/4/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/07/page/5/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/07/page/6/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/07/page/7/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/07/page/8/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/08/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/09/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/09/page/2/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/09/page/3/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/page/10/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/page/11/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/page/2/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/page/3/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/page/4/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/page/5/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/page/6/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/page/7/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/page/8/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/2022/page/9/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/page/10/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/page/11/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/page/2/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/page/3/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/page/4/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/page/5/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/page/6/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/page/7/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/page/8/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/archives/page/9/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/categories/Code-Demo/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/categories/Spring-Boot/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/categories/Spring-Boot/page/2/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/categories/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/css/gitalk.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/css/highlight-dark.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/css/highlight.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/img/avatar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/img/default.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/img/fluid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/img/loading.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/img/police_beian.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/js/boot.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/js/color-schema.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/js/events.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/js/img-lazyload.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/js/leancloud.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/js/local-search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/js/plugins.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/js/utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/links/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/local-search.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/page/10/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/page/11/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/page/2/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/page/3/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/page/4/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/page/5/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/page/6/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/page/7/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/page/8/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/page/9/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/Excel/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/Hutool/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/Jenkins/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/Lambda/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/MinIo/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/Mybatis-Plus/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/RabbitMq/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/SSM/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/Slf4j/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/Spring-Boot/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/Spring-Boot/page/2/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/Spring-Clound/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/Stream/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/idea/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/js/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/logback/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/maven/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/mysql/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/poi/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/redis/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/全局异常处理/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/拦截器/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/支付宝支付/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/统一结果返回/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/自定义注解/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/过滤器/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/阿里OSS文件服务/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/tags/阿里短信服务/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/public/xml/local-search.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/source/_posts/BookMark/安装配置/使用nginx一分钟配置一个文件服务器（附：阿里oss文件服务使用、fastDFS文件服务使用）.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/source/_posts/BookMark/安装配置/使用nginx一分钟配置一个文件服务器（附：阿里oss文件服务使用、fastDFS文件服务使用）.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/内网centos 7安装mysql及问题记录.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/内网centos 7安装mysql及问题记录.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《fastDFS篇》 --菜鸟小回.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《fastDFS篇》 --菜鸟小回.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《jdk篇》 --菜鸟小回.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《jdk篇》 --菜鸟小回.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《mycat篇》 --菜鸟小回.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《mycat篇》 --菜鸟小回.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《mysql篇》 --菜鸟小回.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《mysql篇》 --菜鸟小回.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《nginx篇》 --菜鸟小回.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《nginx篇》 --菜鸟小回.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《redis篇》 --菜鸟小回.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《redis篇》 --菜鸟小回.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《tomcat篇》 --菜鸟小回.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署---《tomcat篇》 --菜鸟小回.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署—《linux加载git仓库代码打包并运行》--菜鸟小回.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器部署—《linux加载git仓库代码打包并运行》--菜鸟小回.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器配置篇汇总（linux）+（jdk）+（tomcat）+（mysql）+（nginx）+（redis）+（fastDFS）+（mycat）+（git）+(maven) --菜鸟小回.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/服务器配置篇汇总（linux）+（jdk）+（tomcat）+（mysql）+（nginx）+（redis）+（fastDFS）+（mycat）+（git）+(maven) --菜鸟小回.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/阿里云服务器配置   Linuxs系统安装 jdk、tomcat、MySQL汇总详细教程   项目上线发布中的部分小bug解决方案 --菜鸟小回.md" beforeDir="false" afterPath="$PROJECT_DIR$/blog/source/_posts/BookMark/运维/阿里云服务器配置   Linuxs系统安装 jdk、tomcat、MySQL汇总详细教程   项目上线发布中的部分小bug解决方案 --菜鸟小回.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -434,7 +213,7 @@
       <workItem from="1662539234390" duration="105000" />
       <workItem from="1662542510746" duration="1795000" />
       <workItem from="1662628981684" duration="2853000" />
-      <workItem from="1662632863233" duration="668000" />
+      <workItem from="1662632863233" duration="1090000" />
     </task>
     <task id="LOCAL-00001" summary="mac">
       <created>1659602757040</created>
@@ -485,7 +264,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662632194815</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="blog">
+      <created>1662633596160</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1662633596160</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
