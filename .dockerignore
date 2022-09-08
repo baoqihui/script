@@ -1,7 +1,9 @@
 .idea
 .git
 my
+public
 blog/node_modules
+blog/source/_posts/BookMark/车车笔记/
 init.sh
 cert.sh
 root.sh

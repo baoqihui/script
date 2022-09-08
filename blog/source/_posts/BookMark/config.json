@@ -1,0 +1,18 @@
+{
+  "picBed": {
+    "uploader": "tcyun",
+    "tcyun": {
+      "secretId": "AKIDAKLJ8r5r8E74vdrfv0y29FBXZWIAtRyM",
+      "secretKey": "Qkwyqy0tfEg09A0eFB0fBWgfT5X4axBE",
+      "bucket": "img-1256282866",
+      "appId": "1256282866",
+      "area": "ap-beijing",
+      "path": "",
+      "customUrl": "",
+      "version": "v5"
+    }
+  },
+  "picgoPlugins": {
+    "picgo-plugin-minio": true
+  }
+}
