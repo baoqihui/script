@@ -1,0 +1,801 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <link rel="icon" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="阶段一模块二学习笔记-Spring高级框架[toc] 一、自定义Ioc&amp;AOP框架1. spring概述 Spring 简介：Spring 是分层的 full-stack（全栈） 轻量级开源框架，以 IoC 和 AOP 为内核，提供了展现层 SpringMVC 和业务层事务管理等众多的企业级应⽤技术，还能整合开源世界众多著名的第三⽅框架和类库，已经成为使⽤最多的 Java EE 企业应⽤开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/07/25/BookMark/%E6%8B%89%E5%8B%BE%E7%AC%94%E8%AE%B0/1-2.IoC%E5%AE%B9%E5%99%A8%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0%E5%8F%8ASpring%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="阶段一模块二学习笔记-Spring高级框架[toc] 一、自定义Ioc&amp;AOP框架1. spring概述 Spring 简介：Spring 是分层的 full-stack（全栈） 轻量级开源框架，以 IoC 和 AOP 为内核，提供了展现层 SpringMVC 和业务层事务管理等众多的企业级应⽤技术，还能整合开源世界众多著名的第三⽅框架和类库，已经成为使⽤最多的 Java EE 企业应⽤开">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627713407734.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627713793120.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627715098188.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627715138038.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627715181331.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627722518688.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627722551848.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627787295618.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627787463646.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627736383616.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627736399409.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627736425603.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627737614000.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627737680109.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627785714172.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627785664518.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627801093181.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627801348308.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627801429789.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627806613202.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627806602644.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627973066835.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627985840559.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627987084431.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627988397856.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627993291758.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627993314180.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1628085817082.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1628087356985.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1628125966009.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1628127266368.png">
+<meta property="article:published_time" content="2022-07-25T05:51:38.000Z">
+<meta property="article:modified_time" content="2022-09-05T06:57:55.601Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627713407734.png">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img-1256282866.cos.ap-beijing.myqcloud.com/default-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-25 13:51" pubdate>
+          2022年7月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          79 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1><span id="阶段一模块二学习笔记-spring高级框架">阶段一模块二学习笔记-Spring高级框架</span></h1><p>[toc]</p>
+<h2><span id="一-自定义iocampaop框架">一、自定义Ioc&amp;AOP框架</span></h2><h2><span id="1-spring概述">1. spring概述</span></h2><ul>
+<li>Spring 简介：Spring 是分层的 full-stack（全栈） 轻量级开源框架，以 IoC 和 AOP 为内核，提供了展现层 SpringMVC 和业务层事务管理等众多的企业级应⽤技术，还能整合开源世界众多著名的第三⽅框架和类库，已经成为使⽤最多的 Java EE 企业应⽤开源框架。</li>
+<li>Spring 的优势<ul>
+<li>⽅便解耦，简化开发</li>
+<li>AOP编程的⽀持</li>
+<li>声明式事务的⽀持</li>
+<li>⽅便程序的测试</li>
+<li>⽅便集成各种优秀框架</li>
+<li>降低JavaEE API的使⽤难度</li>
+<li>源码是经典的 Java 学习范例</li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-核心思想">2. 核心思想</span></h2><h3><span id="21-ioc">2.1 Ioc</span></h3><ul>
+<li>什么是IOC： IoC Inversion of Control (控制反转&#x2F;反转控制)，注意它是⼀个技术思想，不是⼀个技术实现<br>描述的事情：Java开发领域对象的创建，管理的问题<br>传统开发⽅式：⽐如类A依赖于类B，往往会在类A中new⼀个B的对象<br>IoC思想下开发⽅式：我们不⽤⾃⼰去new对象了，⽽是由IoC容器（Spring框架）去帮助我们实例化对象并且管理它，我们需要使⽤哪个对象，去问IoC容器要即可<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627713407734.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li>IOC的作用<br>IoC解决对象之间的耦合问题<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627713793120.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li>IOC和DI的区别<br>IOC和DI描述的是同一件事情(对象实例化及依赖关系维护这件事情)，只不过角度不同罢了<br>IOC是站在对象的角度：对象实例化及其管理的权利交给了（反转)给了容器<br>DI是站在容器的角度：容器会把对象依赖的其他对象注入(送进去)，比如A对象实例化过程中因为声明了一个B类型的属性，那么就需要容器把B对象注入给A</li>
+</ul>
+<h3><span id="22-aop">2.2 AOP</span></h3><ul>
+<li>先了解OOP<br>OOP三⼤特征：封装、继承和多态<br>oop是⼀种垂直继承体系<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627715098188.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li>OOP问题：<br>  OOP编程思想可以解决⼤多数的代码重复问题，但是有⼀些情况是处理不了的，⽐如下⾯的在顶级⽗类<br>  Animal中的多个⽅法中相同位置出现了重复代码，OOP就解决不了，如图的横切逻辑<br>  <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627715138038.png" srcset="/img/loading.gif" lazyload alt="enter description here"><br>  <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627715181331.png" srcset="/img/loading.gif" lazyload alt="enter description here"><ul>
+<li>横切代码重复问题</li>
+<li>横切逻辑代码和业务代码混杂在⼀起，代码臃肿，维护不⽅便</li>
+</ul>
+</li>
+</ul>
+<h2><span id="3手写ioc和aop">3.手写IOC和AOP</span></h2><ul>
+<li>提到工厂模式和单例模式</li>
+<li>工厂模式：从自己手动创建对象，到自己只传递想要的参数给工厂，由工厂创建对象。</li>
+<li>单例模式，应用在全局只有一个实例对象时，将自身实例化并赋值给一个属性，加载到此类时直接调用其静态实例。分为懒汉和饿汉式<ul>
+<li>饿汉：<img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627722518688.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li>懒汉：<img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627722551848.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+</ul>
+</li>
+<li>代理模式：实现对方法的前后增强，相当于委托给代理实现想要的功能，代理可以在实现功能的前后实现自己的需求。<ul>
+<li>jdk动态代理（需要委托对象实现接口）：<img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627787295618.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li>使用：<img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627787463646.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+</ul>
+</li>
+</ul>
+<h3><span id="31银行转账的工厂模式实现">3.1银行转账的工厂模式实现</span></h3><p>工厂模式生产，在xml中获取实现的全路径进行反射</p>
+<ul>
+<li>工厂：读取解析xml，通过反射技术实例化对象并且存储待用（map集合）；对外提供获取实例对象的接口（根据id获取）<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627736383616.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li>存放需要实例化的对象全路径<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627736399409.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li>使用工厂中的方法并传入相应参数<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627736425603.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li>源码：<code>git clone -b master1 https://gitee.com/idse666666/my_spring.git</code></li>
+<li>存在问题：仍需要从工厂获取bean</li>
+<li>解决：<img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627737614000.png" srcset="/img/loading.gif" lazyload alt="enter description here"><br> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627737680109.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li>源码：<code>git clone -b master2 https://gitee.com/idse666666/my_spring.git</code></li>
+</ul>
+<h3><span id="32事务控制">3.2事务控制</span></h3><ul>
+<li>如图：如果不对service层进行事务控制，将会存在前者转账，后者接收不到的问题。<br> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627785714172.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li>而现有的事务控制是对于每一个数据库连接，我们需要将数据库连接存放到线程中，单个线程只有一个数据库连接，也就是单例模式。<br> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627785664518.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li>经过以上事务控制的拦截，我们捕获存在异常则回滚事务。保证了数据正确。<br> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627801093181.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li>源码：<code>git clone -b master3 https://gitee.com/idse666666/my_spring.git</code></li>
+<li>仍存在问题：我们的每个方法都需要添加开启事务，提交事务，回滚以及try..catch…代码块。应使用代理模式在方法的前后进行增强，将固定的try…catch…代码块提取至jdk动态代理里。<br> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627801348308.png" srcset="/img/loading.gif" lazyload alt="enter description here"><br> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627801429789.png" srcset="/img/loading.gif" lazyload alt="enter description here"><ul>
+<li>源码：<code>git clone -b master4 https://gitee.com/idse666666/my_spring.git</code></li>
+</ul>
+</li>
+</ul>
+<h3><span id="33将所有用到的工具类等以bean形式封装到xml中">3.3将所有用到的工具类等以bean形式封装到xml中。</span></h3><p> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627806613202.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<ul>
+<li>源码：<code>git clone -b master5 https://gitee.com/idse666666/my_spring.git</code></li>
+</ul>
+<h3><span id="34-手写ioc与aop示意图">3.4 手写IOC与AOP示意图</span></h3><p> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627806602644.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<h2><span id="二-spring-ioc应用">二、 spring IOC应用</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627973066835.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<h3><span id="1-beanfactory与applicationcontext区别">1. BeanFactory与ApplicationContext区别</span></h3><ul>
+<li>BeanFactory是Spring框架中IoC容器的顶层接⼝,它只是⽤来定义⼀些基础功能,定义⼀些基础规范,⽽ApplicationContext是它的⼀个⼦接⼝，所以ApplicationContext是具备BeanFactory提供的全部功能的。我们称BeanFactory为SpringIOC的基础容器，ApplicationContext是容器的⾼级接⼝，比BeanFactory要拥有更多的功能</li>
+</ul>
+<h3><span id="2-启动ioc的方式">2. 启动IOC的方式</span></h3><h4><span id="21-java环境下">2.1 Java环境下</span></h4><ul>
+<li>ClassPathXmlApplicationContext 从类的根路径下加载配置⽂件（推荐使⽤）</li>
+<li>AnnotationConfigApplicationContext 纯注解模式下启动Spring容器</li>
+</ul>
+<h4><span id="22-web环境下启动ioc容器">2.2 Web环境下启动IoC容器</span></h4><ul>
+<li>Web环境下启动IoC容器 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">&lt;!DOCTYPE web-app PUBLIC<br> &quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot;<br> &quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot; &gt;<br><br>&lt;web-app&gt;<br>  &lt;display-name&gt;Archetype Created Web Application&lt;/display-name&gt;<br>  &lt;!--配置Spring ioc容器的配置文件--&gt;<br>  &lt;context-param&gt;<br>    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;<br>    &lt;param-value&gt;classpath:applicationContext.xml&lt;/param-value&gt;<br>  &lt;/context-param&gt;<br>  &lt;!--使用监听器启动Spring的IOC容器--&gt;<br>  &lt;listener&gt;<br>    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;<br>  &lt;/listener&gt;<br>&lt;/web-app&gt;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3><span id="3-使用spring-ioc-xml形式注入bean改造手写的ioc和aop">3. 使用spring ioc xml形式注入Bean改造手写的ioc和aop</span></h3><h4><span id="31-常见的bean标签">3.1 常见的bean标签：</span></h4><ul>
+<li>id属性： ⽤于给bean提供⼀个唯⼀标识。在⼀个标签内部，标识必须唯⼀。</li>
+<li>class属性：⽤于指定创建Bean对象的全限定类名。</li>
+<li>name属性：⽤于给bean提供⼀个或多个名称。多个名称⽤空格分隔。</li>
+<li>factory-bean属性：⽤于指定创建当前bean对象的⼯⼚bean的唯⼀标识。当指定了此属性之后，class属性失效。</li>
+<li>factory-method属性：⽤于指定创建当前bean对象的⼯⼚⽅法，如配合factory-bean属性使⽤，则class属性失效。如配合class属性使⽤，则⽅法必须是static的。</li>
+<li>scope属性：⽤于指定bean对象的作⽤范围。通常情况下就是singleton。当要⽤到多例模式时，可以配置为prototype。</li>
+<li>init-method属性：⽤于指定bean对象的初始化⽅法，此⽅法会在bean对象装配后调⽤。必须是⼀个⽆参⽅法。</li>
+<li>destory-method属性：⽤于指定bean对象的销毁⽅法，此⽅法会在bean对象销毁前执⾏。它只能为scope是singleton时起作⽤。</li>
+</ul>
+<h4><span id="32-实例化bean的几种方式">3.2 实例化bean的几种方式</span></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">&lt;!--Spring ioc 实例化Bean的三种方式--&gt;<br>&lt;!--方式一：使用无参构造器（推荐）--&gt;<br>&lt;bean id=&quot;connectionUtils&quot; class=&quot;com.lagou.edu.utils.ConnectionUtils&quot;&gt;&lt;/bean&gt;<br>&lt;!--另外两种方式是为了我们自己new的对象加入到SpringIOC容器管理--&gt;<br>&lt;!--方式二：静态方法--&gt;<br>&lt;bean id=&quot;connectionUtils&quot; class=&quot;com.lagou.edu.factory.CreateBeanFactory&quot; factory-method=&quot;getInstanceStatic&quot;/&gt;<br>&lt;!--方式三：实例化方法--&gt;<br>&lt;bean id=&quot;createBeanFactory&quot; class=&quot;com.lagou.edu.factory.CreateBeanFactory&quot;&gt;&lt;/bean&gt;<br>&lt;bean id=&quot;connectionUtils&quot; factory-bean=&quot;createBeanFactory&quot; factory-method=&quot;getInstance&quot;/&gt;<br></code></pre></td></tr></table></figure>
+<h4><span id="33-di依赖注入">3.3 DI依赖注入</span></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">&lt;property name=&quot;ConnectionUtils&quot; ref=&quot;connectionUtils&quot;/&gt;<br>&lt;property name=&quot;name&quot; value=&quot;zhangsan&quot;/&gt;<br>&lt;property name=&quot;sex&quot; value=&quot;1&quot;/&gt;<br>&lt;property name=&quot;money&quot; value=&quot;100.3&quot;/&gt;--&gt; <br></code></pre></td></tr></table></figure>
+<ul>
+<li>源码：<code>git clone -b master6 https://gitee.com/idse666666/my_spring.git</code></li>
+</ul>
+<h3><span id="4-xml与注解相结合模式">4. xml与注解相结合模式</span></h3><h4><span id="41注意事项">4.1注意事项</span></h4><ul>
+<li>实际企业开发中，纯xml模式使⽤已经很少了</li>
+<li>引⼊注解功能，不需要引⼊额外的jar</li>
+<li>xml+注解结合模式，xml⽂件依然存在，所以，spring IOC容器的启动仍然从加载xml开始</li>
+</ul>
+<h4><span id="42xml中标签与注解的对应ioc">4.2xml中标签与注解的对应（IoC）</span></h4><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627985840559.png" srcset="/img/loading.gif" lazyload alt="enter description here"><br>DI 依赖注⼊的注解实现⽅式:@Autowired（推荐使⽤）<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627987084431.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<ul>
+<li>源码：<code>git clone -b master7 https://gitee.com/idse666666/my_spring.git</code></li>
+</ul>
+<h3><span id="5全注解形式">5.全注解形式</span></h3><h4><span id="51常用注解">5.1常用注解</span></h4><p>@Configuration 注解，表名当前类是⼀个配置类<br>@ComponentScan 注解，替代 context:component-scan<br>@PropertySource，引⼊外部属性配置⽂件<br>@Import 引⼊其他配置类<br>@Value 对变量赋值，可以直接赋值，也可以使⽤ ${} 读取资源配置⽂件中的信息<br>@Bean 将⽅法返回对象加⼊ SpringIOC 容器</p>
+<h4><span id="52-具体迁移所对应形式">5.2 具体迁移所对应形式</span></h4><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627988397856.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<ul>
+<li>源码：<code>git clone -b master8 https://gitee.com/idse666666/my_spring.git</code></li>
+</ul>
+<h3><span id="6-延迟加载">6. 延迟加载</span></h3><h4><span id="61概念">6.1概念</span></h4><p>ApplicationContext 容器的默认⾏为是在启动服务器时将所有 singleton bean 提前进⾏实例化。提前<br>实例化意味着作为初始化过程的⼀部分，ApplicationContext 实例会创建并配置所有的singleton<br>bean。</p>
+<h4><span id="62使用">6.2使用</span></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">//xml<br>//单个<br>&lt;bean id=&quot;testBean&quot; calss=&quot;cn.lagou.LazyBean&quot; lazy-init=&quot;true&quot; /&gt;<br>//全部<br>&lt;beans default-lazy-init=&quot;true&quot;&gt;&lt;/beans&gt;<br></code></pre></td></tr></table></figure>
+<h4><span id="63-使用场景">6.3 使用场景</span></h4><ul>
+<li>开启延迟加载⼀定程度提⾼容器启动和运转性能</li>
+<li>对于不常使⽤的 Bean 设置延迟加载，这样偶尔使⽤的时候再加载，不必要从⼀开始该 Bean 就占⽤资源</li>
+</ul>
+<h3><span id="7-factorybean-和-beanfactory">7. FactoryBean 和 BeanFactory</span></h3><h4><span id="71概念">7.1概念</span></h4><ul>
+<li>BeanFactory接⼝是容器的顶级接⼝，定义了容器的⼀些基础⾏为，负责⽣产和管理Bean的⼀个⼯⼚，具体使⽤它下⾯的⼦接⼝类型，⽐如ApplicationContext；此处我们重点分析FactoryBean</li>
+<li>Spring中Bean有两种，⼀种是普通Bean，⼀种是⼯⼚Bean（FactoryBean），FactoryBean可以⽣成某⼀个类型的Bean实例（返回给我们），也就是说我们可以借助于它⾃定义Bean的创建过程。</li>
+<li>Bean创建的三种⽅式中的静态⽅法和实例化⽅法和FactoryBean作⽤类似，FactoryBean使⽤较多，尤其在Spring框架⼀些组件中会使⽤，还有其他框架和Spring框架整合时使⽤</li>
+</ul>
+<h4><span id="72-使用">7.2 使用</span></h4><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627993291758.png" srcset="/img/loading.gif" lazyload alt="enter description here"><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627993314180.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<h2><span id="二-spring-aop应用">二、 spring AOP应用</span></h2><ul>
+<li>AOP的本质：在不改变原有业务逻辑的情况下增强横切逻辑，横切逻辑代码往往是权限校验代码、⽇志代码、事务控制代码、性能监控代码。</li>
+<li><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+<h3><span id="1-aop相关术语">1. AOP相关术语</span></h3><ul>
+<li>连接点：⽅法开始时、结束时、正常运⾏完毕时、⽅法异常时等这些特殊的时机点，我们称之为连接 点，项⽬中每个⽅法都有连接点，连接点是⼀种候选点</li>
+<li>切⼊点：指定AOP思想想要影响的具体⽅法是哪些，描述感兴趣的⽅法 Advice增强：<ul>
+<li>第⼀个层次：指的是横切逻辑</li>
+<li>第⼆个层次：⽅位点（在某⼀些连接点上加⼊横切逻辑，那么这些连接点就叫做⽅位点，描述的是具体 的特殊时机）</li>
+</ul>
+</li>
+<li>Aspect切⾯：切⾯概念是对上述概念的⼀个综合 Aspect切⾯&#x3D; 切⼊点+增强&#x3D; 切⼊点（锁定⽅法） + ⽅位点（锁定⽅法中的特殊时机）+ 横切逻辑 众多的概念，⽬的就是为了锁定要在哪个地⽅插⼊什么横切逻辑代码</li>
+</ul>
+<h3><span id="2spring中aop的代理选择">2.Spring中AOP的代理选择</span></h3><ul>
+<li>Spring 实现AOP思想使⽤的是动态代理技术</li>
+<li>默认情况下，Spring会根据被代理对象是否实现接⼝来选择使⽤JDK还是CGLIB。当被代理对象没有实现任何接⼝时，Spring会选择CGLIB。当被代理对象实现了接⼝，Spring会选择JDK官⽅的代理技术，不过我们可以通过配置的⽅式，让Spring强制使⽤CGLIB。</li>
+</ul>
+<h3><span id="3-aop的xml实现">3. AOP的xml实现</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums"> &lt;!--aop注解模式--&gt;<br> &lt;!--aspect   =    切入点（锁定方法） + 方位点（锁定方法中的特殊时机）+ 横切逻辑--&gt;<br> &lt;aop:config&gt;<br>     &lt;!--横切逻辑类名--&gt;<br>     &lt;aop:aspect id=&quot;lagAspect&quot; ref=&quot;logUtils&quot;&gt;<br>         &lt;!--切入点：切入我们感兴趣的方法，使用aspectj表达式--&gt;<br>         &lt;aop:pointcut id=&quot;pt1&quot; expression=&quot;execution(public void com.lagou.edu.service.impl.TransferServiceImpl.transfer(java.lang.String , java.lang.String , int ))&quot;/&gt;<br><br>         &lt;!--aop:before方位点--&gt;<br>&lt;!--method具体横切逻辑--&gt;<br>         &lt;!--aop:before前置通知/增强--&gt;<br>         &lt;!--&lt;aop:before method=&quot;beforeMethod&quot; pointcut-ref=&quot;pt1&quot;/&gt;--&gt;<br>         &lt;!--aop:after，最终通知，无论如何都执行--&gt;<br>         &lt;!--aop:after-returnning，正常执行通知--&gt;<br>         &lt;!--&lt;aop:after-returning method=&quot;successMethod&quot; returning=&quot;retValue&quot;/&gt;--&gt;<br>         &lt;!--aop:after-throwing，异常通知--&gt;<br>         &lt;aop:around method=&quot;arroundMethod&quot; pointcut-ref=&quot;pt1&quot;/&gt;<br>     &lt;/aop:aspect&gt;<br> &lt;/aop:config&gt;<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1628085817082.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<ul>
+<li>源码：<code>git clone -b master9 https://gitee.com/idse666666/my_spring.git</code></li>
+</ul>
+<h3><span id="4aop的xmlanno形式实现">4.AOP的xml+anno形式实现</span></h3><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1628087356985.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<ul>
+<li>源码：<code>git clone -b master10 https://gitee.com/idse666666/my_spring.git</code></li>
+</ul>
+<h3><span id="5-aop的anno模式实现">5. AOP的anno模式实现</span></h3><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1628125966009.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<ul>
+<li>源码：<code>git clone -b master11 https://gitee.com/idse666666/my_spring.git</code></li>
+</ul>
+<h3><span id="6-声明式事务的支持">6. 声明式事务的⽀持</span></h3><h4><span id="61概念">6.1概念</span></h4><p>事务指逻辑上的⼀组操作，组成这组操作的各个单元，要么全部成功，要么全部不成功。从⽽确保了数据的准确与安全。又分为</p>
+<ul>
+<li>编程式事务：在业务代码中添加事务控制代码，这样的事务控制机制就叫做编程式事务</li>
+<li>声明式事务：通过xml或者注解配置的⽅式达到事务控制的⽬的，叫做声明式事务</li>
+</ul>
+<h4><span id="62事务的四大特性">6.2事务的四大特性</span></h4><ul>
+<li>原⼦性（Atomicity） 原⼦性是指事务是⼀个不可分割的⼯作单位，事务中的操作要么都发⽣，要么都不发⽣。从操作的⻆度来描述，事务中的各个操作要么都成功要么都失败</li>
+<li>⼀致性（Consistency） 事务必须使数据库从⼀个⼀致性状态变换到另外⼀个⼀致性状态。⼀致性是从数据的⻆度来说的，</li>
+<li>隔离性（Isolation） 事务的隔离性是多个⽤户并发访问数据库时，数据库为每⼀个⽤户开启的事务，每个事务不能被其他事务的操作数据所⼲扰，多个并发事务之间要相互隔离。</li>
+<li>持久性（Durability） 持久性是指⼀个事务⼀旦被提交，它对数据库中数据的改变就是永久性的，接下来即使数据库发⽣故障也不应该对其有任何影响。</li>
+</ul>
+<h2><span id="三-事务">三、 事务</span></h2><h3><span id="1-事务的隔离级别">1 事务的隔离级别</span></h3><p> 不考虑隔离级别会出现：</p>
+<ul>
+<li>脏读：⼀个线程中的事务读到了另外⼀个线程中未提交的数据。</li>
+<li>不可重复读：⼀个线程中的事务读到了另外⼀个线程中已经提交的update的数据（前后内容不⼀样）</li>
+<li>虚读（幻读）：⼀个线程中的事务读到了另外⼀个线程中已经提交的insert或者delete的数据（前后条数不⼀样）<br>四种隔离级别</li>
+<li>Serializable（串⾏化）：可避免脏读、不可重复读、虚读情况的发⽣。（串⾏化） </li>
+<li>Repeatable read（可重复读）：可避免脏读、不可重复读情况的发⽣。(幻读有可能发⽣) 该机制下会对要update的⾏进⾏加锁</li>
+<li>Read committed（读已提交）：可避免脏读情况发⽣。不可重复读和幻读⼀定会发⽣。 </li>
+<li>Read uncommitted（读未提交）：最低级别，以上情况均⽆法保证。(读未提交)<br>注意：级别依次升⾼，效率依次降低</li>
+</ul>
+<h3><span id="2事务的传播性">2.事务的传播性</span></h3><ul>
+<li>事务往往在service层进⾏控制，如果出现service层⽅法A调⽤了另外⼀个service层⽅法B，A和B⽅法本身都已经被添加了事务控制，那么A调⽤B的时候，就需要进⾏事务的⼀些协商，这就叫做事务的传播⾏为。A调⽤B，我们站在B的⻆度来观察来定义事务的传播⾏为<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1628127266368.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+</ul>
+<h3><span id="3-spring-xml实现事务">3. spring xml实现事务</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">&lt;!--spring声明式事务配置，声明式事务无非就是配置一个aop，只不过有些标签不一样罢了--&gt;<br>&lt;!--横切逻辑--&gt;<br>&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;<br>	&lt;constructor-arg name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/constructor-arg&gt;<br>&lt;/bean&gt;<br><br>&lt;tx:advice id=&quot;txAdvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;<br>	&lt;!--定制事务细节，传播行为、隔离级别等--&gt;<br>	&lt;tx:attributes&gt;<br>		&lt;!--一般性配置--&gt;<br>		&lt;tx:method name=&quot;*&quot; read-only=&quot;false&quot; propagation=&quot;REQUIRED&quot; isolation=&quot;DEFAULT&quot; timeout=&quot;-1&quot;/&gt;<br>		&lt;!--针对查询的覆盖性配置--&gt;<br>		&lt;tx:method name=&quot;query*&quot; read-only=&quot;true&quot; propagation=&quot;SUPPORTS&quot;/&gt;<br>	&lt;/tx:attributes&gt;<br>&lt;/tx:advice&gt;<br>&lt;aop:config&gt;<br>	&lt;!--advice-ref指向增强=横切逻辑+方位&amp;--&gt;<br>	&lt;aop:advisor advice-ref=&quot;txAdvice&quot; pointcut=&quot;execution(* com.lagou.edu.service.impl.TransferServiceImpl.*(..))&quot;/&gt;<br>&lt;/aop:config&gt;<br></code></pre></td></tr></table></figure>
+<h3><span id="4-spring-xmlanno实现事务">4. spring xml+anno实现事务</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">//xml<br>&lt;!--声明式事务的注解驱动--&gt;<br>&lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot;/&gt;<br>//anno<br>@Transactional<br></code></pre></td></tr></table></figure>
+<h3><span id="5-纯注解">5. 纯注解</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">@EnableTransactionManagement<br>@Transactional<br></code></pre></td></tr></table></figure>
+<ul>
+<li>源码：<code>git clone -b master12 https://gitee.com/idse666666/my_spring.git</code></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2022/07/25/BookMark/拉勾笔记/1-2.IoC容器设计实现及Spring源码分析/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月25日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/25/BookMark/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E4%B8%AD%E4%BD%BF%E7%94%A8fastDFS%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87(%E5%89%8D%E7%AB%AFajax+%E5%90%8E%E7%AB%AFssm)%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/25/BookMark/%E6%8B%89%E5%8B%BE%E7%AC%94%E8%AE%B0/%E9%80%9A%E8%BF%87%E6%88%BF%E5%B1%8B%E7%A7%9F%E8%B5%81%E6%B5%81%E7%A8%8B%E7%90%86%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%8C%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%EF%BC%8C%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%EF%BC%89/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

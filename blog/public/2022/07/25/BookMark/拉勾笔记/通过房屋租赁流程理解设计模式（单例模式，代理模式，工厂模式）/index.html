@@ -1,0 +1,655 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <link rel="icon" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="通过房屋租赁流程理解设计模式（单例模式，代理模式，工厂模式） [toc]  源码:design-pattern   一、单例模式1. 相关概念 单例模式：应用在全局只有一个实例对象时，将自身实例化并赋值给一个属性，加载到此类时直接调用其静态实例。分为懒汉和饿汉式，此处展示饿汉式 实现思路：此类为静态，只暴露getInstance方法，jvm启动过程只加载一次 主要用途：整个项目只要一种配置，基本固">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/07/25/BookMark/%E6%8B%89%E5%8B%BE%E7%AC%94%E8%AE%B0/%E9%80%9A%E8%BF%87%E6%88%BF%E5%B1%8B%E7%A7%9F%E8%B5%81%E6%B5%81%E7%A8%8B%E7%90%86%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%8C%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%EF%BC%8C%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="通过房屋租赁流程理解设计模式（单例模式，代理模式，工厂模式） [toc]  源码:design-pattern   一、单例模式1. 相关概念 单例模式：应用在全局只有一个实例对象时，将自身实例化并赋值给一个属性，加载到此类时直接调用其静态实例。分为懒汉和饿汉式，此处展示饿汉式 实现思路：此类为静态，只暴露getInstance方法，jvm启动过程只加载一次 主要用途：整个项目只要一种配置，基本固">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627825408671.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627825434528.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627830083514.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627830102262.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627865477291.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627865453058.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627867501321.png">
+<meta property="article:published_time" content="2022-07-25T05:51:38.000Z">
+<meta property="article:modified_time" content="2022-09-01T10:20:22.854Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627825408671.png">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img-1256282866.cos.ap-beijing.myqcloud.com/default-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-25 13:51" pubdate>
+          2022年7月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          52 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1><span id="通过房屋租赁流程理解设计模式单例模式代理模式工厂模式">通过房屋租赁流程理解设计模式（单例模式，代理模式，工厂模式）</span></h1><hr>
+<p>[toc]</p>
+<hr>
+<p>源码:<a target="_blank" rel="noopener" href="https://gitee.com/idse666666/design-pattern.git">design-pattern </a></p>
+<hr>
+<h2><span id="一-单例模式">一、单例模式</span></h2><h3><span id="1-相关概念">1. 相关概念</span></h3><ul>
+<li>单例模式：应用在全局只有一个实例对象时，将自身实例化并赋值给一个属性，加载到此类时直接调用其静态实例。分为懒汉和饿汉式，此处展示饿汉式</li>
+<li>实现思路：此类为静态，只暴露getInstance方法，jvm启动过程只加载一次</li>
+<li>主要用途：整个项目只要一种配置，基本固定的值，仅实例化一次；如数据库的连接信息</li>
+</ul>
+<h3><span id="2-演示思路">2. 演示思路</span></h3><ul>
+<li>假设某地区房产中介只有一个Tom，完全垄断租房中介产业。张三Z和李四L都想在北京租房，只能找Tom。Tom不需要打太多广告，只需要把自己的名字和代理费用打印成一张名片。</li>
+</ul>
+<h3><span id="3-代码实现">3. 代码实现</span></h3><ul>
+<li>中介Tom（忽略get，set，toString）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">public class Agent &#123;<br>    //无参构造<br>    private Agent()&#123;&#125;;<br>    //实例化<br>    private static Agent agent=new Agent();<br>    //提供实例化后的对象以便使用（Tom印制自己的名片，准备发放）<br>    public static Agent getInstance()&#123;<br>        System.out.println(&quot;单例模式，只有我一个代理！代理权被我Tom垄断了....&quot;);<br>        return agent;<br>    &#125;<br>	<br>    private String name;<br>    private Integer fee;<br>	<br>    static &#123;<br>        agent.setName(&quot;tom&quot;);<br>        agent.setFee(500);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>租户张三：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">public class Tenant_Z &#123;<br>    public static void main(String[] args) &#123;<br>        System.out.println(&quot;张三想要租房....&quot;);<br>        //（找到中介公司，只有一个中介）<br>        Agent agent=Agent.getInstance();<br>        System.out.println(agent);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure></li>
+<li>租户李四：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">public class Tenant_L &#123;<br>    public static void main(String[] args) &#123;<br>        System.out.println(&quot;李四想要租房....&quot;);<br>		//（找到中介公司，只有一个中介）<br>        Agent agent=Agent.getInstance();<br>        System.out.println(agent);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3><span id="4-结果演示">4. 结果演示</span></h3><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627825408671.png" srcset="/img/loading.gif" lazyload alt="enter description here"><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627825434528.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<h2><span id="二-代理模式">二、代理模式</span></h2><h3><span id="1-相关概念">1. 相关概念</span></h3><ul>
+<li>给某一个对象提供一个代理，并由代理对象控制对原对象的引用。代理模式 的英文叫做Proxy，它是一种对象结构型模式，代理模式分为静态代理和动态代理，此处演示JDK动态代理</li>
+<li>实现思路：使用JDK自带的动态代理</li>
+<li>主要用途：在多个业务逻辑的前后有固定的非业务方法，做出提取，代理该方法并实现加强。比如JDBC操作中，每次连接数据库进行操作都需要创建连接，最后释放连接，与实际的业务掺杂在一起。</li>
+</ul>
+<h3><span id="2-演示思路">2. 演示思路</span></h3><p>仍然是租赁房屋，但风水轮流转，这次张三Z和李四L是代理，租房给Tom，不但是租赁前收取你的代理费用，还在你租赁完成后售出你的个人信息。赚两份钱，并且他还不想让你知道。只要你找他租赁，就默默的在成功给你租到房后售出信息。</p>
+<h3><span id="3-代码实现">3. 代码实现</span></h3><ul>
+<li>租赁行为（也就是待加强的方法，JDK动态代理代理对象必须是接口实现类）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">// 租赁接口<br>public interface IRenting &#123;<br>    void rent(String name);<br>&#125;<br>//接口实现<br>public class RentingImpl implements IRenting &#123;<br>    public void rent(String name) &#123;<br>        System.out.println(name+&quot;作为代理租赁了出一套房子&quot;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>JDK动态代理加强方法<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">public class JDKProxy &#123;<br>    public static Object getJDKProxy(Object o)&#123;<br>        return Proxy.newProxyInstance(o.getClass().getClassLoader(), o.getClass().getInterfaces(), new InvocationHandler() &#123;<br>            @Override<br>            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;<br>                Object result;<br>                System.out.println(&quot;先收取代理费用500元&quot;);<br>                result = method.invoke(o, args);<br>                System.out.println(&quot;最后卖出客户信息5元&quot;);<br>                return result;<br>            &#125;<br>        &#125;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>Tom找张三租赁<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">public class Agent_Z &#123;<br>    public static void main(String[] args) &#123;<br>        System.out.println(&quot;Tom想要租房....再找张三代理...&quot;);<br>        IRenting renting=(IRenting)JDKProxy.getJDKProxy(new RentingImpl());<br>        renting.rent(&quot;张三&quot;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>Tom找李四租赁<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">public class Agent_L &#123;<br>    public static void main(String[] args) &#123;<br>        System.out.println(&quot;Tom想要租房....先找李四代理...&quot;);<br>        IRenting renting=(IRenting)JDKProxy.getJDKProxy(new RentingImpl());<br>        renting.rent(&quot;李四&quot;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3><span id="4-结果演示">4. 结果演示</span></h3><ul>
+<li><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627830083514.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627830102262.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+</ul>
+<h2><span id="三-工厂模式">三、工厂模式</span></h2><h3><span id="1-相关概念">1. 相关概念</span></h3><p>在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类</p>
+<h3><span id="2-演示思路">2. 演示思路</span></h3><p>张三Z和李四L通过双份收入获得了第一桶金，也开启了各自的代理分公司。他们业务还是按照原来的总公司的租赁业务，但各自在租赁时开始打上自己的服务口号….</p>
+<h3><span id="3-代码实现">3. 代码实现</span></h3><ul>
+<li>租赁行为的总工厂以及具体实现的分工厂<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">//总工厂<br>public interface IRentingFactory &#123;<br>    void rent();<br>&#125;<br>//张三实现工厂<br>public class RentingFactory_Z implements IRentingFactory &#123;<br>    public void rent() &#123;<br>        System.out.println(&quot;张三租赁公司分公司为您服务...&quot;);<br>    &#125;<br>&#125;<br>//李四实现工厂<br>public class RentingFactory_L implements IRentingFactory &#123;<br>    @Override<br>    public void rent() &#123;<br>        System.out.println(&quot;李四租赁公司分公司为您服务...&quot;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>Tom找张三分公司代理<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">public class Tenant_Tom_To_Z &#123;<br>    public static void main(String[] args) &#123;<br>        System.out.println(&quot;Tom想要租房....找张三分公司代理...&quot;);<br>        IRentingFactory renting=new RentingFactory_Z();<br>        renting.rent();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>Tom找李四分公司代理<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">public class Tenant_Tom_To_L &#123;<br>    public static void main(String[] args) &#123;<br>        System.out.println(&quot;Tom想要租房....找李四分公司代理...&quot;);<br>        IRentingFactory renting=new RentingFactory_L();<br>        renting.rent();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3><span id="4-结果演示">4. 结果演示</span></h3><ul>
+<li><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627865477291.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+<li><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627865453058.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+</ul>
+<h2><span id="四-融合三种设计模式选读">四、融合三种设计模式（选读）</span></h2><h3><span id="1-演示思路">1. 演示思路</span></h3><p>张三Z和李四L两人的公司越开越大，分别占领了该地区的南北两大地区。从此单人垄断变成双人联合垄断，各自打印各自名片，只对自己所属地区进行发放。与此同时，上级公司任然挂名，他们也仍像以前一样收取代理费后，售卖个人信息。</p>
+<h3><span id="2-代码实现">2. 代码实现</span></h3><ul>
+<li>租赁行为的总工厂以及具体实现的分工厂<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">//总工厂<br>public interface IRentingFactory &#123;<br>    void rent();<br>&#125;<br>//张三实现工厂<br>public class RentingFactory_Z implements IRentingFactory &#123;<br>    public void rent() &#123;<br>        System.out.println(&quot;张三租赁公司分公司为您服务...&quot;);<br>    &#125;<br>&#125;<br>//李四实现工厂<br>public class RentingFactory_L implements IRentingFactory &#123;<br>    @Override<br>    public void rent() &#123;<br>        System.out.println(&quot;李四租赁公司分公司为您服务...&quot;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>张三的名片<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">public class Agent_Z &#123;<br>    //无参构造<br>    private Agent_Z()&#123;&#125;;<br>    //实例化<br>    private static Agent_Z agent=new Agent_Z();<br>    //提供已经实例化的对象方便调用（张三印制自己的名片，准备发放）<br>    public static Agent_Z getInstance()&#123;<br>        System.out.println(&quot;单例模式，本地区只有我张三一个代理！&quot;);<br>        return agent;<br>    &#125;<br><br>    private String name;<br>    private Integer fee;<br><br>    static &#123;<br>        agent.setName(&quot;张三&quot;);<br>        agent.setFee(500);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>李四的名片<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">public class Agent_L &#123;<br>    //无参构造<br>    private Agent_L()&#123;&#125;;<br>    //实例化<br>    private static Agent_L agent=new Agent_L();<br>    //提供已经实例化的对象方便调用（李四印制自己的名片，准备发放）<br>    public static Agent_L getInstance()&#123;<br>        System.out.println(&quot;单例模式，本地区只有我李四一个代理！&quot;);<br>        return agent;<br>    &#125;<br><br>    private String name;<br>    private Integer fee;<br><br>    static &#123;<br>        agent.setName(&quot;李四&quot;);<br>        agent.setFee(500);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>JDK动态代理加强方法<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">public class JDKProxy &#123;<br>    public static Object getJDKProxy(Object o)&#123;<br>        return Proxy.newProxyInstance(o.getClass().getClassLoader(), o.getClass().getInterfaces(), new InvocationHandler() &#123;<br>            @Override<br>            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;<br>                Object result;<br>                System.out.println(&quot;先收取代理费用500元&quot;);<br>                result = method.invoke(o, args);<br>                System.out.println(&quot;最后卖出客户信息5元&quot;);<br>                return result;<br>            &#125;<br>        &#125;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>Tom分别找两个代理公司租房<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">public class Tenant_Tom &#123;<br>    public static void main(String[] args) &#123;<br>        System.out.println(&quot;Tom在南方地区想要租房...&quot;);<br>        Agent_Z agent_z = Agent_Z.getInstance();<br>        System.out.println(&quot;获取名片：&quot;+agent_z);<br>        IRentingFactory rentingFactory_Z=(IRentingFactory)JDKProxy.getJDKProxy(new RentingFactory_Z());<br>        rentingFactory_Z.rent();<br><br>        System.out.println(&quot;---------------------&quot;);<br>        System.out.println(&quot;Tom在北方地区想要租房...&quot;);<br>        Agent_L agent_l = Agent_L.getInstance();<br>        System.out.println(&quot;获取名片：&quot;+agent_l);<br>        IRentingFactory rentingFactory_L=(IRentingFactory)JDKProxy.getJDKProxy(new RentingFactory_L());<br>        rentingFactory_L.rent();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3><span id="4-结果演示">4. 结果演示</span></h3><ul>
+<li><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/1627867501321.png" srcset="/img/loading.gif" lazyload alt="enter description here"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2022/07/25/BookMark/拉勾笔记/通过房屋租赁流程理解设计模式（单例模式，代理模式，工厂模式）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月25日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/25/BookMark/%E6%8B%89%E5%8B%BE%E7%AC%94%E8%AE%B0/1-2.IoC%E5%AE%B9%E5%99%A8%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0%E5%8F%8ASpring%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/25/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -15,7 +15,7 @@ tags:
 ---
 
 公网centos 7安装mysql见：
-[服务器部署---《mysql篇》 --菜鸟小回](https://blog.huijia21.com/archives/fu-wu-qi-bu-shu-mysql-pian-)
+[服务器部署---《mysql篇》 --菜鸟小回](https://blog.huijia.cf/2022/09/08/BookMark/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2---%E3%80%8Amysql%E7%AF%87%E3%80%8B%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/)
 因内网原因，公网个别命令出现问题，只能采取解压包形式安装。
 主流程参考：
 [CentOS 7.2内网环境搭建MySQL5.7.24](https://www.cnblogs.com/yybrhr/p/9914427.html)

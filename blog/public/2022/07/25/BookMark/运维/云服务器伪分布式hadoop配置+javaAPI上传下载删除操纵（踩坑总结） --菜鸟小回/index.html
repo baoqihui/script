@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <link rel="icon" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="云服务器伪分布式hadoop配置+javaAPI上传下载删除操纵（踩坑总结） 注：本博文主要针对单台云服务器hadoop安装配置。博主使用阿里云的ECS服务器,Centos7系统，公网ip：120.27.244.176 私网ip：172.16.236.135 安全组开放所有端口，即1&#x2F;65535  一、准备 创建：mkdir -p &#x2F;opt&#x2F;hadoop 进入：cd -p &#x2F;opt&#x2F;ha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/07/25/BookMark/%E8%BF%90%E7%BB%B4/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8Fhadoop%E9%85%8D%E7%BD%AE+javaAPI%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%88%A0%E9%99%A4%E6%93%8D%E7%BA%B5%EF%BC%88%E8%B8%A9%E5%9D%91%E6%80%BB%E7%BB%93%EF%BC%89%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="云服务器伪分布式hadoop配置+javaAPI上传下载删除操纵（踩坑总结） 注：本博文主要针对单台云服务器hadoop安装配置。博主使用阿里云的ECS服务器,Centos7系统，公网ip：120.27.244.176 私网ip：172.16.236.135 安全组开放所有端口，即1&#x2F;65535  一、准备 创建：mkdir -p &#x2F;opt&#x2F;hadoop 进入：cd -p &#x2F;opt&#x2F;ha">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721144649332.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721144658404.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721144706165.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721144715625.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721144724721.png">
+<meta property="article:published_time" content="2022-07-25T05:51:42.000Z">
+<meta property="article:modified_time" content="2022-09-01T10:02:40.546Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721144649332.png">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img-1256282866.cos.ap-beijing.myqcloud.com/default-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-25 13:51" pubdate>
+          2022年7月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1><span id="云服务器伪分布式hadoop配置javaapi上传下载删除操纵踩坑总结">云服务器伪分布式hadoop配置+javaAPI上传下载删除操纵（踩坑总结）</span></h1><hr>
+<p><font color="red" size="5">注：本博文主要针对单台云服务器hadoop安装配置。博主使用阿里云的ECS服务器,Centos7系统，公网ip：120.27.244.176 私网ip：172.16.236.135 安全组开放所有端口，即1&#x2F;65535</font></p>
+<hr>
+<h2><span id="一-准备">一、准备</span></h2><ol>
+<li>创建：<code>mkdir -p /opt/hadoop</code></li>
+<li>进入：<code>cd -p /opt/hadoop</code></li>
+<li>上传：</li>
+<li>解压：<code>tar -zxvf hadoop-2.7.3.tar.gz </code></li>
+<li>配置hosts：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">vi  /etc/hosts<br>//必须添加内网ip<br>172.16.236.135 hadoop.idse.top<br></code></pre></td></tr></table></figure></li>
+<li>配置环境变量<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">vi /etc/profile<br>//添加环境变量<br>#配置hadoop<br>export HADOOP_HOME=/opt/hadoop/hadoop-2.7.3<br>export PATH=$PATH:$HADOOP_HOME/bin<br>//刷新配置<br>source /etc/profile<br></code></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2><span id="二-配置hadoop">二、 配置hadoop</span></h2><ol>
+<li><p>修改hadoop-env.sh</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">cd /opt/hadoop/hadoop-2.7.3/etc/hadoop/<br>vi hadoop-env.sh<br>//找到并修改<br>export JAVA_HOME=/opt/java/jdk1.8.0_141<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721144649332.png" srcset="/img/loading.gif" lazyload alt="image-20220721144649332"></p>
+</li>
+<li><p>修改core-site.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">vi core-site.xml<br>//注意域名端口改为自己的hosts中设置<br>&lt;property&gt;<br>	&lt;name&gt;fs.defaultFS&lt;/name&gt;<br>	&lt;value&gt;hdfs://hadoop.idse.top:9000&lt;/value&gt;<br>&lt;/property&gt;<br>&lt;!-- 指定hadoop运行时产生文件的存储目录 --&gt;<br>&lt;property&gt;<br>	&lt;name&gt;hadoop.tmp.dir&lt;/name&gt;<br>	&lt;value&gt;/zhiyou/hadoop/tmp&lt;/value&gt;<br>&lt;/property&gt;<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721144658404.png" srcset="/img/loading.gif" lazyload alt="image-20220721144658404"></p>
+</li>
+<li><p>配置hdfs-site.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">vi hdfs-site.xml<br>&lt;property&gt;<br>	&lt;name&gt;dfs.replication&lt;/name&gt;<br>	&lt;value&gt;1&lt;/value&gt;<br>&lt;/property&gt;<br></code></pre></td></tr></table></figure></li>
+<li><p>配置yarn-site.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">vi yarn-site.xml<br>//注意修改域名配置<br>&lt;property&gt;<br>	&lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;<br>	&lt;value&gt;hadoop.idse.top&lt;/value&gt;<br>&lt;/property&gt;<br>&lt;!-- reducer获取数据的方式 --&gt;<br>&lt;property&gt;<br>	&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;<br>	&lt;value&gt;mapreduce_shuffle&lt;/value&gt;<br>&lt;/property&gt;<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721144706165.png" srcset="/img/loading.gif" lazyload alt="image-20220721144706165"></p>
+</li>
+<li><p>配置mapred-site.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">mv mapred-site.xml.template mapred-site.xml<br>vi mapred-site.xml<br>&lt;property&gt;<br>	&lt;name&gt;mapreduce.framework.name&lt;/name&gt;<br>	&lt;value&gt;yarn&lt;/value&gt;<br>&lt;/property&gt;<br></code></pre></td></tr></table></figure></li>
+<li><p>启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">cd /opt/hadoop/hadoop-2.7.3/sbin/<br>./start-all.sh <br></code></pre></td></tr></table></figure></li>
+<li><p>查看进程：<code>jps</code><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721144715625.png" srcset="/img/loading.gif" lazyload alt="image-20220721144715625"></p>
+</li>
+<li><p>浏览器访问（公网ip+端口）：<code>120.27.244.176:50070</code><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721144724721.png" srcset="/img/loading.gif" lazyload alt="image-20220721144724721"></p>
+</li>
+</ol>
+<h2><span id="坑1未成功访问请去安全组开放端口自行百度hadoop所需端口博主全开"><font color="red" size="5">坑1：未成功访问请去安全组开放端口，自行百度hadoop所需端口，博主全开。 </font></span></h2><h2><span id="三-javaapi上传下载文件测试">三、javaAPI上传下载文件测试</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">@Test//上传<br>public void upload() throws IOException, InterruptedException, URISyntaxException&#123;<br>	//1.实例化configuration<br>	Configuration conf = new Configuration();<br>	/*云服务器必须配置*/<br>	conf.set(&quot;dfs.replication&quot;, &quot;1&quot;);<br>	conf.set(&quot;dfs.client.use.datanode.hostname&quot;, &quot;true&quot;);<br>	//2.获取文件系统<br>	FileSystem fs = FileSystem.get(new URI(&quot;hdfs://120.27.244.176:9000/&quot;), conf, &quot;root&quot;);<br>	//3.上传fs.copyFromLocalFile(本地文件,目标地址)<br>	fs.copyFromLocalFile(new Path(&quot;C:\\Users\\NEVER\\Desktop\\day04-06\\day04_05fastJson的使用.avi&quot;),new Path(&quot;/day04_05fastJson的使用.avi&quot;));<br>	//4.关闭连接<br>	fs.close();<br>&#125;<br>@Test//下载<br>public void download() throws IOException, InterruptedException, URISyntaxException&#123;<br>	//1.实例化configuration<br>	Configuration conf = new Configuration();<br>	conf.set(&quot;dfs.replication&quot;, &quot;1&quot;);<br>	conf.set(&quot;dfs.client.use.datanode.hostname&quot;,&quot;true&quot;);<br>	//2.获取文件系统<br>	FileSystem fs = FileSystem.get(new URI(&quot;hdfs://120.27.244.176:9000/&quot;), conf, &quot;root&quot;);<br>	//3.下载<br>	//fs.copyToLocalFile(目标文件,本地地址)<br>	fs.copyToLocalFile(false,new Path(&quot;/c.jpg&quot;), new Path(&quot;E:/d.jpg&quot;),true);<br>	//4.关闭连接<br>	fs.close();<br>&#125;<br>@Test//删除<br>public void remove() throws IOException, InterruptedException, URISyntaxException&#123;<br>	//1.实例化configuration<br>	Configuration conf = new Configuration();<br>	//2.获取文件系统<br>	FileSystem fs = FileSystem.get(new URI(&quot;hdfs://120.27.244.176:9000/&quot;), conf, &quot;root&quot;);<br>	//fs.delete(要删除的文件，boolean true false-只能删除空的文件夹)<br>	fs.delete(new Path(&quot;/dow3.txt&quot;),true);<br>	<br>	fs.close();<br>	<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><font color="red" size="5">坑2：必须加上 conf.set(“dfs.replication”, “1”);<br>        conf.set(“dfs.client.use.datanode.hostname”, “true”);不然上传会为空文件</font></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2022/07/25/BookMark/运维/云服务器伪分布式hadoop配置+javaAPI上传下载删除操纵（踩坑总结） --菜鸟小回/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月25日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/25/BookMark/%E8%BF%90%E7%BB%B4/VMware%E4%B8%ADcentos7%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%EF%BC%88%E6%A1%A5%E6%8E%A5%E8%87%AA%E5%AE%9A%E4%B9%89ip%EF%BC%89/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/25/BookMark/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2---%E3%80%8Amycat%E7%AF%87%E3%80%8B%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,677 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <link rel="icon" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img-1256282866.cos.ap-beijing.myqcloud.com/default-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="菜鸟小回
+ 晚来天欲雪，能饮一杯无？"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/18/BookMark/%E8%BF%90%E7%BB%B4/CentOS7%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/18/BookMark/%E8%BF%90%E7%BB%B4/CentOS7%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/" target="_self">
+        <div>
+          CentOS7忘记密码,修改密码。 开机选择你要修改密码的系统  找到修改 ro 为 rw  本行最后继续添加 init&#x3D;&#x2F;sysroot&#x2F;bin&#x2F;sh  ctrl+x 进入如下界面5.分别输入命令 1234&#x2F;&#x2F;进入系统环境里面chroot &#x2F;sysroot &#x2F;&#x2F;进入系统环境里面passwd root    出现方框说明乱码 12345678&#x2F;&#x2F;退出输入ctrl+c&#x2F;&#x2F;修改语言LANG&#x3D;en&#x2F;&#x2F;重
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-18 17:51" pubdate>
+              2022-07-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC/" target="_self">
+        <div>
+          一、优化方法的串行处理 问题：方法的串行处理，对流的遍历，if，for的嵌套处理。会让代码可读性降低，嵌套成为”子弹头”式代码  原有思路：当程序符合某条件时，向下执行，流式编程，直到单条请求结束  优化思路：当程序不符合某条件，跳出程序；将处理后的结果整合为新流，再用新流处理相关业务逻辑   例：查找符合条件的用户，并为其发送消息  主方法提拆分，单个流遍历拆为：查找符合条件用户-》批量发送消息
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-18 17:51" pubdate>
+              2022-07-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/%E5%81%9C%E7%BB%99%E5%88%A9%E4%BA%8C%E6%9C%9F%E5%A4%8D%E7%9B%98/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/%E5%81%9C%E7%BB%99%E5%88%A9%E4%BA%8C%E6%9C%9F%E5%A4%8D%E7%9B%98/" target="_self">
+        <div>
+          现有存车的问题 通过车辆风控但未过天域风控的重复车辆保存问题  目前车辆信息表数据不单一，用户Id和禁用标识的作用  车辆过户，车牌号重复，owner不同问题   解绑操作 在原解绑操作事务中修改当前 用户 和 车牌 的状态  保存车辆信息表过程需要重新梳理  进行车辆风控前，是否需要先验证车辆信息是否存在  保存车辆的过程是否应该放到留资成功后，而非获取到车辆信息之后    同一车辆被不同用户换
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-18 17:51" pubdate>
+              2022-07-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/Spring%20Data%20JPA/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/Spring%20Data%20JPA/" target="_self">
+        <div>
+          [toc] Spring Data JPA 框架笔记一、简介Spring Data Jpa 是应⽤于Dao层的⼀个框架，简化数据库开发的，作⽤和Mybatis框架⼀样，但是在使 ⽤⽅式和底层机制是有所不同的。最明显的⼀个特点，Spring Data Jpa 开发Dao的时候，很多场景我们 连sql语句都不需要开发。 JPA 是⼀套规范，内部是由接⼝和抽象类组成的，Hiberanate 是⼀套成熟的
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-18 17:51" pubdate>
+              2022-07-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/web%E6%8A%A5%E4%BB%B7%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E6%95%B4%E7%90%86/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/web%E6%8A%A5%E4%BB%B7%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E6%95%B4%E7%90%86/" target="_self">
+        <div>
+          ​	    操作 接口 接口位置    是否登录 https:&#x2F;&#x2F;cc.chetimes.com&#x2F;v2.2&#x2F;users&#x2F;hasLogin UsersResource#hasLogin   获取地区下拉列表 https:&#x2F;&#x2F;cc.chetimes.com&#x2F;v2.2&#x2F;areas&#x2F;group AreasResource#getGroupAreas   获取短信验证 https:&#x2F;&#x2F;cc.chetimes
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-18 17:51" pubdate>
+              2022-07-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/postman/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/postman/" target="_self">
+        <div>
+          Postman自动获取token并添加到请求头 设置全局环境变量    在登录接口Tests添加脚本  12&#x2F;&#x2F; 设置环境变量token，获取response中headler的tokenpm.environment.set(&quot;token&quot;, pm.response.headers.get(&quot;token&quot;));    在目录中设置api key认证添加toke
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-18 17:51" pubdate>
+              2022-07-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/18/BookMark/%E6%8B%89%E5%8B%BE%E7%AC%94%E8%AE%B0/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%89%8B%E5%86%99IOC,AOP%E5%AE%9E%E7%8E%B0%E7%B1%BBspring%20%E5%8A%9F%E8%83%BD/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/18/BookMark/%E6%8B%89%E5%8B%BE%E7%AC%94%E8%AE%B0/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%89%8B%E5%86%99IOC,AOP%E5%AE%9E%E7%8E%B0%E7%B1%BBspring%20%E5%8A%9F%E8%83%BD/" target="_self">
+        <div>
+          手写XML或自定义注解IOC,AOP实现类spring功能 前言：spring手写之路上，为了充分了解IOC和AOP特性以及实现过程。手写实现spring的ioc和aop功能。  两种形式： 1.基于xml：使用dom4j技术，解析xml文件。获取全类名，反射获取类并实例化。同时以无参构造形式注入依赖。 2.基于注解：解析到注解类后，使用reflections.getTypesAnnotatedW
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-18 17:51" pubdate>
+              2022-07-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/Gradle/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/Gradle/" target="_self">
+        <div>
+          Gradlebuild.gradle123456789101112131415161718192021222324252627282930313233343536373839&#x2F;&#x2F; 配置运行构建脚本的要求buildscript &amp;#123;     &#x2F;&#x2F; 设置自定义属性    ext &amp;#123;         springBootVersion &#x3D; &amp;#x27;2.1.6.RELEASE&amp;#x2
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-18 17:51" pubdate>
+              2022-07-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/code-generator-persion%E4%BD%BF%E7%94%A8/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/code-generator-persion%E4%BD%BF%E7%94%A8/" target="_self">
+        <div>
+          code-generator-persion使用介绍Mybatis plus的code-generator-persion代码生成器，自动生成车车项目基础代码 软件架构spring boot，mybatis plus，swagger2 安装教程 导入项目至idea  application.yml修改数据库信息   generator.properties修改模块名，作者名    使用说明 启动C
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-18 17:51" pubdate>
+              2022-07-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/18/BookMark/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E4%BD%BF%E7%94%A8nginx%E4%B8%80%E5%88%86%E9%92%9F%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E9%99%84%EF%BC%9A%E9%98%BF%E9%87%8Coss%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E4%BD%BF%E7%94%A8%E3%80%81fastDFS%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E4%BD%BF%E7%94%A8%EF%BC%89/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/18/BookMark/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E4%BD%BF%E7%94%A8nginx%E4%B8%80%E5%88%86%E9%92%9F%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E9%99%84%EF%BC%9A%E9%98%BF%E9%87%8Coss%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E4%BD%BF%E7%94%A8%E3%80%81fastDFS%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E4%BD%BF%E7%94%A8%EF%BC%89/" target="_self">
+        <div>
+          使用nginx一分钟配置一个文件服务器（附：阿里oss文件服务使用、fastDFS文件服务使用） [toc]   前言：作为一名Java工程师，文件服务用的也不少。从最早的fastDFS轻量级图片服务器到第三方如阿里OSS；七牛云存储都用过。 新公司里一方面没有linux服务器，无法搭建fastDFS文件服务器。当然也没有打算买第三方存储。所以，之前使用过的文件服务器都无效。 新的考虑：在wind
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-18 17:51" pubdate>
+              2022-07-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/8/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/#board">10</a><a class="page-number" href="/page/11/#board">11</a><a class="extend next" rel="next" href="/page/10/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

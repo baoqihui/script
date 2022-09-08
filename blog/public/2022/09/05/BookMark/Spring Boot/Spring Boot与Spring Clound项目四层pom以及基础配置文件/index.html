@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <link rel="icon" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Spring Boot与Spring Clound项目四层pom以及基础配置文件 [toc]  一、pom1.parent1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot与Spring Clound项目四层pom以及基础配置文件">
+<meta property="og:url" content="http://example.com/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%E4%B8%8ESpring%20Clound%E9%A1%B9%E7%9B%AE%E5%9B%9B%E5%B1%82pom%E4%BB%A5%E5%8F%8A%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spring Boot与Spring Clound项目四层pom以及基础配置文件 [toc]  一、pom1.parent1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-05T09:09:05.000Z">
+<meta property="article:modified_time" content="2022-09-06T07:08:49.896Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Spring Boot">
+<meta property="article:tag" content="Spring Clound">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Spring Boot与Spring Clound项目四层pom以及基础配置文件 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img-1256282866.cos.ap-beijing.myqcloud.com/default-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Spring Boot与Spring Clound项目四层pom以及基础配置文件"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-05 17:09" pubdate>
+          2022年9月5日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          19k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          156 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Spring Boot"
+        id="heading-d2b84a7bb8d211a07fd6ecbf4db9d426" role="tab" data-toggle="collapse" href="#collapse-d2b84a7bb8d211a07fd6ecbf4db9d426"
+        aria-expanded="true"
+      >
+        Spring Boot
+        <span class="list-group-count">(17)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-d2b84a7bb8d211a07fd6ecbf4db9d426"
+           role="tabpanel" aria-labelledby="heading-d2b84a7bb8d211a07fd6ecbf4db9d426">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/SSM%E9%A1%B9%E7%9B%AE%E8%BD%ACSpring%20Boot%E9%A1%B9%E7%9B%AE%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B%EF%BC%88%E5%90%ABeclipse%E8%BD%ACidea%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%89--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/" title="SSM项目转Spring Boot项目详细过程（含eclipse--&gt;idea注意事项）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SSM项目转Spring Boot项目详细过程（含eclipse--&gt;idea注意事项）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%20&amp;%20Jenkins%20%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%EF%BC%88centos7&amp;windows%EF%BC%8C%E6%B6%B5%E7%9B%96%E9%98%B2jenkins%E6%9D%80%E6%AD%BB%E7%9A%84%E8%84%9A%E6%9C%AC%EF%BC%89/" title="Spring Boot &amp; Jenkins 实现自动化部署（centos7&amp;windows，涵盖防jenkins杀死的脚本）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot &amp; Jenkins 实现自动化部署（centos7&amp;windows，涵盖防jenkins杀死的脚本）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%20&amp;%20MinIo%E8%BF%9B%E8%A1%8C%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1/" title="Spring Boot &amp; MinIo进行分布式文件服务"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot &amp; MinIo进行分布式文件服务</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%20&amp;%20Mybatis%20Plus%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/" title="Spring Boot &amp; Mybatis Plus代码生成器"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot &amp; Mybatis Plus代码生成器</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%20&amp;%20RabbitMq%20%E5%BB%B6%E8%BF%9F%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E6%AD%BB%E4%BF%A1%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" title="Spring Boot &amp; RabbitMq 延迟消息队列死信队列实现定时任务"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot &amp; RabbitMq 延迟消息队列死信队列实现定时任务</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%20&amp;%20Slf4j%20&amp;%20logback%20%E5%BD%A9%E8%89%B2%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0%EF%BC%88%E5%8A%9F%E8%83%BD%E7%82%B9%EF%BC%9A1%E3%80%81%E5%88%86%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%202%E3%80%81%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E5%88%86%E7%B1%BB%203%E3%80%81%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E6%8C%89%E6%97%A5%E8%BE%93%E5%87%BA%EF%BC%89/" title="Spring Boot &amp; Slf4j &amp; logback 彩色日志打印（功能点：1、分运行环境生成日志文件 2、日志文件目录分类 3、日志文件按日输出）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot &amp; Slf4j &amp; logback 彩色日志打印（功能点：1、分运行环境生成日志文件 2、日志文件目录分类 3、日志文件按日输出）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%20&amp;%20%E6%8B%A6%E6%88%AA%E5%8F%82%E6%95%B0%20&amp;%20%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%20&amp;%20%E7%BB%9F%E4%B8%80%E7%BB%93%E6%9E%9C%E8%BF%94%E5%9B%9E/" title="Spring Boot &amp; Slf4j &amp; logback 彩色日志打印（功能点：1、分运行环境生成日志文件 2、日志文件目录分类 3、日志文件按日输出）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot &amp; Slf4j &amp; logback 彩色日志打印（功能点：1、分运行环境生成日志文件 2、日志文件目录分类 3、日志文件按日输出）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%20&amp;%20poi%20%E5%AF%BC%E5%87%BAExcel%E8%A1%A8%E6%A0%BC%E3%80%81Txt%E5%88%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E8%BD%BD/" title="Spring Boot &amp; poi 导出Excel表格、Txt到浏览器下载"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot &amp; poi 导出Excel表格、Txt到浏览器下载</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%20&amp;%20%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%EF%BC%88%E6%89%8B%E6%9C%BA%E7%AB%AF%EF%BC%8Cweb%E7%AB%AF%EF%BC%89/" title="Spring Boot &amp; 支付宝支付（手机端，web端）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot &amp; 支付宝支付（手机端，web端）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%20&amp;%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%20%E5%AE%9E%E7%8E%B0%E4%BB%8E%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%87%AA%E9%80%89%E6%8B%A9redis%20db%E6%95%B0%E6%8D%AE%E6%BA%90/" title="Spring Boot &amp; 支付宝支付（手机端，web端）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot &amp; 支付宝支付（手机端，web端）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%20&amp;%20%E8%BF%87%E6%BB%A4%E5%99%A8%20&amp;%20%E6%8B%A6%E6%88%AA%E5%99%A8%20&amp;%20%E6%B3%A8%E5%86%8C/" title="Spring Boot &amp; 过滤器 &amp; 拦截器 &amp; 注册"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot &amp; 过滤器 &amp; 拦截器 &amp; 注册</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%20&amp;%20%E9%98%BF%E9%87%8COSS%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1/" title="Spring Boot &amp; 阿里OSS文件服务"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot &amp; 阿里OSS文件服务</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%20&amp;%20%E9%98%BF%E9%87%8C%E7%9F%AD%E4%BF%A1%E6%9C%8D%E5%8A%A1%EF%BC%88Redis+%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81%EF%BC%89/" title="Spring Boot &amp; 阿里短信服务（Redis+短信验证码）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot &amp; 阿里短信服务（Redis+短信验证码）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%E4%B8%8ESpring%20Clound%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/" title="Spring Boot与Spring Clound 微服务项目搭建流程"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot与Spring Clound 微服务项目搭建流程</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%E4%B8%8ESpring%20Clound%E9%A1%B9%E7%9B%AE%E5%9B%9B%E5%B1%82pom%E4%BB%A5%E5%8F%8A%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="Spring Boot与Spring Clound项目四层pom以及基础配置文件"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Spring Boot与Spring Clound项目四层pom以及基础配置文件</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%E9%A1%B9%E7%9B%AEmaven%E5%88%86%E7%8E%AF%E5%A2%83%E6%89%93%E5%8C%85/" title="Spring Boot项目maven分环境打包"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Spring Boot项目maven分环境打包</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Spring%20Boot/idea%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AASpring%20Boot%E9%A1%B9%E7%9B%AE+%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D+%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E8%BF%90%E8%A1%8C+%E5%AF%BC%E5%85%A5Module%E9%A1%B9%E7%9B%AE%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E9%97%AE%E9%A2%98%EF%BC%88%E5%85%A8%E9%83%A8%E6%8A%A5%E7%BA%A2%E6%88%96%E7%81%B0%E8%89%B2%EF%BC%89%E8%A7%A3%E5%86%B3%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/" title="idea新建一个Spring Boot项目+项目目录简单介绍+项目打包运行+导入Module项目无法识别问题（全部报红或灰色）解决"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">idea新建一个Spring Boot项目+项目目录简单介绍+项目打包运行+导入Module项目无法识别问题（全部报红或灰色）解决</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Spring Boot与Spring Clound项目四层pom以及基础配置文件</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1><span id="spring-boot与spring-clound项目四层pom以及基础配置文件">Spring Boot与Spring Clound项目四层pom以及基础配置文件</span></h1><hr>
+<p>[toc]</p>
+<hr>
+<h2><span id="一-pom">一、pom</span></h2><h3><span id="1parent">1.parent</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;<br>         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;<br>         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;<br>    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;<br><br>    &lt;groupId&gt;com.zhiyou&lt;/groupId&gt;<br>    &lt;artifactId&gt;parent&lt;/artifactId&gt;<br>    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;<br>    &lt;packaging&gt;pom&lt;/packaging&gt;<br><br>    &lt;parent&gt;<br>        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;<br>        &lt;version&gt;2.0.3.RELEASE&lt;/version&gt;<br>        &lt;relativePath/&gt;<br>    &lt;/parent&gt;<br><br>    &lt;properties&gt;<br>        &lt;jaxb-api&gt;2.3.0&lt;/jaxb-api&gt;<br>        &lt;springfox-swagger-ui&gt;2.8.0&lt;/springfox-swagger-ui&gt;<br>        &lt;springfox-swagger2&gt;2.8.0&lt;/springfox-swagger2&gt;<br>        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;<br>        &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;<br>        &lt;java.version&gt;1.8&lt;/java.version&gt;<br>        &lt;spring-cloud.version&gt;Finchley.RELEASE&lt;/spring-cloud.version&gt;<br>    &lt;/properties&gt;<br><br>    &lt;dependencies&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;<br>            &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;<br>            &lt;scope&gt;test&lt;/scope&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;<br>            &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;<br>            &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;<br>            &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>            &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;dependency&gt;<br>            &lt;groupId&gt;io.springfox&lt;/groupId&gt;<br>            &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;springfox-swagger2&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;io.springfox&lt;/groupId&gt;<br>            &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;springfox-swagger-ui&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;dependency&gt;<br>            &lt;groupId&gt;javax.xml.bind&lt;/groupId&gt;<br>            &lt;artifactId&gt;jaxb-api&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;jaxb-api&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>    &lt;/dependencies&gt;<br>    &lt;dependencyManagement&gt;<br>        &lt;dependencies&gt;<br>            &lt;dependency&gt;<br>                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;<br>                &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;<br>                &lt;version&gt;$&#123;spring-cloud.version&#125;&lt;/version&gt;<br>                &lt;type&gt;pom&lt;/type&gt;<br>                &lt;scope&gt;import&lt;/scope&gt;<br>            &lt;/dependency&gt;<br>        &lt;/dependencies&gt;<br>    &lt;/dependencyManagement&gt;<br>&lt;/project&gt;<br></code></pre></td></tr></table></figure>
+<hr>
+<h3><span id="2common">2.common</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;<br>         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;<br>         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;<br>    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;<br>    &lt;parent&gt;<br>        &lt;groupId&gt;com.zhiyou&lt;/groupId&gt;<br>        &lt;artifactId&gt;parent&lt;/artifactId&gt;<br>        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;<br>    &lt;/parent&gt;<br><br>    &lt;groupId&gt;com.zhiyou&lt;/groupId&gt;<br>    &lt;artifactId&gt;common&lt;/artifactId&gt;<br>    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;<br><br>    &lt;properties&gt;<br>        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;<br>        &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;<br>        &lt;java.version&gt;1.8&lt;/java.version&gt;<br><br>        &lt;mysql.version&gt;5.1.21&lt;/mysql.version&gt;<br>        &lt;mybatis-spring.version&gt;1.1.1&lt;/mybatis-spring.version&gt;<br>        &lt;fastjson.version&gt;1.2.56&lt;/fastjson.version&gt;<br>        &lt;c3p0.version&gt;0.9.1.2&lt;/c3p0.version&gt;<br>        &lt;jedis.version&gt;3.0.1&lt;/jedis.version&gt;<br><br>        &lt;commons-fileupload.version&gt;1.3.3&lt;/commons-fileupload.version&gt;<br>        &lt;log4j.version&gt;1.2.12&lt;/log4j.version&gt;<br>        &lt;validation-api.version&gt;1.0.0.GA&lt;/validation-api.version&gt;<br>        &lt;tomcat-servlet-api.version&gt;7.0.62&lt;/tomcat-servlet-api.version&gt;<br>        &lt;poi.version&gt;3.17&lt;/poi.version&gt;<br><br>        &lt;jsqlparser&gt;0.9.1&lt;/jsqlparser&gt;<br>        &lt;pagehelper.version&gt;1.2.5&lt;/pagehelper.version&gt;<br><br>        &lt;spring-cloud.version&gt;Finchley.RELEASE&lt;/spring-cloud.version&gt;<br>    &lt;/properties&gt;<br><br>    &lt;dependencies&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;<br>            &lt;artifactId&gt;tomcat-embed-core&lt;/artifactId&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;!-- ******************************* 引入junit，做单元测试用，@Test注解需要它 ********************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;<br>            &lt;scope&gt;test&lt;/scope&gt;<br>            &lt;exclusions&gt;<br>                &lt;exclusion&gt;<br>                    &lt;groupId&gt;org.junit.vintage&lt;/groupId&gt;<br>                    &lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt;<br>                &lt;/exclusion&gt;<br>            &lt;/exclusions&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;!-- ******************************* 引入mybatis*********************************************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;<br>            &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;mybatis-spring.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br>        &lt;!-- ******************************* 引入mybatis逆向工程*********************************************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;<br>            &lt;artifactId&gt;mybatis-generator-core&lt;/artifactId&gt;<br>            &lt;version&gt;1.3.5&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;!-- ******************************* 引入mysql *********************************************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;mysql&lt;/groupId&gt;<br>            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;mysql.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;!-- ****************************************** 分页 ******************************************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;<br>            &lt;artifactId&gt;pagehelper-spring-boot-starter&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;pagehelper.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;<br>            &lt;artifactId&gt;commons-lang3&lt;/artifactId&gt;<br>            &lt;version&gt;3.7&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;!-- ******************************* c3p0连接池 *************************************************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;c3p0&lt;/groupId&gt;<br>            &lt;artifactId&gt;c3p0&lt;/artifactId&gt;<br>            &lt;!--suppress UnresolvedMavenProperty --&gt;<br>            &lt;version&gt;$&#123;c3p0.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;!-- ******************************** jedis，Jedis是Redis官方推荐的Java连接开发工具。*********************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;redis.clients&lt;/groupId&gt;<br>            &lt;artifactId&gt;jedis&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;jedis.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;!-- ******************************* fastjson，把对象和json格式互转换时需要用到 ****************************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;com.alibaba&lt;/groupId&gt;<br>            &lt;artifactId&gt;fastjson&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;fastjson.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;!-- ***************************************** commons ************************************* --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;<br>            &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;commons-fileupload.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;commons-io&lt;/groupId&gt;<br>            &lt;artifactId&gt;commons-io&lt;/artifactId&gt;<br>            &lt;version&gt;2.4&lt;/version&gt;<br>        &lt;/dependency&gt;<br>        &lt;!-- ***************************** 引入log4j，生成日志需要这个，log for java ，4是 for的近音  ************************ --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;log4j&lt;/groupId&gt;<br>            &lt;artifactId&gt;log4j&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;log4j.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br>        &lt;!-- ******************************* 权限 *********************************************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;<br>            &lt;artifactId&gt;shiro-spring&lt;/artifactId&gt;<br>            &lt;version&gt;1.3.2&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;!-- ********************************** 阿里短信依赖 ************************************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;com.aliyun&lt;/groupId&gt;<br>            &lt;artifactId&gt;aliyun-java-sdk-core&lt;/artifactId&gt;<br>            &lt;version&gt;3.7.0&lt;/version&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;com.aliyun&lt;/groupId&gt;<br>            &lt;artifactId&gt;aliyun-java-sdk-ecs&lt;/artifactId&gt;<br>            &lt;version&gt;4.11.0&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br><br>        &lt;!-- ****************************************** poi导出excel ************************************ --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;<br>            &lt;artifactId&gt;poi&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;poi.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;<br>            &lt;artifactId&gt;poi-ooxml&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;poi.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;<br>            &lt;artifactId&gt;poi-ooxml-schemas&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;poi.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;!-- 防止 程序包javax.servlet.annotation不存在 --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.apache.tomcat&lt;/groupId&gt;<br>            &lt;artifactId&gt;tomcat-servlet-api&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;tomcat-servlet-api.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;!-- ******************************************* 校验器 ***************************************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;javax.validation&lt;/groupId&gt;<br>            &lt;artifactId&gt;validation-api&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;validation-api.version&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;!-- ******************************************* 文件服务器 ************************************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.csource.fastdfs&lt;/groupId&gt;<br>            &lt;artifactId&gt;fastdfs&lt;/artifactId&gt;<br>            &lt;version&gt;1.2&lt;/version&gt;<br>        &lt;/dependency&gt;<br>        &lt;!-- ******************************* jsql ********************** --&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;com.github.jsqlparser&lt;/groupId&gt;<br>            &lt;artifactId&gt;jsqlparser&lt;/artifactId&gt;<br>            &lt;version&gt;$&#123;jsqlparser&#125;&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br><br>        &lt;!--<br>         &lt;dependency&gt;<br>            &lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;<br>            &lt;artifactId&gt;httpclient&lt;/artifactId&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>            &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;commons-beanutils&lt;/groupId&gt;<br>            &lt;artifactId&gt;commons-beanutils&lt;/artifactId&gt;<br>            &lt;version&gt;1.9.3&lt;/version&gt;<br>        &lt;/dependency&gt;<br>        --&gt;<br>    &lt;/dependencies&gt;<br><br>    &lt;dependencyManagement&gt;<br>        &lt;dependencies&gt;<br>            &lt;dependency&gt;<br>                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;<br>                &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;<br>                &lt;version&gt;$&#123;spring-cloud.version&#125;&lt;/version&gt;<br>                &lt;type&gt;pom&lt;/type&gt;<br>                &lt;scope&gt;import&lt;/scope&gt;<br>            &lt;/dependency&gt;<br>            &lt;!-- https://mvnrepository.com/artifact/commons-configuration/commons-configuration --&gt;<br>            &lt;dependency&gt;<br>                &lt;groupId&gt;commons-configuration&lt;/groupId&gt;<br>                &lt;artifactId&gt;commons-configuration&lt;/artifactId&gt;<br>                &lt;version&gt;1.10&lt;/version&gt;<br>            &lt;/dependency&gt;<br><br>            &lt;dependency&gt;<br>                &lt;groupId&gt;commons-beanutils&lt;/groupId&gt;<br>                &lt;artifactId&gt;commons-beanutils&lt;/artifactId&gt;<br>                &lt;version&gt;1.7.0&lt;/version&gt;<br>            &lt;/dependency&gt;<br><br>        &lt;/dependencies&gt;<br>    &lt;/dependencyManagement&gt;<br><br>    &lt;build&gt;<br>        &lt;plugins&gt;<br>            &lt;plugin&gt;<br>                &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;<br>                &lt;artifactId&gt;mybatis-generator-maven-plugin&lt;/artifactId&gt;<br>                &lt;version&gt;1.3.5&lt;/version&gt;<br>                &lt;configuration&gt;<br>                    &lt;configurationFile&gt;<br>                        $&#123;basedir&#125;/src/main/resources/generatorConfig.xml<br>                    &lt;/configurationFile&gt;<br>                    &lt;overwrite&gt;true&lt;/overwrite&gt;<br>                    &lt;verbose&gt;true&lt;/verbose&gt;<br>                &lt;/configuration&gt;<br>            &lt;/plugin&gt;<br>        &lt;/plugins&gt;<br>    &lt;/build&gt;<br><br><br>&lt;/project&gt;<br></code></pre></td></tr></table></figure>
+<hr>
+<h3><span id="3-server">3. server</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;<br>         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;<br>    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;<br><br>    &lt;groupId&gt;com.zhiyou&lt;/groupId&gt;<br>    &lt;artifactId&gt;server&lt;/artifactId&gt;<br>    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;<br>    &lt;name&gt;server&lt;/name&gt;<br>    &lt;description&gt;Demo project for Spring Boot&lt;/description&gt;<br>    &lt;parent&gt;<br>        &lt;groupId&gt;com.zhiyou&lt;/groupId&gt;<br>        &lt;artifactId&gt;parent&lt;/artifactId&gt;<br>        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;<br>    &lt;/parent&gt;<br><br><br>&lt;/project&gt;<br></code></pre></td></tr></table></figure>
+<hr>
+<h3><span id="4-api">4. api</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;<br>         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;<br>    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;<br><br>    &lt;groupId&gt;com.zhiyou&lt;/groupId&gt;<br>    &lt;artifactId&gt;api&lt;/artifactId&gt;<br>    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;<br>    &lt;name&gt;api&lt;/name&gt;<br>    &lt;parent&gt;<br>        &lt;groupId&gt;com.zhiyou&lt;/groupId&gt;<br>        &lt;artifactId&gt;parent&lt;/artifactId&gt;<br>        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;<br>    &lt;/parent&gt;<br>    &lt;dependencies&gt;<br>     &lt;!--将common作为jar包引入--&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;com.zhiyou&lt;/groupId&gt;<br>            &lt;artifactId&gt;common&lt;/artifactId&gt;<br>            &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;<br>        &lt;/dependency&gt;<br><br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>            &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;<br>            &lt;version&gt;2.1.3.RELEASE&lt;/version&gt;<br>        &lt;/dependency&gt;<br>        &lt;dependency&gt;<br>            &lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;<br>            &lt;artifactId&gt;httpclient&lt;/artifactId&gt;<br>        &lt;/dependency&gt;<br>    &lt;/dependencies&gt;<br><br>&lt;/project&gt;<br><br></code></pre></td></tr></table></figure>
+<h2><span id="二-常用类">二、常用类</span></h2><h3><span id="1-逆向工程">1. 逆向工程</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;!DOCTYPE generatorConfiguration<br>        PUBLIC &quot;-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN&quot;<br>        &quot;http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd&quot;&gt;<br><br>&lt;generatorConfiguration&gt;<br>    &lt;!--mysql 连接数据库jar 这里选择自己本地位置--&gt;<br>    &lt;classPathEntry location=&quot;E:\mysql-connector-java-5.1.32-bin.jar&quot; /&gt;<br>    &lt;context id=&quot;testTables&quot; targetRuntime=&quot;MyBatis3&quot;&gt;<br>        &lt;commentGenerator&gt;<br>            &lt;!-- 是否去除自动生成的注释 true：是 ： false:否 --&gt;<br>            &lt;property name=&quot;suppressAllComments&quot; value=&quot;true&quot; /&gt;<br>        &lt;/commentGenerator&gt;<br>        &lt;!--数据库连接的信息：驱动类、连接地址、用户名、密码 --&gt;<br>        &lt;jdbcConnection driverClass=&quot;com.mysql.jdbc.Driver&quot;<br>                        connectionURL=&quot;jdbc:mysql://120.27.244.176:3306/hospital&quot; userId=&quot;root&quot;<br>                        password=&quot;HBQ521521cf*&quot;&gt;<br>        &lt;/jdbcConnection&gt;<br>        &lt;!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和<br>           NUMERIC 类型解析为java.math.BigDecimal --&gt;<br>        &lt;javaTypeResolver&gt;<br>            &lt;property name=&quot;forceBigDecimals&quot; value=&quot;false&quot; /&gt;<br>        &lt;/javaTypeResolver&gt;<br><br>        &lt;!-- targetProject:生成PO类的位置 --&gt;<br>        &lt;javaModelGenerator targetPackage=&quot;com.zhiyou.pojo&quot;<br>                            targetProject=&quot;src/main/java&quot;&gt;<br>            &lt;!-- enableSubPackages:是否让schema作为包的后缀 --&gt;<br>            &lt;property name=&quot;enableSubPackages&quot; value=&quot;false&quot; /&gt;<br>            &lt;!-- 从数据库返回的值被清理前后的空格 --&gt;<br>            &lt;property name=&quot;trimStrings&quot; value=&quot;true&quot; /&gt;<br>        &lt;/javaModelGenerator&gt;<br>        &lt;!-- targetProject:mapper映射文件生成的位置<br>           如果maven工程只是单独的一个工程，targetProject=&quot;src/main/java&quot;<br>           若果maven工程是分模块的工程，targetProject=&quot;所属模块的名称&quot;，例如：<br>           targetProject=&quot;ecps-manager-mapper&quot;，下同--&gt;<br>        &lt;sqlMapGenerator targetPackage=&quot;mappers&quot;<br>                         targetProject=&quot;src/main/resources/&quot;&gt;<br>            &lt;!-- enableSubPackages:是否让schema作为包的后缀 --&gt;<br>            &lt;property name=&quot;enableSubPackages&quot; value=&quot;false&quot; /&gt;<br>        &lt;/sqlMapGenerator&gt;<br>        &lt;!-- targetPackage：mapper接口生成的位置 --&gt;<br>        &lt;javaClientGenerator type=&quot;XMLMAPPER&quot;<br>                             targetPackage=&quot;com.zhiyou.mapper&quot;<br>                             targetProject=&quot;src/main/java&quot;&gt;<br>            &lt;!-- enableSubPackages:是否让schema作为包的后缀 --&gt;<br>            &lt;property name=&quot;enableSubPackages&quot; value=&quot;false&quot; /&gt;<br>        &lt;/javaClientGenerator&gt;<br>        &lt;!-- 指定数据库表 --&gt;<br>        &lt;table tableName=&quot;account&quot;&gt;&lt;/table&gt;<br><br>      &lt;!--  &lt;table tableName=&quot;loginAccount&quot;&gt;&lt;/table&gt;--&gt;<br>      &lt;!--  &lt;table tableName=&quot;ttl_baodanhistory&quot;&gt;&lt;/table&gt;--&gt;<br><br>    &lt;/context&gt;<br>&lt;/generatorConfiguration&gt;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Spring-Boot/" class="category-chain-item">Spring Boot</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Spring-Boot/">#Spring Boot</a>
+      
+        <a href="/tags/Spring-Clound/">#Spring Clound</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Spring Boot与Spring Clound项目四层pom以及基础配置文件</div>
+      <div>http://example.com/2022/09/05/BookMark/Spring Boot/Spring Boot与Spring Clound项目四层pom以及基础配置文件/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月5日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%E4%B8%8ESpring%20Clound%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/" title="Spring Boot与Spring Clound 微服务项目搭建流程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring Boot与Spring Clound 微服务项目搭建流程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/05/BookMark/Spring%20Boot/Spring%20Boot%E9%A1%B9%E7%9B%AEmaven%E5%88%86%E7%8E%AF%E5%A2%83%E6%89%93%E5%8C%85/" title="Spring Boot项目maven分环境打包">
+                        <span class="hidden-mobile">Spring Boot项目maven分环境打包</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

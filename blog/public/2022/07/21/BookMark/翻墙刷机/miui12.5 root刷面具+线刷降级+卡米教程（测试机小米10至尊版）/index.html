@@ -1,0 +1,653 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <link rel="icon" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="miui12.5 最简单快捷root刷面具+线刷降级+卡米解决教程（测试机小米10至尊版） [toc] 前言：本人在2019年发布过原创《框架玩机》小米手机玩机教程 时隔两年，突发奇想像看看2021年的搞机是否有新花样。此次搞机经历一次降级，两次卡米。（因为第三方rec刷机玩的不熟，miui12.5的第三方rec并未成熟）最后找到最简单最直接的root方式：感谢b站 up：”可爱的小潇潇”参考无t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/07/21/BookMark/%E7%BF%BB%E5%A2%99%E5%88%B7%E6%9C%BA/miui12.5%20root%E5%88%B7%E9%9D%A2%E5%85%B7+%E7%BA%BF%E5%88%B7%E9%99%8D%E7%BA%A7+%E5%8D%A1%E7%B1%B3%E6%95%99%E7%A8%8B%EF%BC%88%E6%B5%8B%E8%AF%95%E6%9C%BA%E5%B0%8F%E7%B1%B310%E8%87%B3%E5%B0%8A%E7%89%88%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="miui12.5 最简单快捷root刷面具+线刷降级+卡米解决教程（测试机小米10至尊版） [toc] 前言：本人在2019年发布过原创《框架玩机》小米手机玩机教程 时隔两年，突发奇想像看看2021年的搞机是否有新花样。此次搞机经历一次降级，两次卡米。（因为第三方rec刷机玩的不熟，miui12.5的第三方rec并未成熟）最后找到最简单最直接的root方式：感谢b站 up：”可爱的小潇潇”参考无t">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721153844232.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721153857445.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721153909873.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154014584.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154003081.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154027005.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154039420.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154050158.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154112647.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154125609.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154136802.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154209786.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154147360.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154157654.png">
+<meta property="article:published_time" content="2022-07-21T07:44:14.000Z">
+<meta property="article:modified_time" content="2022-09-01T10:02:40.500Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721153844232.png">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img-1256282866.cos.ap-beijing.myqcloud.com/default-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-21 15:44" pubdate>
+          2022年7月21日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1><span id="miui125-最简单快捷root刷面具线刷降级卡米解决教程测试机小米10至尊版">miui12.5 最简单快捷root刷面具+线刷降级+卡米解决教程（测试机小米10至尊版）</span></h1><hr>
+<p>[toc]</p>
+<p>前言：本人在2019年发布过原创<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39231769/article/details/96366590?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162035309516780271581145%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&request_id=162035309516780271581145&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_v2~rank_v29-1-96366590.nonecase&utm_term=%E5%B0%8F%E7%B1%B3">《框架玩机》小米手机玩机教程 </a><br>时隔两年，突发奇想像看看2021年的搞机是否有新花样。<br>此次搞机经历一次降级，两次卡米。（因为第三方rec刷机玩的不熟，miui12.5的第三方rec并未成熟）<br>最后找到最简单最直接的root方式：感谢b站 up：”可爱的小潇潇”<br>参考<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1EX4y1M7aM">无twrp和root刷面具教程 修补boot的方法适用于任何版本任何手机</a></p>
+<hr>
+<ul>
+<li>本教程正常情况无需双清或重装系统，可以进行OTA升级。升级后重复教程即可重新root。<br>但还是要记得备份数据后进行以下操作。<br><font color="red" size="5">注：刷机有风险，玩机需谨慎。 操作不当所造成后果与菜鸟小回无关！！！  </font></li>
+</ul>
+<hr>
+<h2><span id="一-本教程适合开发或稳定版miui系统-需解bl锁教程参考小米官网相关文件分享密码6666这里展示我的机型信息及成功截图">一、本教程适合开发或稳定版miui系统。需解BL锁，教程参考；分享，密码：6666；这里展示我的机型信息及成功截图</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721153844232.png" srcset="/img/loading.gif" lazyload alt="image-20220721153844232"><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721153857445.png" srcset="/img/loading.gif" lazyload alt="image-20220721153857445"><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721153909873.png" srcset="/img/loading.gif" lazyload alt="image-20220721153909873"></p>
+<h2><span id="二-使用magisk制作修补文件">二、使用magisk制作修补文件。</span></h2><ol>
+<li>点击下载最新完整包（需要和你当前手机版本一致，不一致请先升级）。</li>
+<li>更新页面取消下载。去浏览器继续下载剩余部分。（防止自动解密）</li>
+</ol>
+<p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154014584.png" srcset="/img/loading.gif" lazyload alt="image-20220721154014584"></p>
+<ol start="3">
+<li>解压下载好的安装包找到<code>boot.img</code>文件，位置如图<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154003081.png" srcset="/img/loading.gif" lazyload alt="image-20220721154003081"></li>
+<li>下载并安装magisk，酷安下载或者从我的百度网盘取。-&gt;&gt;</li>
+</ol>
+<ul>
+<li>安装<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154027005.png" srcset="/img/loading.gif" lazyload alt="image-20220721154027005"></li>
+<li>选择一个修补文件（无root时没有直接安装选项，此处演示手机已root）<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154039420.png" srcset="/img/loading.gif" lazyload alt="image-20220721154039420"></li>
+<li>选择<code>boot.img</code><br> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154050158.png" srcset="/img/loading.gif" lazyload alt="image-20220721154050158"></li>
+<li>在download目录下生成文件，修改后缀为<code>magisk.img</code><br> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154112647.png" srcset="/img/loading.gif" lazyload alt="image-20220721154112647"> </li>
+<li>上传至电脑</li>
+</ul>
+<h2><span id="三-使用adb命令包安装magisk">三、使用<code>adb命令包</code>安装magisk</span></h2><ol>
+<li><p>解压文件<code>adb_Magisk.zip</code>，并将magisk.img放至此目录。<br> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154125609.png" srcset="/img/loading.gif" lazyload alt="image-20220721154125609"></p>
+</li>
+<li><p>手机开发者模式，USB调试连接电脑（连接不上可能是没有安卓驱动可能要下载）。关机并按住<code>音量下键</code>和<code>开机键</code>。进入<code>FastBoot</code>模式。</p>
+</li>
+<li><p>双击<code>双击安装Magisk.bat</code>。等待ok后自动重启即可。</p>
+</li>
+</ol>
+<ul>
+<li>至此，ROOT完成，可以看到magisk中有了直接安装选项。<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154136802.png" srcset="/img/loading.gif" lazyload alt="image-20220721154136802"></li>
+</ul>
+<h2><span id="四-如果需要安装magisk的相关模块只需点击直接安装然后重启手机即可">四、如果需要安装magisk的相关模块，只需点击直接安装然后重启手机即可。</span></h2><hr>
+<h2><span id="五-后续如果刷机卡米-死机亦或你想降级miui-继续下方教程">五、后续，如果刷机卡米、死机，亦或你想降级miui。继续下方教程：</span></h2><ol>
+<li>恢复教程访问小米官网线刷：<a target="_blank" rel="noopener" href="http://www.miui.com/shuaji-393.html">官网地址</a></li>
+<li>可能遇到错误 <code>update sparse crc list failed</code><br>解决：</li>
+</ol>
+<ul>
+<li>查看右下角你刷机要调用的bat文件。<br> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154209786.png" srcset="/img/loading.gif" lazyload alt="image-20220721154209786"></li>
+<li>从解压的rom中找到该文件<br> <img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154147360.png" srcset="/img/loading.gif" lazyload alt="image-20220721154147360"></li>
+<li>打开找到下面两句并删除 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">fastboot %* flash crclist %~dp0images\crclist.txt || @echo &quot;Flash crclist error&quot; &amp;&amp; exit /B 1<br><br>fastboot %* flash sparsecrclist %~dp0images\sparsecrclist.txt || @echo &quot;Flash sparsecrclist error&quot; &amp;&amp; exit /B 1<br></code></pre></td></tr></table></figure>
+<img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220721154157654.png" srcset="/img/loading.gif" lazyload alt="image-20220721154157654"></li>
+<li>重新刷机即可</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2022/07/21/BookMark/翻墙刷机/miui12.5 root刷面具+线刷降级+卡米教程（测试机小米10至尊版）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月21日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/21/BookMark/%E7%BF%BB%E5%A2%99%E5%88%B7%E6%9C%BA/%E3%80%8AXP%E3%80%81%E9%9D%A2%E5%85%B7%E6%A1%86%E6%9E%B6%E7%8E%A9%E6%9C%BA%E3%80%8B%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E7%8E%A9%E6%9C%BA%E6%95%99%E7%A8%8B--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/21/BookMark/%E9%9D%A2%E8%AF%95/JVM/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

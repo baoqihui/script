@@ -1,0 +1,739 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <link rel="icon" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="常用sql [toc]  1.case when1234567891011121314151617SELECT	 CASE WHEN k.num&gt;0 THEN &quot;大&quot; ELSE &quot;小&quot; END AS SEFROM	dy_sku K&#x2F;&#x2F;作为条件时：SELECT		 CASE WHEN (ifnull(k.num,0)-ifnull(k.sale_num,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用sql">
+<meta property="og:url" content="http://example.com/2022/09/05/BookMark/Code%20Demo/%E5%B8%B8%E7%94%A8sql/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="常用sql [toc]  1.case when1234567891011121314151617SELECT	 CASE WHEN k.num&gt;0 THEN &quot;大&quot; ELSE &quot;小&quot; END AS SEFROM	dy_sku K&#x2F;&#x2F;作为条件时：SELECT		 CASE WHEN (ifnull(k.num,0)-ifnull(k.sale_num,">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-05T09:09:05.000Z">
+<meta property="article:modified_time" content="2022-09-06T06:51:51.105Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>常用sql - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img-1256282866.cos.ap-beijing.myqcloud.com/default-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="常用sql"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-05 17:09" pubdate>
+          2022年9月5日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Code Demo"
+        id="heading-2a07a05c4fed9343fcd2edb276f5b85b" role="tab" data-toggle="collapse" href="#collapse-2a07a05c4fed9343fcd2edb276f5b85b"
+        aria-expanded="true"
+      >
+        Code Demo
+        <span class="list-group-count">(6)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-2a07a05c4fed9343fcd2edb276f5b85b"
+           role="tabpanel" aria-labelledby="heading-2a07a05c4fed9343fcd2edb276f5b85b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Code%20Demo/Hutool/" title="Hutool工具类"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Hutool工具类</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Code%20Demo/Mybatis%20Plus/" title="Mybatis Plus"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Mybatis Plus</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Code%20Demo/Stream&amp;Lambda/" title="Stream&amp;Lambda"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Stream&amp;Lambda</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Code%20Demo/sql%E4%B8%AD%E4%B8%8A%E4%B8%8B%E7%A7%BB%E7%BD%AE%E9%A1%B6%E7%BD%AE%E5%BA%95%E7%BD%AE%E6%8D%A2%E7%9A%84%E6%8E%92%E5%BA%8F%E5%AE%9E%E7%8E%B0/" title="sql中上下移置顶置底置换的排序实现"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">sql中上下移置顶置底置换的排序实现</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Code%20Demo/%E5%B8%B8%E7%94%A8js/" title="常用js"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">常用js</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/09/05/BookMark/Code%20Demo/%E5%B8%B8%E7%94%A8sql/" title="常用sql"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">常用sql</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">常用sql</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1><span id="常用sql">常用sql</span></h1><hr>
+<p>[toc]</p>
+<hr>
+<h2><span id="1case-when">1.case when</span></h2><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span><br>	 <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> k.num&gt;<span class="hljs-number">0</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&quot;大&quot;</span> <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&quot;小&quot;</span> <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> SE<br><span class="hljs-keyword">FROM</span><br>	dy_sku K<br>//作为条件时：<br><span class="hljs-keyword">SELECT</span><br>		 <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> (<span class="hljs-built_in">ifnull</span>(k.num,<span class="hljs-number">0</span>)-<span class="hljs-built_in">ifnull</span>(k.sale_num,<span class="hljs-number">0</span>))&gt;<span class="hljs-number">0</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&quot;库存充足&quot;</span> <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&quot;缺货中&quot;</span> <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> repertoryStatus<br><span class="hljs-keyword">FROM</span><br>		dy_sku k<br>		<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> dy_spu p <span class="hljs-keyword">ON</span> k.spu_id = p.id<br>&lt;<span class="hljs-keyword">where</span>&gt;<br>		&lt;<span class="hljs-keyword">if</span> test=<span class="hljs-string">&quot;repertoryStatus != null and repertoryStatus != &#x27;&#x27;&quot;</span>&gt;<br>				<span class="hljs-keyword">and</span> <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> (<span class="hljs-built_in">ifnull</span>(k.num,<span class="hljs-number">0</span>)-<span class="hljs-built_in">ifnull</span>(k.sale_num,<span class="hljs-number">0</span>))&gt;<span class="hljs-number">0</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&quot;库存充足&quot;</span> <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&quot;缺货中&quot;</span> <span class="hljs-keyword">END</span>=#&#123;repertoryStatus&#125;<br>		&lt;/<span class="hljs-keyword">if</span>&gt;<br>&lt;/<span class="hljs-keyword">where</span>&gt;<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> k.sort <span class="hljs-keyword">ASC</span>,k.update_time <span class="hljs-keyword">DESC</span>,k.create_time <span class="hljs-keyword">DESC</span><br><span class="hljs-keyword">limit</span> #&#123;pageNum&#125;,#&#123;pageSize&#125;<br></code></pre></td></tr></table></figure>
+<h2><span id="2-某列分组并统计个数">2. 某列分组并统计个数</span></h2><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span><br>	sku_id,<br>	<span class="hljs-built_in">COUNT</span>(sku_id) ,<br>	<span class="hljs-built_in">MAX</span>(create_time)<br><span class="hljs-keyword">FROM</span><br>	mall_user_care_log <br><span class="hljs-keyword">WHERE</span><br>	<span class="hljs-built_in">type</span> = <span class="hljs-number">1</span> <br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>	sku_id<br></code></pre></td></tr></table></figure>
+<h2><span id="3-计算时间间隔">3. 计算时间间隔</span></h2><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">//1.间隔天数</span><br><span class="hljs-built_in">datediff</span>(<span class="hljs-built_in">NOW</span>(),c.create_time)<br>CASE <span class="hljs-built_in">WHEN</span> (<span class="hljs-built_in">datediff</span>(<span class="hljs-built_in">NOW</span>(),c.create_time)&gt;=<span class="hljs-number">30</span>) THEN <span class="hljs-string">&quot;1&quot;</span> <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&quot;0&quot;</span> END AS thirtyDayExceptStatus<br><span class="hljs-comment">//2.自定单位</span><br>FRAC_SECOND 表示间隔是毫秒<br><span class="hljs-built_in">SECOND</span> 秒<br><span class="hljs-built_in">MINUTE</span> 分钟<br><span class="hljs-built_in">HOUR</span> 小时<br><span class="hljs-built_in">DAY</span> 天<br><span class="hljs-built_in">WEEK</span> 星期<br><span class="hljs-built_in">MONTH</span> 月<br>QUARTER 季度<br><span class="hljs-built_in">YEAR</span> 年<br>select timestampdiff(<span class="hljs-built_in">week</span>,<span class="hljs-string">&#x27;2019-07-30&#x27;</span>,<span class="hljs-string">&#x27;2019-09-04&#x27;</span>);<br><span class="hljs-number">3.</span> 格式化时间只保留天与当前对比输出<span class="hljs-number">1</span>即为过期（当前时间小于过期时间）<br>CASE <span class="hljs-built_in">WHEN</span> (timestampdiff(<span class="hljs-built_in">DAY</span>,DATE_FORMAT(t.expire_time,<span class="hljs-string">&#x27;%Y-%m-%d&#x27;</span>),DATE_FORMAT(<span class="hljs-built_in">NOW</span>(),<span class="hljs-string">&#x27;%Y-%m-%d&#x27;</span>) )&gt;=<span class="hljs-number">0</span> ) THEN <span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;0&#x27;</span> END AS preExpireStatus,<br></code></pre></td></tr></table></figure>
+<h2><span id="4格式化时间">4.格式化时间</span></h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">DATE_FORMAT</span><span class="hljs-params">(k.apply_time,<span class="hljs-string">&#x27;%Y年%m月&#x27;</span>)</span></span>	AS <span class="hljs-string">&#x27;applyTime&#x27;</span><br></code></pre></td></tr></table></figure>
+<h2><span id="5mysql-触发器">5.mysql 触发器</span></h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-comment">-- Triggers structure for table sku_tag</span><br><span class="hljs-comment">-- ----------------------------</span><br>#新增触发器<br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TRIGGER</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> `tag_sku_insert`;<br><span class="hljs-keyword">delimiter</span> ;;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> `tag_sku_insert` <span class="hljs-keyword">AFTER</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">ON</span> `sku_tag` <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span> <span class="hljs-keyword">BEGIN</span><br>	<span class="hljs-keyword">UPDATE</span> dy_sku <span class="hljs-keyword">SET</span> is_has_tag = <span class="hljs-number">1</span> <span class="hljs-keyword">WHERE</span> id = <span class="hljs-built_in">NEW</span>.sku_id;<br><span class="hljs-keyword">END</span>;;<br><span class="hljs-keyword">delimiter</span> ;<br><br><br>#更新触发器<br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TRIGGER</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> `tag_sku_update`;<br><span class="hljs-keyword">delimiter</span> ;;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> `tag_sku_update` <span class="hljs-keyword">AFTER</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">ON</span> `sku_tag` <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span> <span class="hljs-keyword">BEGIN</span><br>	<span class="hljs-keyword">IF</span> <span class="hljs-built_in">NEW</span>.one_tag_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">THEN</span>	##去除标签<br>		<span class="hljs-keyword">UPDATE</span> dy_sku <span class="hljs-keyword">SET</span> is_has_tag = <span class="hljs-number">0</span> <span class="hljs-keyword">WHERE</span> id = <span class="hljs-built_in">NEW</span>.sku_id;<br>	<span class="hljs-keyword">ELSE</span> <br>		<span class="hljs-keyword">UPDATE</span> dy_sku <span class="hljs-keyword">SET</span> is_has_tag = <span class="hljs-number">1</span> <span class="hljs-keyword">WHERE</span> id = <span class="hljs-built_in">NEW</span>.sku_id;<br>	<span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;<br><span class="hljs-keyword">END</span>;;<br><span class="hljs-keyword">delimiter</span> ;<br><br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TRIGGER</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> `tag_po_det_update`;<br><span class="hljs-keyword">delimiter</span> ;;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> `tag_po_det_update` <span class="hljs-keyword">AFTER</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">ON</span> `sms_wms_po_det` <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span> <span class="hljs-keyword">BEGIN</span><br>	<span class="hljs-keyword">DECLARE</span>  count <span class="hljs-type">int</span>  <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">DECLARE</span>  count2 <span class="hljs-type">int</span>  <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">SELECT</span> count(<span class="hljs-number">1</span>) <span class="hljs-keyword">into</span> count <span class="hljs-keyword">FROM</span> sms_wms_po_det s <span class="hljs-keyword">WHERE</span> s.twd_po_no = <span class="hljs-built_in">NEW</span>.twd_po_no <span class="hljs-keyword">and</span> s.twd_is_close =<span class="hljs-string">&#x27;Y&#x27;</span>;<br>	<span class="hljs-keyword">SELECT</span> count(<span class="hljs-number">1</span>) <span class="hljs-keyword">into</span> count2 <span class="hljs-keyword">FROM</span> sms_wms_po_det s <span class="hljs-keyword">WHERE</span> s.twd_po_no = <span class="hljs-built_in">NEW</span>.twd_po_no <span class="hljs-keyword">and</span> s.twd_is_close =<span class="hljs-string">&#x27;N&#x27;</span>;<br>	<span class="hljs-keyword">IF</span> count &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">THEN</span>	##存在关结<br>		<span class="hljs-keyword">UPDATE</span> sms_wms_po <span class="hljs-keyword">SET</span> po_state = <span class="hljs-string">&#x27;2&#x27;</span> <span class="hljs-keyword">WHERE</span> po_no = <span class="hljs-built_in">NEW</span>.twd_po_no;<br>	<span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;<br>	<span class="hljs-keyword">IF</span> count2&lt;= <span class="hljs-number">0</span> <span class="hljs-keyword">THEN</span>  ##未关结数&lt;=<span class="hljs-number">0</span>,所有关结<br>		<span class="hljs-keyword">UPDATE</span> sms_wms_po <span class="hljs-keyword">SET</span> po_state = <span class="hljs-string">&#x27;4&#x27;</span> <span class="hljs-keyword">WHERE</span> po_no = <span class="hljs-built_in">NEW</span>.twd_po_no;<br>	<span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;<br><span class="hljs-keyword">END</span>;;<br><span class="hljs-keyword">delimiter</span> ;<br><br>#删除触发器<br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TRIGGER</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> `tag_sku_delete`;<br><span class="hljs-keyword">delimiter</span> ;;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> `tag_sku_delete` <span class="hljs-keyword">AFTER</span> <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">ON</span> `sku_tag` <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span> <span class="hljs-keyword">BEGIN</span><br>		<span class="hljs-keyword">UPDATE</span> dy_sku <span class="hljs-keyword">SET</span> is_has_tag = <span class="hljs-number">0</span> <span class="hljs-keyword">WHERE</span> id = <span class="hljs-built_in">OLD</span>.sku_id;<br><span class="hljs-keyword">END</span>;;<br><span class="hljs-keyword">delimiter</span> ;<br><br>#启动触发器<br><span class="hljs-keyword">SET</span> FOREIGN_KEY_CHECKS = <span class="hljs-number">1</span>;<br>  <br>#测试<br><span class="hljs-keyword">SELECT</span> is_has_tag <span class="hljs-keyword">FROM</span> dy_sku <span class="hljs-keyword">WHERE</span> id=<span class="hljs-number">13</span>;<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `xmall`.`sku_tag`( `sku_id`, `one_tag_id`, `one_tag_name`, `two_tag_id`, `two_tag_name`) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">13</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;测试22&#x27;</span>, <span class="hljs-keyword">NULL</span>, <span class="hljs-keyword">NULL</span>);<br><span class="hljs-keyword">SELECT</span> is_has_tag <span class="hljs-keyword">FROM</span> dy_sku <span class="hljs-keyword">WHERE</span> id=<span class="hljs-number">13</span>;<br><br><span class="hljs-keyword">SELECT</span> is_has_tag <span class="hljs-keyword">FROM</span> dy_sku <span class="hljs-keyword">WHERE</span> id=<span class="hljs-number">13</span>;<br>	<span class="hljs-keyword">UPDATE</span>  <span class="hljs-keyword">SET</span> `one_tag_id` = <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">WHERE</span> sku_id=<span class="hljs-number">13</span>;<br><span class="hljs-keyword">SELECT</span> is_has_tag <span class="hljs-keyword">FROM</span> dy_sku <span class="hljs-keyword">WHERE</span> id=<span class="hljs-number">13</span>;<br><br><span class="hljs-keyword">SELECT</span> is_has_tag <span class="hljs-keyword">FROM</span> dy_sku <span class="hljs-keyword">WHERE</span> id=<span class="hljs-number">13</span>;<br>	<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> `xmall`.`sku_tag` <span class="hljs-keyword">WHERE</span> sku_id=<span class="hljs-number">13</span>;<br><span class="hljs-keyword">SELECT</span> is_has_tag <span class="hljs-keyword">FROM</span> dy_sku <span class="hljs-keyword">WHERE</span> id=<span class="hljs-number">13</span>;<br><br></code></pre></td></tr></table></figure>
+<h2><span id="6连接两列数据注意concat的null处理">6.连接两列数据（注意concat的NULL处理）</span></h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-constructor">CONCAT(IFNULL(<span class="hljs-params">m</span>.<span class="hljs-params">company_province</span>,&#x27;&#x27;)</span>,<span class="hljs-constructor">IFNULL(<span class="hljs-params">m</span>.<span class="hljs-params">m</span>.<span class="hljs-params">company_city</span>,&#x27;&#x27;)</span>) <span class="hljs-keyword">as</span> adress<br></code></pre></td></tr></table></figure>
+<h2><span id="7查询有重复的某列数据">7.查询有重复的某列数据</span></h2><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> t.OQC_NO <span class="hljs-keyword">FROM</span> t_oqa_bath t  <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> t.OQC_NO <span class="hljs-keyword">having</span> <span class="hljs-built_in">count</span>(*)&gt;<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<h2><span id="8-合并某一列数据并以逗号隔开">8. 合并某一列数据并以逗号隔开</span></h2><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> GROUP_CONCAT(<span class="hljs-keyword">DISTINCT</span> m.project_id) <span class="hljs-keyword">FROM</span> sms_wms_out_stock_pm_item m <span class="hljs-keyword">WHERE</span> m.doc_no = t.doc_no <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> m.doc_no<br></code></pre></td></tr></table></figure>
+<h2><span id="9计算两列差">9.计算两列差</span></h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-constructor">IFNULL(<span class="hljs-params">t</span>.<span class="hljs-params">osd_amount_real</span>,0)</span>-<span class="hljs-constructor">IFNULL(<span class="hljs-params">t</span>.<span class="hljs-params">osd_amount_plan</span>,0)</span> osdAmountRetired<br></code></pre></td></tr></table></figure>
+<h2><span id="10根据某两列分组其他列值相加">10.根据某两列分组，其他列值相加</span></h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs stylus">SELECT<br>	t<span class="hljs-selector-class">.item_code</span> itemCode,<br>	t<span class="hljs-selector-class">.item_name</span> itemName,<br>	<span class="hljs-built_in">SUM</span>( <span class="hljs-built_in">IFNULL</span>( t<span class="hljs-selector-class">.osd_amount_plan</span>, <span class="hljs-number">0</span> ) ) osdAmountPlan,<br>	<span class="hljs-built_in">SUM</span>( <span class="hljs-built_in">IFNULL</span>( t<span class="hljs-selector-class">.osd_amount_real</span>, <span class="hljs-number">0</span> ) ) osdAmountReal,<br>	<span class="hljs-built_in">SUM</span>( <span class="hljs-built_in">IFNULL</span>( t<span class="hljs-selector-class">.osd_amount_real</span>, <span class="hljs-number">0</span> )- <span class="hljs-built_in">IFNULL</span>( t<span class="hljs-selector-class">.osd_amount_plan</span>, <span class="hljs-number">0</span> )) osdAmountRetired <br>FROM<br>	sms_wms_out_stock_detail t <br>GROUP BY<br>	t<span class="hljs-selector-class">.item_code</span>,<br>	t.item_name<br></code></pre></td></tr></table></figure>
+<h2><span id="11根据两列计算百分比">11.根据两列计算百分比</span></h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">concat ( left (t.err_qty / t.input_qty *<span class="hljs-number">100</span>,<span class="hljs-number">5</span>),<span class="hljs-string">&#x27;%&#x27;</span>) <span class="hljs-keyword">as</span> errPercentage, <span class="hljs-comment">-- 不良率</span><br></code></pre></td></tr></table></figure>
+<h2><span id="12-截取字符串">12. 截取字符串</span></h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">//截取左边的4个字符</span><br><span class="hljs-attribute">left</span>（name,<span class="hljs-number">4</span>）<br><span class="hljs-comment">//截取右边的2个字符</span><br><span class="hljs-attribute">right</span>（name,<span class="hljs-number">2</span>）<br><span class="hljs-comment">//去除后四位</span><br><span class="hljs-function"><span class="hljs-title">left</span><span class="hljs-params">(name,length(name)</span></span>-<span class="hljs-number">4</span>)<br></code></pre></td></tr></table></figure>
+<h2><span id="13-mybatis动态循环">13. mybatis动态循环</span></h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs perl">where <span class="hljs-number">1</span>=<span class="hljs-number">1</span><br>&lt;<span class="hljs-keyword">if</span> test=<span class="hljs-string">&quot;ids != null and ids.size()&gt;0&quot;</span>&gt;<br>	<span class="hljs-keyword">and</span> t.id IN<br>	&lt;<span class="hljs-keyword">foreach</span> collection=<span class="hljs-string">&quot;ids&quot;</span> separator=<span class="hljs-string">&quot;,&quot;</span> <span class="hljs-keyword">close</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-keyword">open</span>=<span class="hljs-string">&quot;(&quot;</span> item=<span class="hljs-string">&quot;item&quot;</span> <span class="hljs-keyword">index</span>=<span class="hljs-string">&quot;index&quot;</span>&gt;<br>		<span class="hljs-comment">#&#123;item&#125;</span><br>	&lt;<span class="hljs-regexp">/foreach&gt;</span><br><span class="hljs-regexp">&lt;/i</span>f&gt;<br></code></pre></td></tr></table></figure>
+
+<h2><span id="14-某字段去重并保留一条">14. 某字段去重并保留一条</span></h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> auto <span class="hljs-keyword">WHERE</span> id <span class="hljs-keyword">in</span>(<br>    <span class="hljs-keyword">SELECT</span> a.id <span class="hljs-keyword">FROM</span><br>    (<br>        ##通过user_id,<span class="hljs-keyword">disable</span>查询重复记录，并保留一条<br>        <span class="hljs-keyword">SELECT</span> b.* <span class="hljs-keyword">FROM</span> auto b<br>        <span class="hljs-keyword">WHERE</span> b.user_id <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> user_id <span class="hljs-keyword">FROM</span> auto <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> license_plate_no, `<span class="hljs-keyword">owner</span>`, user_id, `<span class="hljs-keyword">disable</span>` <span class="hljs-keyword">HAVING</span> count(*)&gt;<span class="hljs-number">1</span>)<br>          <span class="hljs-keyword">AND</span> b.`<span class="hljs-keyword">disable</span>` <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> `<span class="hljs-keyword">disable</span>` <span class="hljs-keyword">FROM</span> auto <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> license_plate_no, `<span class="hljs-keyword">owner</span>`, user_id, `<span class="hljs-keyword">disable</span>` <span class="hljs-keyword">HAVING</span> count(*)&gt;<span class="hljs-number">1</span>)<br>          <span class="hljs-keyword">AND</span> b.id <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> MIN(id) <span class="hljs-keyword">FROM</span> auto <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> license_plate_no, `<span class="hljs-keyword">owner</span>`, user_id, `<span class="hljs-keyword">disable</span>` <span class="hljs-keyword">HAVING</span> count(*)&gt;<span class="hljs-number">1</span>)<br>    ) a<br>);<br></code></pre></td></tr></table></figure>
+
+<h2><span id="15-一对多时分组或查询最大值">15. 一对多时分组或查询最大值</span></h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs csharp">订单，支付 一对多取出最大支付时间<br><span class="hljs-keyword">select</span><br>    (<span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">MAX</span>(<span class="hljs-params">p.pay_time</span>) <span class="hljs-keyword">from</span> payment p <span class="hljs-keyword">where</span> p.parent_order_no</span>=t.parent_order_no) payTime,<br>    t.parent_order_no parentOrderNo<br><span class="hljs-keyword">from</span> sub_purchase_order t<br></code></pre></td></tr></table></figure>
+
+<h2><span id="16-查重">16. 查重</span></h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">SELECT</span>  <span class="hljs-type">Name</span> <span class="hljs-keyword">FROM</span>  dbo.Member t <span class="hljs-keyword">WHERE</span> <span class="hljs-type">Name</span> <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-type">Name</span> <span class="hljs-keyword">FROM</span> dbo.Member <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-type">Name</span> <span class="hljs-keyword">HAVING</span> COUNT(<span class="hljs-type">Name</span>)&gt;<span class="hljs-number">1</span> ) <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> t.Name<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Code-Demo/" class="category-chain-item">Code Demo</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/mysql/">#mysql</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>常用sql</div>
+      <div>http://example.com/2022/09/05/BookMark/Code Demo/常用sql/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月5日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/05/BookMark/Code%20Demo/%E5%B8%B8%E7%94%A8js/" title="常用js">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">常用js</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/05/BookMark/Spring%20Boot/SSM%E9%A1%B9%E7%9B%AE%E8%BD%ACSpring%20Boot%E9%A1%B9%E7%9B%AE%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B%EF%BC%88%E5%90%ABeclipse%E8%BD%ACidea%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%89--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/" title="SSM项目转Spring Boot项目详细过程（含eclipse--&gt;idea注意事项）">
+                        <span class="hidden-mobile">SSM项目转Spring Boot项目详细过程（含eclipse--&gt;idea注意事项）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

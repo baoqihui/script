@@ -1,0 +1,656 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <link rel="icon" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="虚拟机安装centos7并配置网络 [toc]  一、软件准备 虚拟机：VMware 系统镜像：Centos7注：虚拟机安装教程参考文件内教程连接。鸣谢 “软件智库”！（侵删）   二、新建虚拟机1.“文件”-&gt;“新建虚拟机”-&gt;“自定义” 2.默认硬件兼容性 3.稍后安装操作系统 4.选择“Linux”操作系统，“CentOS 7 64 位” 5.定义虚拟机名字和位置 6.处理器配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/07/18/BookMark/%E8%BF%90%E7%BB%B4/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85centos7%E5%B9%B6%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="虚拟机安装centos7并配置网络 [toc]  一、软件准备 虚拟机：VMware 系统镜像：Centos7注：虚拟机安装教程参考文件内教程连接。鸣谢 “软件智库”！（侵删）   二、新建虚拟机1.“文件”-&gt;“新建虚拟机”-&gt;“自定义” 2.默认硬件兼容性 3.稍后安装操作系统 4.选择“Linux”操作系统，“CentOS 7 64 位” 5.定义虚拟机名字和位置 6.处理器配置">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175549104.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175554682.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175601779.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175608411.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175616641.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175625265.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175634123.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175644381.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175651338.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175657980.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175709634.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175716557.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175724252.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175736410.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175743409.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175750267.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175757193.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175803657.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175811105.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175816581.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175823109.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175836903.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175843207.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175852742.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175901207.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175909441.png">
+<meta property="article:published_time" content="2022-07-18T09:51:36.000Z">
+<meta property="article:modified_time" content="2022-09-01T10:02:40.578Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175549104.png">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img-1256282866.cos.ap-beijing.myqcloud.com/default-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-18 17:51" pubdate>
+          2022年7月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1><span id="虚拟机安装centos7并配置网络">虚拟机安装centos7并配置网络</span></h1><hr>
+<p>[toc]</p>
+<hr>
+<h1><span id="一-软件准备">一、软件准备</span></h1><ul>
+<li>虚拟机：<a target="_blank" rel="noopener" href="https://www.aliyundrive.com/s/qpLZrLZyWav">VMware</a></li>
+<li>系统镜像：<a target="_blank" rel="noopener" href="http://mirrors.163.com/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-2009.iso">Centos7</a><br>注：虚拟机安装教程参考文件内教程连接。鸣谢 “软件智库”！（侵删）</li>
+</ul>
+<hr>
+<h1><span id="二-新建虚拟机">二、新建虚拟机</span></h1><h2><span id="1文件-gt新建虚拟机-gt自定义">1.“文件”-&gt;“新建虚拟机”-&gt;“自定义”</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175549104.png" srcset="/img/loading.gif" lazyload alt="image-20220509175549104"></p>
+<h2><span id="2默认硬件兼容性">2.默认硬件兼容性</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175554682.png" srcset="/img/loading.gif" lazyload alt="image-20220509175554682"></p>
+<h2><span id="3稍后安装操作系统">3.稍后安装操作系统</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175601779.png" srcset="/img/loading.gif" lazyload alt="image-20220509175601779"></p>
+<h2><span id="4选择linux操作系统centos-7-64-位">4.选择“Linux”操作系统，“CentOS 7 64 位”</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175608411.png" srcset="/img/loading.gif" lazyload alt="image-20220509175608411"></p>
+<h2><span id="5定义虚拟机名字和位置">5.定义虚拟机名字和位置</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175616641.png" srcset="/img/loading.gif" lazyload alt="image-20220509175616641"></p>
+<h2><span id="6处理器配置虚拟机内存等默认即可">6.处理器配置，虚拟机内存等默认即可</span></h2><h2><span id="7网络类型选择使用网络地址转换">7.网络类型选择“使用网络地址转换”</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175625265.png" srcset="/img/loading.gif" lazyload alt="image-20220509175625265"></p>
+<h2><span id="8控制器类型选择磁盘类型-推荐即可">8.控制器类型选择，磁盘类型 “推荐”即可</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175634123.png" srcset="/img/loading.gif" lazyload alt="image-20220509175634123"><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175644381.png" srcset="/img/loading.gif" lazyload alt="image-20220509175644381"></p>
+<h2><span id="9磁盘新建容量自定义">9.磁盘“新建”，容量自定义</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175651338.png" srcset="/img/loading.gif" lazyload alt="image-20220509175651338"><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175657980.png" srcset="/img/loading.gif" lazyload alt="image-20220509175657980"></p>
+<h2><span id="10默认到下一步到完成可以在虚拟机列表找到新建的虚拟机">10.默认到下一步到完成，可以在虚拟机列表找到新建的虚拟机</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175709634.png" srcset="/img/loading.gif" lazyload alt="image-20220509175709634"><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175716557.png" srcset="/img/loading.gif" lazyload alt="image-20220509175716557"><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175724252.png" srcset="/img/loading.gif" lazyload alt="image-20220509175724252"></p>
+<hr>
+<h1><span id="三-配置虚拟机镜像安装系统">三、配置虚拟机镜像，安装系统</span></h1><h2><span id="1进入虚拟机设置选择cdx2fdvd选定你下载好的iso映像文件">1.进入虚拟机设置选择“CD&#x2F;DVD”，选定你下载好的ISO映像文件</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175736410.png" srcset="/img/loading.gif" lazyload alt="image-20220509175736410"><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175743409.png" srcset="/img/loading.gif" lazyload alt="image-20220509175743409"></p>
+<h2><span id="2开机-并-配置系统">2.开机 并 配置系统</span></h2><h3><span id="2-1选择安装系统">2-1.选择安装系统</span></h3><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175750267.png" srcset="/img/loading.gif" lazyload alt="image-20220509175750267"></p>
+<h3><span id="2-2选择语言拉到最下方有中文">2-2.选择语言拉到最下方有中文</span></h3><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175757193.png" srcset="/img/loading.gif" lazyload alt="image-20220509175757193"></p>
+<h3><span id="2-3安装信息点击安装位置-gt完成-gt开始安装">2-3.安装信息点击“安装位置”-&gt;“完成”-&gt;“开始安装”</span></h3><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175803657.png" srcset="/img/loading.gif" lazyload alt="image-20220509175803657"><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175811105.png" srcset="/img/loading.gif" lazyload alt="image-20220509175811105"><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175816581.png" srcset="/img/loading.gif" lazyload alt="image-20220509175816581"></p>
+<h3><span id="2-4设置root密码-gt完成等待安装">2-4.设置“root密码”-&gt;“完成”，等待安装</span></h3><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175823109.png" srcset="/img/loading.gif" lazyload alt="image-20220509175823109"></p>
+<h3><span id="2-5安装完成重启启动后输入账号和密码">2-5.安装完成“重启”，启动后输入账号和密码</span></h3><ul>
+<li>账号：默认：root</li>
+<li>密码：你自己设置的密码，输入是隐形的无法看到<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175836903.png" srcset="/img/loading.gif" lazyload alt="image-20220509175836903"></li>
+</ul>
+<h3><span id="2-6登录系统安装完成">2-6.登录系统，安装完成</span></h3><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175843207.png" srcset="/img/loading.gif" lazyload alt="image-20220509175843207"></p>
+<hr>
+<h1><span id="四-设置虚拟机网络">四、设置虚拟机网络</span></h1><h2><span id="1虚拟机设置-gt网络适配器-gt桥接模式">1.虚拟机设置-&gt;网络适配器-&gt;桥接模式</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175852742.png" srcset="/img/loading.gif" lazyload alt="image-20220509175852742"></p>
+<h2><span id="2查看寄主机本机的网络设置-gt-cmd模式-gtipconfig">2.查看<font color="red" size="5">寄主机（本机）</font>的网络设置-&gt; cmd模式-&gt;ipconfig</span></h2><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175901207.png" srcset="/img/loading.gif" lazyload alt="image-20220509175901207"></p>
+<h2><span id="3进入centos编辑-ifcfg-ens33文件">3.进入centos编辑” ifcfg-ens33”文件</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">vi /etc/sysconfig/network-scripts/ifcfg-ens33<br>//修改红色区内容<br>BOOTPROTO=static<br>ONBOOT=yes<br>//新增黄色区内容；IPADDR：就是ip保持频段与寄主机相同；GATEWAY：就是网关，直接保持与寄主机相同，DNS固定即可。<br>IPADDR=192.168.1.250<br>GATEWAY=192.168.1.1<br>DNS1=114.114.114.114<br>DNS2=8.8.8.8<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509175909441.png" srcset="/img/loading.gif" lazyload alt="image-20220509175909441"></p>
+<h2><span id="4编辑resolvconf文件">4.编辑”resolv.conf”文件</span></h2> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">vi /etc/resolv.conf<br>//添加如下内容即可<br>nameserver 114.114.114.114<br>nameserver 8.8.8.8<br></code></pre></td></tr></table></figure>
+
+<h2><span id="5重启network">5.重启network;</span></h2><p><code>service network restart</code></p>
+<hr>
+<p>附加命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">查看防火墙状态：firewall-cmd --state<br>停止防火墙服务：systemctl stop firewalld.service<br>进制开机自启动：systemctl disable firewalld.service<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2022/07/18/BookMark/运维/虚拟机安装centos7并配置网络/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月18日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/18/BookMark/%E9%9D%A2%E8%AF%95/JAVA%E5%9F%BA%E7%A1%80/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/18/BookMark/%E8%BF%90%E7%BB%B4/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%20%20%20Linuxs%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%20jdk%E3%80%81tomcat%E3%80%81MySQL%E6%B1%87%E6%80%BB%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B%20%20%20%E9%A1%B9%E7%9B%AE%E4%B8%8A%E7%BA%BF%E5%8F%91%E5%B8%83%E4%B8%AD%E7%9A%84%E9%83%A8%E5%88%86%E5%B0%8Fbug%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

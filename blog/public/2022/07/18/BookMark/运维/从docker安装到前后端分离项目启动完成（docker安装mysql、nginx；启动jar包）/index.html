@@ -1,0 +1,708 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <link rel="icon" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="从docker安装到前后端分离项目启动完成（docker安装mysql、nginx；启动jar包）  前言：通过上篇博文：虚拟机安装centos7并配置网络我们已经安装好centos并配置好网络，现在来尝试docker容器的安装及基本使用。  本人为Java程序猿一枚，所以此处来使用docker安装几个常用软件：mysql，nginx。部署一个jar包服务，配合vue前端。部署一个简易程序。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/07/18/BookMark/%E8%BF%90%E7%BB%B4/%E4%BB%8Edocker%E5%AE%89%E8%A3%85%E5%88%B0%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8%E5%AE%8C%E6%88%90%EF%BC%88docker%E5%AE%89%E8%A3%85mysql%E3%80%81nginx%EF%BC%9B%E5%90%AF%E5%8A%A8jar%E5%8C%85%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="从docker安装到前后端分离项目启动完成（docker安装mysql、nginx；启动jar包）  前言：通过上篇博文：虚拟机安装centos7并配置网络我们已经安装好centos并配置好网络，现在来尝试docker容器的安装及基本使用。  本人为Java程序猿一枚，所以此处来使用docker安装几个常用软件：mysql，nginx。部署一个jar包服务，配合vue前端。部署一个简易程序。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180632911.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180638168.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180645355.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180701019.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180705836.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180710221.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180809450.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180817428.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180824938.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/7f0551b5264c15af271cc082fa8ca82b.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180924987.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180941768.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180950205.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180956869.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509181007080.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509181019257.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509181026055.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509181032944.png">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509181041052.png">
+<meta property="article:published_time" content="2022-07-18T09:51:32.000Z">
+<meta property="article:modified_time" content="2022-09-01T10:02:40.558Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180632911.png">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img-1256282866.cos.ap-beijing.myqcloud.com/default-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-18 17:51" pubdate>
+          2022年7月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1><span id="从docker安装到前后端分离项目启动完成docker安装mysql-nginx启动jar包">从docker安装到前后端分离项目启动完成（docker安装mysql、nginx；启动jar包）</span></h1><hr>
+<ul>
+<li><p>前言：通过上篇博文：<a target="_blank" rel="noopener" href="https://blog.huijia21.com/archives/xu-ni-ji-an-zhuang-centos7-bing-pei-zhi-wang-luo">虚拟机安装centos7并配置网络</a><br>我们已经安装好centos并配置好网络，现在来尝试docker容器的安装及基本使用。</p>
+</li>
+<li><p>本人为Java程序猿一枚，所以此处来使用docker安装几个常用软件：mysql，nginx。部署一个jar包服务，配合vue前端。部署一个简易程序。</p>
+</li>
+</ul>
+<hr>
+<p>[toc]</p>
+<hr>
+<h2><span id="一-安装docker">一、安装docker</span></h2><p><font color="red" size="5"> 此部分参照<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43827693/article/details/107934604?spm=1001.2014.3001.5506">linux下安装docker并部署运行jar</a>博文</font>（ 鸣谢！侵删）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">// 安装需要的软件包<br>yum install -y yum-utils device-mapper-persistent-data lvm2<br>//设置yum源<br>yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo<br>//启用 edge 和 testing 镜像仓库（可选）<br>yum-config-manager --enable docker-ce-edge<br>yum-config-manager --enable docker-ce-testing<br>//安装Docker最新版本<br>yum install -y docker-ce<br>//启动docker<br>systemctl start docker<br>//开机自启<br>systemctl  enable docker.service<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180632911.png" srcset="/img/loading.gif" lazyload alt="image-20220509180632911"></p>
+<hr>
+<h2><span id="二-使用docker安装mysql">二、使用docker安装mysql</span></h2><p>可以去<a target="_blank" rel="noopener" href="https://hub.docker.com/">docker官网</a>注册一下，获取可用的docker镜像。直接搜想要安装的应用<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180638168.png" srcset="/img/loading.gif" lazyload alt="image-20220509180638168"><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180645355.png" srcset="/img/loading.gif" lazyload alt="image-20220509180645355"></p>
+<h3><span id="1安装mysql">1.安装mysql</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">//这里选择安装5.7.29版本<br>docker pull mysql:5.7.29<br>//ARM框架 docker pull mysql/mysql-server<br>//使用以下命令来查看是否已安装了 mysql： <br>docker images<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180701019.png" srcset="/img/loading.gif" lazyload alt="image-20220509180701019"></p>
+<h3><span id="2-启动mysql并设置密码">2. 启动mysql并设置密码</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">docker run -itd --restart=always --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=HBQ521521cf* mysql:5.7.29<br></code></pre></td></tr></table></figure>
+<p>命令解析：</p>
+<ul>
+<li>docker run：docker容器启动命令</li>
+<li>–name mysql：为此容器起名为mysql，可自定义</li>
+<li>-p 3306:3306 ：映射容器服务的 3306 端口到宿主机的 3306 端口，外部主机可以直接通过 宿主机ip:3306 访问到 MySQL 的服务。 </li>
+<li>-e MYSQL_ROOT_PASSWORD&#x3D;123456： 初始化 MySQL 的密码为123456</li>
+<li>mysql:5.7.29：你下载好的mysql镜像（需要指定版本）</li>
+</ul>
+<h3><span id="3-查看容器运行状况">3. 查看容器运行状况</span></h3><p><code>docker ps</code><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180705836.png" srcset="/img/loading.gif" lazyload alt="image-20220509180705836"></p>
+<h3><span id="4-进入mysql容器中更新访问权限使本机或者navicat等远程连接">4. 进入mysql容器中，更新访问权限，使本机或者navicat等远程连接</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">docker exec -it mysql bash<br>//登录mysql<br>mysql -uroot -p123456<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180710221.png" srcset="/img/loading.gif" lazyload alt="image-20220509180710221"></p>
+<ul>
+<li>修改权限 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">update mysql.user set host=&quot;%&quot; where user=&quot;root&quot;;<br>//刷新权限<br>flush privileges;<br></code></pre></td></tr></table></figure>
+<img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180809450.png" srcset="/img/loading.gif" lazyload alt="image-20220509180809450"></li>
+</ul>
+<h3><span id="5-使用navicat连接测试成功">5. 使用navicat连接，测试成功</span></h3><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180817428.png" srcset="/img/loading.gif" lazyload alt="image-20220509180817428"></p>
+<h2><span id="三-使用docker安装nginx以及自定义配置文件">三、使用docker安装nginx以及自定义配置文件</span></h2><h3><span id="1-同样步骤去官网搜索nginx找到你想要下载的版本">1. 同样步骤去官网搜索nginx找到你想要下载的版本</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">//这里下载1.13版本<br>docker pull nginx:1.13<br></code></pre></td></tr></table></figure>
+<h3><span id="2-启动默认配置文件的nginx">2. 启动默认配置文件的nginx</span></h3><p><code>docker run --name nginx -p 80:80 -d nginx:1.13</code><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180824938.png" srcset="/img/loading.gif" lazyload alt="image-20220509180824938"></p>
+<h3><span id="3-复制nginx配置文件到主机">3. 复制nginx配置文件到主机</span></h3><ul>
+<li><code>docker cp nginx:/etc/nginx/nginx.conf /opt/config/</code><br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/7f0551b5264c15af271cc082fa8ca82b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>修改该配置文件为你想要的配置，我这里配置到&#x2F;out&#x2F;project&#x2F;demo&#x2F;dist文件，为我的vue项目文件（你可以随便测试一个html）<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180924987.png" srcset="/img/loading.gif" lazyload alt="image-20220509180924987"></li>
+</ul>
+<h3><span id="4-重启nginx同时映射本机的配置文件本机vue项目到容器中">4. 重启nginx，同时映射本机的配置文件，本机vue项目到容器中</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">//停止nginx容器<br>docker stop nginx<br>//删除<br>docker rm nginx<br>//重新启动<br>docker run  --restart=always --name nginx --privileged=true -p 80:80 -p8001:8001 -v /opt/config/nginx.conf:/etc/nginx/nginx.conf -v /out/project/demo/dist:/out/project/demo/dist -d nginx:1.13<br></code></pre></td></tr></table></figure>
+<p>本机访问成功<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180941768.png" srcset="/img/loading.gif" lazyload alt="image-20220509180941768"><br>命令解析：</p>
+<ul>
+<li>–restart&#x3D;always ：总是在启动docker后重启本容器</li>
+<li>–privileged&#x3D;true：添加root权限到容器（权限问题，详情百度）</li>
+<li>-p：端口映射，使用8001端口映射到本机（与你的nginx.conf保持一致）</li>
+<li>-v：分别映射你配置好的nginx配置和项目文件</li>
+<li>-d：后台启动</li>
+</ul>
+<hr>
+<h2><span id="四-部署java项目此处为springboot项目的jar包">四、部署Java项目（此处为springboot项目的jar包）</span></h2><h3><span id="1-新建dockerfile">1. 新建Dockerfile</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">FROM java:8<br>ADD code-demo-persion-0.0.1-SNAPSHOT.jar  /demo.jar<br>EXPOSE 8088<br>ENTRYPOINT [&quot;java&quot;,&quot;-Xms1024m&quot;,&quot;-Xmx1024m&quot;,&quot;-jar&quot;,&quot;/demo.jar&quot;,&quot;--spring.profiles.active=dev&quot;,&quot;-c&quot;]<br></code></pre></td></tr></table></figure>
+<p>命令解析：</p>
+<ul>
+<li>FROM java:8，使用java8</li>
+<li>启动文件为code-demo-persion-0.0.1-SNAPSHOT.jar 重命名为 demo.jar</li>
+<li>ENTRYPOINT ：启动后执行的命令为[xxx]（语法百度）<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180950205.png" srcset="/img/loading.gif" lazyload alt="image-20220509180950205"></li>
+</ul>
+<h3><span id="2-使用新建好的dockerfile构建项目">2. 使用新建好的Dockerfile构建项目</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">cd /out/project/demo<br>//构建本目录下的Dockerfile<br>docker build -t demo:v1 .<br>//查看我们构建出的镜像<br>docker images<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509180956869.png" srcset="/img/loading.gif" lazyload alt="image-20220509180956869"></p>
+<h3><span id="3启动项目">3.启动项目</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">docker run  -d --restart=always --name demo -p 8088:8088 -v /out/logs/demo:/out/logs/demo demo:v1<br></code></pre></td></tr></table></figure>
+<p>命令解析： </p>
+<ul>
+<li>-v：此处是为了将项目日志输出到本机以便查看<br>所有进程启动完成<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509181007080.png" srcset="/img/loading.gif" lazyload alt="image-20220509181007080"><br>项目可访问<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509181019257.png" srcset="/img/loading.gif" lazyload alt="image-20220509181019257"></li>
+</ul>
+<hr>
+<h2><span id="五-redis安装">五、redis安装</span></h2><h3><span id="1-下载镜像">1. 下载镜像</span></h3><p><code>docker pull redis:5.0.3</code></p>
+<h3><span id="2-添加配置文件启动">2. 添加配置文件启动</span></h3><h4><span id="2-1-下载对应版本的压缩包官网">2-1 下载对应版本的压缩包</span></h4><h4><span id="2-2-解压后得到conf文件">2-2  解压后得到conf文件</span></h4><p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509181026055.png" srcset="/img/loading.gif" lazyload alt="image-20220509181026055"></p>
+<h4><span id="2-3-修改配置文件">2-3 修改配置文件</span></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">//找到bind 127.0.0.1改为<br>#bind 127.0.0.1<br></code></pre></td></tr></table></figure>
+<h4><span id="2-4-将配置文件上传至centos中">2-4 将配置文件上传至centos中</span></h4><ul>
+<li>配置文件在主机的位置<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509181032944.png" srcset="/img/loading.gif" lazyload alt="image-20220509181032944"></li>
+</ul>
+<h4><span id="2-5-启动redis同时设置密码">2-5 启动redis同时设置密码</span></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">docker run -itd --restart=always  -p 6379:6379 --name redis -v /opt/config/redis.conf:/etc/redis/redis.conf -v /out/data:/data  redis:5.0.3 redis-server /etc/redis/redis.conf --requirepass HBQ521521cf* --appendonly yes<br></code></pre></td></tr></table></figure>
+<p>命令解析：</p>
+<ul>
+<li><p>–requirepass xxx：xxx为你所设置的redis密码</p>
+</li>
+<li><p>–appendonly yes：开启redis 持久化</p>
+</li>
+<li><p>启动成功<br><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509181041052.png" srcset="/img/loading.gif" lazyload alt="image-20220509181041052"></p>
+</li>
+</ul>
+<hr>
+<p>本文大概介绍了使用docker一个前后端系统的上线流程，下面总结一点常用命令：</p>
+<ul>
+<li>service docker start&#x2F;restart&#x2F;stop：docker开启&#x2F;重启&#x2F;关闭</li>
+<li>docker images：查看镜像</li>
+<li>docker ps：查看启动的容器</li>
+<li>docker start&#x2F;stop xxx：开启&#x2F;关闭某容器</li>
+<li>docker build ~：构建镜像</li>
+<li>docker run ~：启动容器</li>
+<li>docker exec -it xxx bash :在运行的容器中执行交互终端命令，如：docker exec -it mysql bash</li>
+<li>docker rmi xxx：删除某镜像，如：docker rmi demo:v1（demo:v1为镜像名，需要携带版本）</li>
+<li>docker rm xxx：删除某容器，如：docker rm demo（demo为容器名）</li>
+<li>docker update xxx xxx：为某个容器更新某设置，如docker update –restart&#x3D;always nginx（将nginx容器设置为自启动）</li>
+<li>docker cp &#x2F;out&#x2F;maven xxx:&#x2F;out：xxx为容器名 将主机的&#x2F;out&#x2F;maven文件夹复制到容器的&#x2F;out文件夹</li>
+</ul>
+<p>更多命令参考：<a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-command-manual.html">菜鸟教程</a></p>
+<p>相关技术使用详情：<a target="_blank" rel="noopener" href="https://blog.huijia21.com/archives/springboot-ji-cheng-jenkins-shi-xian-zi-dong-hua-bu-shu-centos7windows-han-gai-fang-jenkins-sha-si-de-jiao-ben-">springBoot集成Jenkins，实现自动化部署（centos7&amp;windows，涵盖防jenkins杀死的脚本）</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2022/07/18/BookMark/运维/从docker安装到前后端分离项目启动完成（docker安装mysql、nginx；启动jar包）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月18日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/18/BookMark/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2---%E3%80%8AfastDFS%E7%AF%87%E3%80%8B%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/18/BookMark/%E8%BF%90%E7%BB%B4/%E5%86%85%E7%BD%91centos%207%E5%AE%89%E8%A3%85mysql%E5%8F%8A%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

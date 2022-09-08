@@ -332,4 +332,4 @@ sudo grep 'temporary password' /var/log/mysqld.log
 
 <font color=green size=5>至此，项目上线成功。为整理出此教程加班三晚，若对大家有所帮助，请多多点赞转发。跪谢！如若还有问题未成功，私聊即可。</font>
    <font color=red size=5>注：转载请注明出处！！！ </font> 
-   接下篇：[《Linuxs系统中修改配置文件使得访问java工程直接通过ip，除去端口号和项目名访问。》](https://blog.csdn.net/qq_39231769/article/details/100603219)
+   接下篇：[《Linuxs系统中修改配置文件使得访问java工程直接通过ip，除去端口号和项目名访问。》](https://blog.huijia.cf/2022/09/07/BookMark/%E8%BF%90%E7%BB%B4/Centos%E4%B8%AD%E4%BF%AE%E6%94%B9%EF%BC%8C%E8%AE%BF%E9%97%AEjava%E5%B7%A5%E7%A8%8B%E7%9B%B4%E6%8E%A5%E9%80%9A%E8%BF%87ip%EF%BC%8C%E9%99%A4%E5%8E%BB%E7%AB%AF%E5%8F%A3%E5%8F%B7%E5%92%8C%E9%A1%B9%E7%9B%AE%E5%90%8D%E8%AE%BF%E9%97%AE%E3%80%82%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/)

@@ -1,4 +1,4 @@
-﻿---
+---
 title: 服务器配置篇汇总（linux）+（jdk）+（tomcat）+（mysql）+（nginx）+（redis）+（fastDFS）+（mycat）+（git）+(maven) --菜鸟小回.md
 date:  2022/9/8 17:59
 category_bar: true
@@ -10,8 +10,8 @@ tags:
 ---
 <font color=red size=5>本文说明：经一段时间学习，汇总整理了服务器配置方面的安装方式。发表在此用于分享交流学习！</font>
 + [阿里服务器大礼包](https://www.aliyun.com/minisite/goods?userCode=e3v6m6yo) 
-+ [ECS服务器购买程序](https://blog.csdn.net/qq_39231769/article/details/100587577)
-+ 相关运维教程：[从docker安装到前后端分离项目启动完成（docker安装mysql、nginx；启动jar包）](https://blog.csdn.net/qq_39231769/article/details/119008899?spm=1001.2014.3001.5502)
++ [ECS服务器购买程序](https://blog.huijia.cf/2022/09/08/BookMark/%E8%BF%90%E7%BB%B4/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%20%20%20Linuxs%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%20jdk%E3%80%81tomcat%E3%80%81MySQL%E6%B1%87%E6%80%BB%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B%20%20%20%E9%A1%B9%E7%9B%AE%E4%B8%8A%E7%BA%BF%E5%8F%91%E5%B8%83%E4%B8%AD%E7%9A%84%E9%83%A8%E5%88%86%E5%B0%8Fbug%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/)
++ 相关运维教程：[从docker安装到前后端分离项目启动完成（docker安装mysql、nginx；启动jar包）](https://blog.huijia.cf/2022/09/07/BookMark/%E8%BF%90%E7%BB%B4/%E4%BB%8Edocker%E5%AE%89%E8%A3%85%E5%88%B0%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8%E5%AE%8C%E6%88%90%EF%BC%88docker%E5%AE%89%E8%A3%85mysql%E3%80%81nginx%EF%BC%9B%E5%90%AF%E5%8A%A8jar%E5%8C%85%EF%BC%89/)
 ---
 ## 一、标题技术简介：
 1. linux：Linux是一套免费使用和自由传播的类Unix操作系统。主流版本：debian、ubuntu、centos；多用于服务器配置。此处不做过多介绍，大家自行百度。博主此次选用阿里云的ECS服务器。系统版本为Centos 7。
@@ -31,7 +31,7 @@ tags:
 
 ---
 ## 三、创建安全组规则（开放端口）
-1. 管理ECS![enter description here](https://imgconvert.csdnimg.cn/aHR0cDovL2hicS5pZHNlLnRvcC9ibG9nLzE1NzA5NzY4NzQzNjYucG5n?x-oss-process=image/format,png)
+1. 管理ECS![enter description here](https://img-1256282866.cos.ap-beijing.myqcloud.com/format,png.png)
 2. 进去本实例安全组，配置规则。
 
 ![image-20220509151906341](https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20220509151906341.png)
@@ -44,18 +44,18 @@ tags:
 # 四、标题技术安装方法。太长不易阅读，故分开发布。
 使用教程前请先安装wget以便下载相关安装包：`sudo yum install wget`
 
-[1.服务器部署---《jdk篇》](https://blog.huijia21.com/archives/fu-wu-qi-bu-shu-jdk-pian-)
+[1.服务器部署---《jdk篇》](https://blog.huijia.cf/2022/09/08/BookMark/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2---%E3%80%8Ajdk%E7%AF%87%E3%80%8B%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/)
 
-[2.服务器部署---《tomcat篇》](https://blog.huijia21.com/archives/fu-wu-qi-bu-shu-tomcat-pian-)
+[2.服务器部署---《tomcat篇》](https://blog.huijia.cf/2022/09/08/BookMark/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2---%E3%80%8Atomcat%E7%AF%87%E3%80%8B%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/)
 
-[3.服务器部署---《mysql篇》](https://blog.huijia21.com/archives/fu-wu-qi-bu-shu-mysql-pian-)
+[3.服务器部署---《mysql篇》](https://blog.huijia.cf/2022/09/08/BookMark/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2---%E3%80%8Amysql%E7%AF%87%E3%80%8B%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/)
 
-[4.服务器部署---《nginx篇》](https://blog.huijia21.com/archives/fu-wu-qi-bu-shu-nginx-pian-)
+[4.服务器部署---《nginx篇》](https://blog.huijia.cf/2022/09/08/BookMark/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2---%E3%80%8Anginx%E7%AF%87%E3%80%8B%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/)
 
-[5.服务器部署---《redis篇》](https://blog.huijia21.com/archives/fu-wu-qi-bu-shu-redis-pian-)
+[5.服务器部署---《redis篇》](https://blog.huijia.cf/2022/09/08/BookMark/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2---%E3%80%8Aredis%E7%AF%87%E3%80%8B%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/)
 
-[6.服务器部署---《fastDFS篇》](https://blog.huijia21.com/archives/fu-wu-qi-bu-shu-fastdfs-pian-)
+[6.服务器部署---《fastDFS篇》](https://blog.huijia.cf/2022/09/08/BookMark/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2---%E3%80%8AfastDFS%E7%AF%87%E3%80%8B%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/)
 
-[7.服务器部署---《mycat篇》](https://blog.huijia21.com/archives/fu-wu-qi-bu-shu-mycat-pian-)
+[7.服务器部署---《mycat篇》](https://blog.huijia.cf/2022/09/08/BookMark/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2---%E3%80%8Amycat%E7%AF%87%E3%80%8B%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/)
 
-[7.服务器部署---《linux加载git仓库代码打包并运行》](https://blog.huijia21.com/archives/fu-wu-qi-bu-shu-linux-jia-zai-git-cang-ku-dai-ma-da-bao-bing-yun-xing-)
+[7.服务器部署---《linux加载git仓库代码打包并运行》](https://blog.huijia.cf/2022/09/08/BookMark/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E2%80%94%E3%80%8Alinux%E5%8A%A0%E8%BD%BDgit%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E6%89%93%E5%8C%85%E5%B9%B6%E8%BF%90%E8%A1%8C%E3%80%8B--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/)

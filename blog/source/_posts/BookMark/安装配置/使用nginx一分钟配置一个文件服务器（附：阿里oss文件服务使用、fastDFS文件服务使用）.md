@@ -81,6 +81,6 @@ String uploadToNginx(MultipartFile file, String modelName);
 
 [服务器部署—《fastDFS篇》](https://blog.csdn.net/qq_39231769/article/details/102650042)
 
-[java中使用fastDFS上传图片(前端ajax+后端ssm) ](https://blog.csdn.net/qq_39231769/article/details/102673170)
+[java中使用fastDFS上传图片(前端ajax+后端ssm) ](https://blog.huijia.cf/2022/09/05/BookMark/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E4%B8%AD%E4%BD%BF%E7%94%A8fastDFS%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87(%E5%89%8D%E7%AB%AFajax+%E5%90%8E%E7%AB%AFssm)%20--%E8%8F%9C%E9%B8%9F%E5%B0%8F%E5%9B%9E/)
 
 [阿里云OSS使用——java中图片上传返回url（Spring Boot项目中详细使用）](https://blog.csdn.net/qq_39231769/article/details/105031064)

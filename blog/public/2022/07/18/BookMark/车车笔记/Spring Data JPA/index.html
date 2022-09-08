@@ -1,0 +1,806 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <link rel="icon" href="https://img-1256282866.cos.ap-beijing.myqcloud.com/50536515.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="[toc] Spring Data JPA 框架笔记一、简介Spring Data Jpa 是应⽤于Dao层的⼀个框架，简化数据库开发的，作⽤和Mybatis框架⼀样，但是在使 ⽤⽅式和底层机制是有所不同的。最明显的⼀个特点，Spring Data Jpa 开发Dao的时候，很多场景我们 连sql语句都不需要开发。 JPA 是⼀套规范，内部是由接⼝和抽象类组成的，Hiberanate 是⼀套成熟的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/Spring%20Data%20JPA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[toc] Spring Data JPA 框架笔记一、简介Spring Data Jpa 是应⽤于Dao层的⼀个框架，简化数据库开发的，作⽤和Mybatis框架⼀样，但是在使 ⽤⽅式和底层机制是有所不同的。最明显的⼀个特点，Spring Data Jpa 开发Dao的时候，很多场景我们 连sql语句都不需要开发。 JPA 是⼀套规范，内部是由接⼝和抽象类组成的，Hiberanate 是⼀套成熟的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20210915213027309.png">
+<meta property="article:published_time" content="2022-07-18T09:51:26.000Z">
+<meta property="article:modified_time" content="2022-09-01T10:24:52.386Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20210915213027309.png">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img-1256282866.cos.ap-beijing.myqcloud.com/default-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-18 17:51" pubdate>
+          2022年7月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          95 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>[toc]</p>
+<h1><span id="spring-data-jpa-框架笔记">Spring Data JPA 框架笔记</span></h1><h2><span id="一-简介">一、简介</span></h2><p>Spring Data Jpa 是应⽤于Dao层的⼀个框架，简化数据库开发的，作⽤和Mybatis框架⼀样，但是在使</p>
+<p>⽤⽅式和底层机制是有所不同的。最明显的⼀个特点，Spring Data Jpa 开发Dao的时候，很多场景我们</p>
+<p>连sql语句都不需要开发。</p>
+<p>JPA 是⼀套规范，内部是由接⼝和抽象类组成的，Hiberanate 是⼀套成熟的 ORM 框架，⽽且</p>
+<p>Hiberanate 实现了 JPA 规范，所以可以称 Hiberanate 为 JPA 的⼀种实现⽅式，我们使⽤ JPA 的 API 编</p>
+<p>程，意味着站在更⾼的⻆度去看待问题（⾯向接⼝编程）。</p>
+<p>Spring Data JPA 是 Spring 提供的⼀套对 JPA 操作更加⾼级的封装，是在 JPA 规范下的专⻔⽤来进⾏数</p>
+<p>据持久化的解决⽅案。</p>
+<p><img src="https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20210915213027309.png" srcset="/img/loading.gif" lazyload alt="image-20210915213027309"></p>
+<h2><span id="二-jpa常用方法">二、JPA常用方法</span></h2><h3><span id="1更新或保存save">1.更新或保存save</span></h3><p>如果有id，先按照id查询，如果不存在，则存入除id外的对象，更新时空元素会覆盖原有信息，并不是不替换该字段</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>更新或保存；如果有id，先按照id查询，如果不存在，则存入除id外的对象<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-keyword">select</span> age0_.id <span class="hljs-keyword">as</span> id1_0_0_, age0_.age <span class="hljs-keyword">as</span> age2_0_0_, age0_.name <span class="hljs-keyword">as</span> name3_0_0_ <span class="hljs-keyword">from</span> tb_age age0_ <span class="hljs-keyword">where</span> age0_.id<span class="hljs-operator">=</span>?<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> tb_age (age, name) <span class="hljs-keyword">values</span> (?, ?)<br>Age newAge<span class="hljs-operator">=</span><span class="hljs-keyword">new</span> Age();<br>newAge.setId(<span class="hljs-number">2</span>L);<br>newAge.setAge(<span class="hljs-number">26</span>);<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>更新时空元素会覆盖原有信息，并不是不替换该字段<br>Age save <span class="hljs-operator">=</span> ageDao.save(newAge);<br>System.out.println(&quot;save:&quot;<span class="hljs-operator">+</span>save);<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>自写<span class="hljs-keyword">sql</span><br><span class="hljs-variable">@Transactional</span><br><span class="hljs-variable">@Modifying</span><br><span class="hljs-variable">@Query</span>(<span class="hljs-keyword">value</span> <span class="hljs-operator">=</span> &quot;update suspend_record set status = ?1 where status=?2 and start_time&lt;=?3 &quot;, nativeQuery <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>)<br><span class="hljs-type">Integer</span> updateWaitStatus(<span class="hljs-type">Integer</span> status1,<span class="hljs-type">Integer</span> status2,<span class="hljs-type">Date</span> <span class="hljs-type">date</span>);<br><br><span class="hljs-variable">@Transactional</span><br><span class="hljs-variable">@Modifying</span><br><span class="hljs-variable">@Query</span>(<span class="hljs-keyword">value</span> <span class="hljs-operator">=</span> &quot;update suspend_auto set disable = :state WHERE  mobile = :mobile and activity_id = :activityId and license_plate_no = :licensePlateNo&quot;, nativeQuery <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>)<br><span class="hljs-type">Integer</span> updateSuspendAutoState(<span class="hljs-variable">@Param</span>(&quot;mobile&quot;) String mobile, <span class="hljs-variable">@Param</span>(&quot;activityId&quot;) Long activityId,<br><span class="hljs-variable">@Param</span>(&quot;licensePlateNo&quot;) String licensePlateNo, <span class="hljs-variable">@Param</span>(&quot;state&quot;) <span class="hljs-type">Integer</span> state);<br></code></pre></td></tr></table></figure>
+
+<h3><span id="2删除deletebyiddelete">2.删除deleteById，delete</span></h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>删除<br><span class="hljs-regexp">//</span><span class="hljs-keyword">delete</span> from tb_age where id=?<br><span class="hljs-regexp">//</span>ageDao.deleteById(<span class="hljs-number">3</span>L);<br>ageDao.<span class="hljs-keyword">delete</span>(save);<br></code></pre></td></tr></table></figure>
+
+<h3><span id="3简单查询findbyidfindonefindall">3.简单查询findById，findOne，findAll</span></h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">//通过id查询一个对象<br>//<span class="hljs-keyword">select</span> age0_.id <span class="hljs-keyword">as</span> id1_0_0_, age0_.age <span class="hljs-keyword">as</span> age2_0_0_, age0_.name <span class="hljs-keyword">as</span> name3_0_0_ <span class="hljs-keyword">from</span> tb_age age0_ <span class="hljs-keyword">where</span> age0_.id=?<br>Optional&lt;Age&gt; byId = ageDao.findById(<span class="hljs-number">1</span>L);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;findById:&quot;+byId.<span class="hljs-keyword">get</span>());<br><br>//通过条件查询一个对象<br>//<span class="hljs-keyword">select</span> age0_.id <span class="hljs-keyword">as</span> id1_0_, age0_.age <span class="hljs-keyword">as</span> age2_0_, age0_.name <span class="hljs-keyword">as</span> name3_0_ <span class="hljs-keyword">from</span> tb_age age0_ <span class="hljs-keyword">where</span> age0_.age=<span class="hljs-number">23</span><br>Age age=<span class="hljs-built_in">new</span> Age();<br>age.setAge(<span class="hljs-number">20</span>);<br>Example&lt;Age&gt; example = Example.<span class="hljs-keyword">of</span>(age);<br>Optional&lt;Age&gt; one = ageDao.findOne(example);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;findOne:&quot;+one.<span class="hljs-keyword">get</span>());<br><br><br></code></pre></td></tr></table></figure>
+
+<h3><span id="4分页排序查询">4.分页排序查询</span></h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">//查询全部，分页并按照id逆序<br>//<span class="hljs-keyword">select</span> age0_.id <span class="hljs-keyword">as</span> id1_0_, age0_.age <span class="hljs-keyword">as</span> age2_0_, age0_.name <span class="hljs-keyword">as</span> name3_0_ <span class="hljs-keyword">from</span> tb_age age0_<br>Sort sort = Sort.<span class="hljs-keyword">by</span>(Sort.Direction.<span class="hljs-keyword">DESC</span>,&quot;id&quot;);<br>Pageable pageable = PageRequest.<span class="hljs-keyword">of</span>(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, sort);<br>Page&lt;Age&gt; <span class="hljs-keyword">all</span> = ageDao.findAll(pageable);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-keyword">all</span>.getContent());<br></code></pre></td></tr></table></figure>
+
+<h3><span id="5自定义查询">5.自定义查询</span></h3><ul>
+<li>dao层</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">public interface AgeDao extends JpaRepository&lt;Age,Long&gt;, JpaSpecificationExecutor&lt;Age&gt; &#123;<br>@<span class="hljs-constructor">Query(<span class="hljs-string">&quot;from Age where age=?1 and name=?2&quot;</span>)</span><br>List&lt;Age&gt; find<span class="hljs-constructor">ByjPQL(Integer <span class="hljs-params">age</span>,String <span class="hljs-params">name</span>)</span>;<br><br>@<span class="hljs-constructor">Query(<span class="hljs-params">value</span> = <span class="hljs-string">&quot;select * from tb_age where age=?1 and name like ?2&quot;</span>,<span class="hljs-params">nativeQuery</span> = <span class="hljs-params">true</span>)</span><br>List&lt;Age&gt; find<span class="hljs-constructor">BySQL(Integer <span class="hljs-params">age</span>,String <span class="hljs-params">name</span>)</span>;<br><br>List&lt;Age&gt; find<span class="hljs-constructor">ByAgeAndNameLike(Integer <span class="hljs-params">age</span>,String <span class="hljs-params">name</span>)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>使用</li>
+</ul>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">//通过jpql查询<br>//<span class="hljs-keyword">select</span> age0_.id <span class="hljs-keyword">as</span> id1_0_, age0_.age <span class="hljs-keyword">as</span> age2_0_, age0_.name <span class="hljs-keyword">as</span> name3_0_ <span class="hljs-keyword">from</span> tb_age age0_ <span class="hljs-keyword">where</span> age0_.age=? <span class="hljs-keyword">and</span> age0_.name=?<br>List&lt;Age&gt; byjPQL = ageDao.findByjPQL(<span class="hljs-number">20</span>,&quot;张三&quot;);<br>byjPQL.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br><br>//通过<span class="hljs-keyword">sql</span>查询<br>//<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> tb_age <span class="hljs-keyword">where</span> age=? <span class="hljs-keyword">and</span> <span class="hljs-type">name</span> <span class="hljs-keyword">like</span> ?<br>List&lt;Age&gt; bySQL = ageDao.findBySQL(<span class="hljs-number">20</span>, &quot;张%&quot;);<br>bySQL.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br><br>//通过方法命名规则查询<br>//<span class="hljs-keyword">select</span> age0_.id <span class="hljs-keyword">as</span> id1_0_, age0_.age <span class="hljs-keyword">as</span> age2_0_, age0_.name <span class="hljs-keyword">as</span> name3_0_ <span class="hljs-keyword">from</span> tb_age age0_ <span class="hljs-keyword">where</span> age0_.age=? <span class="hljs-keyword">and</span> (age0_.name <span class="hljs-keyword">like</span> ? <span class="hljs-keyword">escape</span> ?)<br>List&lt;Age&gt; ages = ageDao.findByAgeAndNameLike(<span class="hljs-number">20</span>, &quot;张%&quot;);<br>ages.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br></code></pre></td></tr></table></figure>
+
+<h3><span id="6动态查询分页排序">6.动态查询，分页，排序</span></h3><pre><code class="hljs">Age age1=new Age();
+age1.setName(&quot;张%&quot;);
+//动态查询
+List&lt;Age&gt; dynamic = dynamicQuery(age1);
+dynamic.forEach(System.out::println);
+
+/**
+ * 动态查询
+ * @param age 通过传入对象值是否为空动态查询,并按照id排序
+ * @return 查询到的集合
+ */
+Page&lt;Age&gt; dynamicQuery(Age age)&#123;
+    Specification&lt;Age&gt; specification = new Specification&lt;Age&gt;() &#123;
+        @Override
+        public Predicate toPredicate(Root&lt;Age&gt; root, CriteriaQuery&lt;?&gt; query, CriteriaBuilder builder) &#123;
+            Path age1 = root.&lt;Integer&gt;get(&quot;age&quot;);
+            Path name = root.&lt;String&gt;get(&quot;name&quot;);
+            List&lt;Predicate&gt; predicates = new ArrayList&lt;&gt;();
+            if (age.getAge()!=null)&#123;
+                predicates.add(builder.equal(age1, age.getAge()));
+            &#125;
+            if (age.getName()!=null)&#123;
+                predicates.add(builder.like(name.as(String.class), age.getName()));
+            &#125;
+            Order order = builder.desc(root.&lt;Long&gt;get(&quot;id&quot;));
+            Predicate where = builder.and(predicates.toArray(new Predicate[predicates.size()]));
+            query.where(where);
+            query.orderBy(order);
+            return query.getRestriction();
+        &#125;
+    &#125;;
+    return ageDao.findAll(specification，PageRequest.of(0, 10, new Sort(Sort.Direction.DESC,&quot;id&quot;)）);
+&#125;
+</code></pre>
+<h3><span id="7关联查询">7.关联查询</span></h3><ul>
+<li><p>实体类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs javascript?linenums">//age<br>@Entity<br>@Table(name = &quot;tb_age&quot;)<br>public class Age implements Serializable &#123;<br>    private static final long serialVersionUID=1L;<br>    @Id<br>    @GeneratedValue(strategy = GenerationType.IDENTITY)<br>    @Column(name = &quot;id&quot;)<br>    private Long id;<br>    @Column(name = &quot;name&quot;)<br>    private String name;<br>    @Column(name = &quot;age&quot;)<br>    private Integer age;<br><br>    @OneToOne(fetch = FetchType.EAGER)<br>    @NotFound(action = NotFoundAction.IGNORE)<br>    @JoinColumn(name = &quot;name&quot;, referencedColumnName = &quot;name&quot;, insertable = false, updatable = false)<br>    private Resume resume;<br>&#125;<br>//resume<br>@Entity<br>@Table(name = &quot;tb_resume&quot;)<br>public class Resume implements Serializable &#123;<br>    private static final long serialVersionUID=1L;<br>    @Id<br>    @GeneratedValue(strategy = GenerationType.IDENTITY)<br>    @Column(name = &quot;id&quot;)<br>    private Long id;<br>    @Column(name = &quot;name&quot;)<br>    private String name;<br>    @Column(name = &quot;address&quot;)<br>    private String address;<br>    @Column(name = &quot;phone&quot;)<br>    private String phone;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>用法</p>
+</li>
+</ul>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">//关联查询<br>List&lt;Age&gt; ages1 = joinQuery(<span class="hljs-keyword">null</span>,&quot;张%&quot; ,&quot;1%&quot;);<br>ages1.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 通过age表左连接resume表，关联字段为name</span><br><span class="hljs-comment"> * @param age age表年龄</span><br><span class="hljs-comment"> * @param name age表姓名</span><br><span class="hljs-comment"> * @param phone resume表电话</span><br><span class="hljs-comment"> * @return age实体</span><br><span class="hljs-comment"> */</span><br>List&lt;Age&gt; joinQuery(<span class="hljs-type">Integer</span> age,String <span class="hljs-type">name</span>,String phone)&#123;<br>    Specification&lt;Age&gt; specification = <span class="hljs-built_in">new</span> Specification&lt;Age&gt;() &#123;<br>        @Override<br>        <span class="hljs-built_in">public</span> Predicate toPredicate(Root&lt;Age&gt; root, CriteriaQuery&lt;?&gt; query, CriteriaBuilder builder) &#123;<br>            <span class="hljs-type">Path</span> agePath = root.&lt;<span class="hljs-type">Integer</span>&gt;<span class="hljs-keyword">get</span>(&quot;age&quot;);<br>            <span class="hljs-type">Path</span> namePath = root.&lt;String&gt;<span class="hljs-keyword">get</span>(&quot;name&quot;);<br>            //先副表，再主表，左连接<br>            <span class="hljs-keyword">Join</span>&lt;Resume, <span class="hljs-keyword">Object</span>&gt; join = root.<span class="hljs-keyword">join</span>(&quot;resume&quot;, JoinType.LEFT);<br>            <span class="hljs-type">Path</span> phonePath = <span class="hljs-keyword">join</span>.&lt;String&gt;<span class="hljs-keyword">get</span>(&quot;phone&quot;);<br>            List&lt;Predicate&gt; predicates = <span class="hljs-built_in">new</span> ArrayList&lt;&gt;();<br>            <span class="hljs-keyword">if</span> (age!=<span class="hljs-keyword">null</span>)&#123;<br>                predicates.<span class="hljs-keyword">add</span>(builder.equal(agePath, age));<br>            &#125;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-type">name</span>!=<span class="hljs-keyword">null</span>)&#123;<br>                predicates.<span class="hljs-keyword">add</span>(builder.<span class="hljs-keyword">like</span>(namePath.<span class="hljs-keyword">as</span>(String.<span class="hljs-keyword">class</span>), <span class="hljs-type">name</span>));<br>            &#125;<br>            <span class="hljs-keyword">if</span> (phone!=<span class="hljs-keyword">null</span>)&#123;<br>                predicates.<span class="hljs-keyword">add</span>(builder.<span class="hljs-keyword">like</span>(phonePath.<span class="hljs-keyword">as</span>(String.<span class="hljs-keyword">class</span>),phone));<br>            &#125;<br>            <span class="hljs-keyword">Order</span> <span class="hljs-keyword">order</span> = builder.<span class="hljs-keyword">desc</span>(root.&lt;Long&gt;<span class="hljs-keyword">get</span>(&quot;id&quot;));<br>            Predicate <span class="hljs-keyword">where</span> = builder.<span class="hljs-keyword">and</span>(predicates.toArray(<span class="hljs-built_in">new</span> Predicate[predicates.size()]));<br>            query.<span class="hljs-keyword">where</span>(<span class="hljs-keyword">where</span>);<br>            query.orderBy(<span class="hljs-keyword">order</span>);<br>            <span class="hljs-keyword">return query</span>.getRestriction();<br>        &#125;<br>    &#125;;<br>    <span class="hljs-keyword">return</span> ageDao.findAll(specification);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2><span id="三-解决save方法null值覆盖">三、解决Save方法null值覆盖</span></h2><p>JPA原生Save方法会导致null属性覆盖到数据库,重写方法实现null属性不再覆盖</p>
+<h3><span id="1-新建类">1. 新建类</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cheche365.ccgeneral.service.util;<br><br><span class="hljs-keyword">import</span> org.springframework.beans.BeanUtils;<br><span class="hljs-keyword">import</span> org.springframework.beans.BeanWrapper;<br><span class="hljs-keyword">import</span> org.springframework.beans.BeanWrapperImpl;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.data.jpa.repository.support.JpaEntityInformation;<br><span class="hljs-keyword">import</span> org.springframework.data.jpa.repository.support.SimpleJpaRepository;<br><span class="hljs-keyword">import</span> org.springframework.transaction.annotation.Transactional;<br><span class="hljs-keyword">import</span> org.springframework.util.StringUtils;<br><br><span class="hljs-keyword">import</span> javax.persistence.EntityManager;<br><span class="hljs-keyword">import</span> java.beans.PropertyDescriptor;<br><span class="hljs-keyword">import</span> java.util.HashSet;<br><span class="hljs-keyword">import</span> java.util.Optional;<br><span class="hljs-keyword">import</span> java.util.Set;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Author</span>: hbq</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Description</span>: JPA原生Save方法会导致null属性覆盖到数据库,重写方法实现null属性不再覆盖</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Date</span>: 2021/10/21 14:24</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleJpaRepositoryImpl</span>&lt;T, ID&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title class_">SimpleJpaRepository</span>&lt;T, ID&gt; &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> JpaEntityInformation&lt;T, ?&gt; entityInformation;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> EntityManager em;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">SimpleJpaRepositoryImpl</span><span class="hljs-params">(JpaEntityInformation&lt;T, ?&gt; entityInformation, EntityManager entityManager)</span> &#123;<br>        <span class="hljs-built_in">super</span>(entityInformation, entityManager);<br>        <span class="hljs-built_in">this</span>.entityInformation = entityInformation;<br>        <span class="hljs-built_in">this</span>.em = entityManager;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 通用save方法 ：新增/选择性更新</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-meta">@Transactional(rollbackFor = Exception.class)</span><br>    <span class="hljs-keyword">public</span> &lt;S <span class="hljs-keyword">extends</span> <span class="hljs-title class_">T</span>&gt; S <span class="hljs-title function_">save</span><span class="hljs-params">(S entity)</span> &#123;<br>        <span class="hljs-comment">//获取ID</span><br>        <span class="hljs-type">ID</span> <span class="hljs-variable">entityId</span> <span class="hljs-operator">=</span> (ID) entityInformation.getId(entity);<br>        Optional&lt;T&gt; optionalT;<br>        <span class="hljs-keyword">if</span> (StringUtils.isEmpty(entityId)) &#123;<br>            optionalT = Optional.empty();<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">//若ID非空 则查询最新数据</span><br>            optionalT = findById(entityId);<br>        &#125;<br>        <span class="hljs-comment">//获取空属性并处理成null</span><br>        String[] nullProperties = getNullProperties(entity);<br>        <span class="hljs-comment">//若根据ID查询结果为空</span><br>        <span class="hljs-keyword">if</span> (!optionalT.isPresent()) &#123;<br>            <span class="hljs-comment">//新增</span><br>            em.persist(entity);<br>            <span class="hljs-keyword">return</span> entity;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">//1.获取最新对象</span><br>            <span class="hljs-type">T</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> optionalT.get();<br>            <span class="hljs-comment">//2.将非空属性覆盖到最新对象</span><br>            BeanUtils.copyProperties(entity, target, nullProperties);<br>            <span class="hljs-comment">//3.更新非空属性</span><br>            em.merge(target);<br>            <span class="hljs-keyword">return</span> entity;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取对象的空属性</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String[] getNullProperties(Object src) &#123;<br>        <span class="hljs-comment">//1.获取Bean</span><br>        <span class="hljs-type">BeanWrapper</span> <span class="hljs-variable">srcBean</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BeanWrapperImpl</span>(src);<br>        <span class="hljs-comment">//2.获取Bean的属性描述</span><br>        PropertyDescriptor[] pds = srcBean.getPropertyDescriptors();<br>        <span class="hljs-comment">//3.获取Bean的空属性</span><br>        Set&lt;String&gt; properties = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>        <span class="hljs-keyword">for</span> (PropertyDescriptor propertyDescriptor : pds) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">propertyName</span> <span class="hljs-operator">=</span> propertyDescriptor.getName();<br>            <span class="hljs-type">Object</span> <span class="hljs-variable">propertyValue</span> <span class="hljs-operator">=</span> srcBean.getPropertyValue(propertyName);<br>            <span class="hljs-keyword">if</span> (StringUtils.isEmpty(propertyValue)) &#123;<br>                srcBean.setPropertyValue(propertyName, <span class="hljs-literal">null</span>);<br>                properties.add(propertyName);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> properties.toArray(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[<span class="hljs-number">0</span>]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3><span id="2-启动类加注解">2. 启动类加注解</span></h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@EnableJpaRepositories</span>(repositoryBaseClass = <span class="hljs-title class_">SimpleJpaRepositoryImpl</span>.<span class="hljs-property">class</span>)<br></code></pre></td></tr></table></figure>
+
+<h2><span id="四-常用jpa方法命名规则">四、常用JPA方法命名规则</span></h2><table>
+<thead>
+<tr>
+<th align="left">关键词</th>
+<th align="left">样本</th>
+<th align="left">JPQL 片段</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>Distinct</code></td>
+<td align="left"><code>findDistinctByLastnameAndFirstname</code></td>
+<td align="left"><code>select distinct … where x.lastname = ?1 and x.firstname = ?2</code></td>
+</tr>
+<tr>
+<td align="left"><code>And</code></td>
+<td align="left"><code>findByLastnameAndFirstname</code></td>
+<td align="left"><code>… where x.lastname = ?1 and x.firstname = ?2</code></td>
+</tr>
+<tr>
+<td align="left"><code>Or</code></td>
+<td align="left"><code>findByLastnameOrFirstname</code></td>
+<td align="left"><code>… where x.lastname = ?1 or x.firstname = ?2</code></td>
+</tr>
+<tr>
+<td align="left"><code>Is</code>, <code>Equals</code></td>
+<td align="left"><code>findByFirstname</code>, <code>findByFirstnameIs</code>,<code>findByFirstnameEquals</code></td>
+<td align="left"><code>… where x.firstname = ?1</code></td>
+</tr>
+<tr>
+<td align="left"><code>Between</code></td>
+<td align="left"><code>findByStartDateBetween</code></td>
+<td align="left"><code>… where x.startDate between ?1 and ?2</code></td>
+</tr>
+<tr>
+<td align="left"><code>LessThan</code></td>
+<td align="left"><code>findByAgeLessThan</code></td>
+<td align="left"><code>… where x.age &lt; ?1</code></td>
+</tr>
+<tr>
+<td align="left"><code>LessThanEqual</code></td>
+<td align="left"><code>findByAgeLessThanEqual</code></td>
+<td align="left"><code>… where x.age &lt;= ?1</code></td>
+</tr>
+<tr>
+<td align="left"><code>GreaterThan</code></td>
+<td align="left"><code>findByAgeGreaterThan</code></td>
+<td align="left"><code>… where x.age &gt; ?1</code></td>
+</tr>
+<tr>
+<td align="left"><code>GreaterThanEqual</code></td>
+<td align="left"><code>findByAgeGreaterThanEqual</code></td>
+<td align="left"><code>… where x.age &gt;= ?1</code></td>
+</tr>
+<tr>
+<td align="left"><code>After</code></td>
+<td align="left"><code>findByStartDateAfter</code></td>
+<td align="left"><code>… where x.startDate &gt; ?1</code></td>
+</tr>
+<tr>
+<td align="left"><code>Before</code></td>
+<td align="left"><code>findByStartDateBefore</code></td>
+<td align="left"><code>… where x.startDate &lt; ?1</code></td>
+</tr>
+<tr>
+<td align="left"><code>IsNull</code>, <code>Null</code></td>
+<td align="left"><code>findByAge(Is)Null</code></td>
+<td align="left"><code>… where x.age is null</code></td>
+</tr>
+<tr>
+<td align="left"><code>IsNotNull</code>, <code>NotNull</code></td>
+<td align="left"><code>findByAge(Is)NotNull</code></td>
+<td align="left"><code>… where x.age not null</code></td>
+</tr>
+<tr>
+<td align="left"><code>Like</code></td>
+<td align="left"><code>findByFirstnameLike</code></td>
+<td align="left"><code>… where x.firstname like ?1</code></td>
+</tr>
+<tr>
+<td align="left"><code>NotLike</code></td>
+<td align="left"><code>findByFirstnameNotLike</code></td>
+<td align="left"><code>… where x.firstname not like ?1</code></td>
+</tr>
+<tr>
+<td align="left"><code>StartingWith</code></td>
+<td align="left"><code>findByFirstnameStartingWith</code></td>
+<td align="left"><code>… where x.firstname like ?1</code>（参数绑定了 append <code>%</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>EndingWith</code></td>
+<td align="left"><code>findByFirstnameEndingWith</code></td>
+<td align="left"><code>… where x.firstname like ?1</code>（参数绑定 prepended <code>%</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>Containing</code></td>
+<td align="left"><code>findByFirstnameContaining</code></td>
+<td align="left"><code>… where x.firstname like ?1</code>（参数绑定包裹在<code>%</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>OrderBy</code></td>
+<td align="left"><code>findByAgeOrderByLastnameDesc</code></td>
+<td align="left"><code>… where x.age = ?1 order by x.lastname desc</code></td>
+</tr>
+<tr>
+<td align="left"><code>Not</code></td>
+<td align="left"><code>findByLastnameNot</code></td>
+<td align="left"><code>… where x.lastname &lt;&gt; ?1</code></td>
+</tr>
+<tr>
+<td align="left"><code>In</code></td>
+<td align="left"><code>findByAgeIn(Collection&lt;Age&gt; ages)</code></td>
+<td align="left"><code>… where x.age in ?1</code></td>
+</tr>
+<tr>
+<td align="left"><code>NotIn</code></td>
+<td align="left"><code>findByAgeNotIn(Collection&lt;Age&gt; ages)</code></td>
+<td align="left"><code>… where x.age not in ?1</code></td>
+</tr>
+<tr>
+<td align="left"><code>True</code></td>
+<td align="left"><code>findByActiveTrue()</code></td>
+<td align="left"><code>… where x.active = true</code></td>
+</tr>
+<tr>
+<td align="left"><code>False</code></td>
+<td align="left"><code>findByActiveFalse()</code></td>
+<td align="left"><code>… where x.active = false</code></td>
+</tr>
+<tr>
+<td align="left"><code>IgnoreCase</code></td>
+<td align="left"><code>findByFirstnameIgnoreCase</code></td>
+<td align="left"><code>… where UPPER(x.firstname) = UPPER(?1)</code></td>
+</tr>
+</tbody></table>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">docker run -d --name=webdav-aliyundriver --restart=always -p <span class="hljs-number">8080</span>:<span class="hljs-number">8080</span>  -v <span class="hljs-regexp">/etc/</span>localtime:<span class="hljs-regexp">/etc/</span>localtime -v <span class="hljs-regexp">/etc/</span>aliyun-driver<span class="hljs-regexp">/:/</span>etc<span class="hljs-regexp">/aliyun-driver/</span> -e TZ=<span class="hljs-string">&quot;Asia/Shanghai&quot;</span> -e ALIYUNDRIVE_REFRESH_TOKEN=<span class="hljs-string">&quot;91dac35e525c47ebb2bc7d0753875c0e&quot;</span> -e ALIYUNDRIVE_AUTH_PASSWORD=<span class="hljs-string">&quot;HBQ521521cf*&quot;</span> -e JAVA_OPTS=<span class="hljs-string">&quot;-Xmx1g&quot;</span> zx5253/webdav-aliyundriver<br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://my.huijia21.com/">http://my.huijia21.com/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2022/07/18/BookMark/车车笔记/Spring Data JPA/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月18日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/%E5%81%9C%E7%BB%99%E5%88%A9%E4%BA%8C%E6%9C%9F%E5%A4%8D%E7%9B%98/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/18/BookMark/%E8%BD%A6%E8%BD%A6%E7%AC%94%E8%AE%B0/web%E6%8A%A5%E4%BB%B7%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E6%95%B4%E7%90%86/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
