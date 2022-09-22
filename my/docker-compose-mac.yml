@@ -27,7 +27,6 @@ services:
     image: mysql/mysql-server:8.0.27
   shardingsphere-proxy:
     container_name: sharding
-    restart: always
     volumes:
       - '/Users/huibaoqi/opt/sharding/conf:/opt/shardingsphere-proxy/conf'
       - '/Users/huibaoqi/opt/sharding/ext-lib:/opt/shardingsphere-proxy/ext-lib'
@@ -71,7 +70,6 @@ services:
     image: baoqihui/aliyundrive-webdav:arm
   clickhouse-server:
     container_name: ch-server
-    restart: always
     ports:
       - '8123:8123'
       - '9009:9009'
