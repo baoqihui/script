@@ -131,3 +131,10 @@ services:
     volumes:
       - '/opt/halo:/root/.halo'
     image: halohub/halo
+  pass:
+    container_name: pass
+    volumes:
+      - '/opt/pass/:/data/'
+    ports:
+      - '86:80'
+    image: 'vaultwarden/server:latest'
