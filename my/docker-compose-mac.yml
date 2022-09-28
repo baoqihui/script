@@ -79,3 +79,17 @@ services:
         soft: 262144
         hard: 262144
     image: 'yandex/clickhouse-server:22.1.2.2'
+  xuexi:
+    image: techxuexi/techxuexi-arm64v8:latest
+    container_name: xuexi
+    restart: always
+    volumes:
+      - "/Users/huibaoqi/opt/xuexi/user:/xuexi/user"
+    shm_size: 2gb
+    environment:
+      - "CRONTIME=30 10,20 * * *"
+      - "ZhuanXiang=True"
+      - "Pushmode=1"
+      - "AccessToken=d9a3f1c7e410059c036cbb7177085ae5287231ac3da54dbce480f0b35e74cc00"
+      - "Secret=SEC9e4eba5b30205f76a286277e569f7e85bc111b171a9e4991dd6eddf768915015"
+      - "Scheme=dtxuexi://appclient/page/study_feeds?url="
