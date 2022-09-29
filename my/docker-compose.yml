@@ -76,6 +76,13 @@ services:
       - '/opt/cert:/etc/nginx/cert'
       - '/opt/minio/data/dev-ui:/etc/nginx/dev-ui'
     image: nginx:1.13
+  rabbitmq:
+    hostname: rabbit
+    container_name: rabbit
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+    image: 'rabbitmq:3.8-management'
   alist:
     container_name: alist
     restart: always
