@@ -72,7 +72,8 @@ services:
     privileged: true
     network_mode: host
     volumes:
-      - '/opt/config/nginx.conf:/etc/nginx/nginx.conf'
+      - '/opt/nginx/nginx.conf:/etc/nginx/nginx.conf'
+      - '/opt/nginx/conf.d:/etc/nginx/conf.d'
       - '/opt/cert:/etc/nginx/cert'
       - '/opt/minio/data/dev-ui:/etc/nginx/dev-ui'
     image: nginx:1.13
