@@ -39,4 +39,4 @@ export CF_Key=$key
 #安装证书
 echo -e "\033[32m 安装$i证书到'$path/$i'............................. \033[0m"
 mkdir -p $path/$i
-~/.acme.sh/acme.sh --issue -d $i -d *.$i --dns dns_cf --key-file $path/$i/$i.key --fullchain-file $path/$i/fullchain.cert --reloadcmd "$reloadcmd"
+~/.acme.sh/acme.sh --issue -d $i -d *.$i --dns dns_cf --key-file $path/$i/$i.key --fullchain-file $path/$i/fullchain.cer --reloadcmd "$reloadcmd"
