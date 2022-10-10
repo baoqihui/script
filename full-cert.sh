@@ -10,8 +10,8 @@ echo " ------------------------------------------------------------------------"
 
 echo -e "\033[32m 开始执行... \033[0m"
 
-read -p " 请输入你要安装的根目录(默认'/opt/cert',最终生成默认目录为'/opt/cert/'):" path
-path=${path:-'/opt/cert'}
+read -p " 请输入你要安装的根目录(默认'/opt/nginx/cert'):" path
+path=${path:-'/opt/nginx/cert'}
 echo -e "\033[32m path:$path \033[0m"
 
 read -p " 请输入你的cloudflare email:" email
