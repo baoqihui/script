@@ -31,7 +31,7 @@ reloadcmd=${reloadcmd:-'docker restart nginx'}
 echo -e "\033[32m reloadcmd:$reloadcmd \033[0m"
 
 #安装acme
-curl  https://get.acme.sh | sh -s email=baoqi.hui@qq.com
+curl  https://get.acme.sh | sh -s email=$email
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 export CF_Email=$email
 export CF_Key=$key
