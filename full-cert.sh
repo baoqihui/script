@@ -15,15 +15,15 @@ path=${path:-'/opt/cert'}
 echo -e "\033[32m path:$path \033[0m"
 
 read -p " 请输入你的cloudflare email:" email
-email=${email:-'baoqi.hui@qq.com'}
+email=${email}
 echo -e "\033[32m email:$email \033[0m"
 
 read -p " 请输入你的cloudflare key:" key
-key=${key:-'a1e21b38726d8f875247157d9ddee64e270c3'}
+key=${key}
 echo -e "\033[32m key:$key\033[0m"
 
-read -p " 请输入你的范域名（如：example@qq.com）:" i
-i=${i}
+read -p " 请输入你的范域名，多个空格隔开（如：example@qq.com）:" domains
+domains=${domains}
 echo -e "\033[32m domains:$i \033[0m"
 
 read -p " 请输入在申请完域名后要执行的命令，如：docker restart nginx:" reloadcmd
@@ -31,12 +31,18 @@ reloadcmd=${reloadcmd:-'docker restart nginx'}
 echo -e "\033[32m reloadcmd:$reloadcmd \033[0m"
 
 #安装acme
-curl  https://get.acme.sh | sh -s email=$email
+curl  https://get.acme.sh | sh -s email=baoqi.hui@qq.com
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 export CF_Email=$email
 export CF_Key=$key
 
+domain='';
+for i in $domains;  
+do  
+domain="$domain -d $i -d *.$i" 
+done
+
 #安装证书
-echo -e "\033[32m 安装$i证书到'$path/$i'............................. \033[0m"
-mkdir -p $path/$i
-~/.acme.sh/acme.sh --issue -d $i -d *.$i --dns dns_cf --key-file $path/$i/$i.key --fullchain-file $path/$i/fullchain.cer --reloadcmd "$reloadcmd"
+echo -e "\033[32m 安装证书到'$path'............................. \033[0m"
+mkdir -p $path
+~/.acme.sh/acme.sh --issue --dns dns_cf $domain --key-file $path/fullchain.key --fullchain-file $path/fullchain.cer --reloadcmd "$reloadcmd"
