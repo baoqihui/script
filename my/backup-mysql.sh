@@ -1,3 +1,4 @@
+#0 */2 * * * bash /root/backup-mysql.sh > /out/backup-mysql.log 2&1 &
 #备份数据库名字
 name="all-db"
 # 备份文件存放地址(根据实际情况填写)
@@ -5,7 +6,7 @@ outDir="/out/mysql"
 # 是否删除过期数据
 need_delete="ON"
 #过期时长，单位 天
-expire_days=7
+expire_days=3
 #记录当前时间
 nowTime=$(date "+%Y%m%d")
 #最终文件名
