@@ -87,7 +87,7 @@ services:
       - "/Users/huibaoqi/opt/xuexi/user:/xuexi/user"
     shm_size: 2gb
     environment:
-      - "CRONTIME=30 10,20 * * *"
+      - "CRONTIME=20 8,20 * * *"
       - "ZhuanXiang=false"
       - "Pushmode=1"
       - "AccessToken=d9a3f1c7e410059c036cbb7177085ae5287231ac3da54dbce480f0b35e74cc00"
