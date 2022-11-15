@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+  mysql:
+    container_name: mysql
+    restart: always
+    volumes:
+      - '/opt/config/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf'
+      - '/out/mysql/:/out/mysql/'
+    ports:
+      - '3306:3306'
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=biNoQy2rXb4aLUQ'
+    image: mysql:5.7.29
+  redis:
+    container_name: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - '/opt/config/redis.conf:/etc/redis/redis.conf'
+    command: redis-server /etc/redis/redis.conf --requirepass 5faeGoOhcOqHlMo --appendonly yes
+    image: redis:5.0.3
+  nginx:
+    container_name: nginx
+    restart: always
+    privileged: true
+    network_mode: host
+    volumes:
+      - '/opt/config/nginx.conf:/etc/nginx/nginx.conf'
+      - '/opt/cert:/etc/nginx/cert'
+      - '/opt/ui:/etc/nginx/ui'
+    image: nginx:1.13
