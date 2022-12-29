@@ -1,77 +1,24 @@
 version: '3.3'
 services:
-  hui:
-    container_name: hui
+  xuexi:
+    image: techxuexi/techxuexi-arm64v8:latest
+    container_name: xuexi
     restart: always
-    ports:
-      - '81:8080'
+    volumes:
+      - "D:\OneDrive - Stanford University - Danny Live@Edu Test\Documents\opt\xuexi\user:/xuexi/user"
+    shm_size: 2gb
     environment:
-      - 'REFRESH_TOKEN=10846b5dbc3a42809b204e45aea6eb49'
-    image: baoqihui/aliyundrive-webdav:amd
-  mysql:
-    container_name: mysql
+      - "CRONTIME=20 8,20 * * *"
+      - "ZhuanXiang=false"
+      - "Pushmode=1"
+      - "AccessToken=d9a3f1c7e410059c036cbb7177085ae5287231ac3da54dbce480f0b35e74cc00"
+      - "Secret=SEC9e4eba5b30205f76a286277e569f7e85bc111b171a9e4991dd6eddf768915015"
+      - "Scheme=dtxuexi://appclient/page/study_feeds?url="
+  ql:
+    container_name: ql
     restart: always
     volumes:
-      - 'D:\opt\config\mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf'
-      - 'D:\out\mysql\:/out/mysql/'
+      - D:\OneDrive - Stanford University - Danny Live@Edu Test\Documents\opt\ql\data:/ql/data
     ports:
-      - '3306:3306'
-    environment:
-      - 'MYSQL_ROOT_PASSWORD=HBQ521521cf*'
-    image: mysql:5.7.29
-  shard:
-    image: apache/shardingsphere-proxy:5.1.0
-    container_name: shard
-    ports:
-      - "3307:3307"
-    volumes:
-      - D:\opt\sharding\conf:/opt/shardingsphere-proxy/conf
-      - D:\opt\sharding\ext-lib:/opt/shardingsphere-proxy/ext-lib
-  redis:
-    container_name: redis
-    restart: always
-    ports:
-      - '6379:6379'
-    volumes:
-      - 'D:\opt\config\redis.conf:/etc/redis/redis.conf'
-    command: redis-server /etc/redis/redis.conf --requirepass HBQ521521cf* --appendonly yes
-    image: redis:5.0.3
-  clickhouse-server:
-    container_name: ch-server
-    restart: always
-    ports:
-      - '8123:8123'
-      - '9009:9009'
-      - '9090:9000'
-    ulimits:
-      nofile:
-        soft: 262144
-        hard: 262144
-    image: 'yandex/clickhouse-server:22.1.2.2'
-#  mysql8:
-#    container_name: mysql8
-#    restart: always
-#    volumes:
-#      - 'D:\opt\config\mysqld8.cnf:/etc/mysql/conf.d/mysql.cnf'
-#      - 'D:\out\mysql8\:/out/mysql8/'
-#    ports:
-#      - '3308:3306'
-#    environment:
-#      - 'MYSQL_ROOT_PASSWORD=HBQ521521cf*'
-#    image: mysql:8.0.27
-#  redis:
-#    container_name: redis
-#    restart: always
-#    ports:
-#      - '6379:6379'
-#    volumes:
-#      - '/opt/config/redis.conf:/etc/redis/redis.conf'
-#      - '/out/data:/data'
-#    command: redis-server /etc/redis/redis.conf --requirepass HBQ521521cf* --appendonly yes
-#    image: redis:5.0.3
-#  mongo:
-#    container_name: mongo
-#    restart: always
-#    ports:
-#      - '27017:27017'
-#    image: mongo
+      - "5700:5700"
+    image: whyour/qinglong

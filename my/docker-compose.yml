@@ -90,7 +90,9 @@ services:
     ports:
       - '81:8080'
     environment:
-      - 'REFRESH_TOKEN=10846b5dbc3a42809b204e45aea6eb49'
+      - 'REFRESH_TOKEN=864fc516f56146d4b5145e1eaad4d205'
+      - 'WEBDAV_AUTH_USER=admin'
+      - 'WEBDAV_AUTH_PASSWORD=HBQ521521cf*'
     image: baoqihui/aliyundrive-webdav:arm
   xue:
     container_name: xue
