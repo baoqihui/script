@@ -18,8 +18,8 @@ case "$types" in
 	echo -e "\033[32m -----------------cloudflare(DNS)start----------------------------\033[0m"
 	echo -e "\033[32m 开始执行... \033[0m"
 
-	read -p " 请输入你要安装的根目录(默认'/opt/nginx/cert'):" path
-	path=${path:-'/opt/nginx/cert'}
+	read -p " 请输入你要安装的根目录(默认'/opt/cert'):" path
+	path=${path:-'/opt/cert'}
 	echo -e "\033[32m path:$path \033[0m"
 
 	read -p " 请输入你的cloudflare email:" email

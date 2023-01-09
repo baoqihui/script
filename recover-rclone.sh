@@ -14,7 +14,7 @@ do
 	outFilePath=$outDir/$fileName
 	#阿里云盘下载
 	echo -e "\033[32m 下载$i到$outFilePath开始... \033[0m"
-	rclone sync -P ali:$i $outDir
+	rclone sync -P onedrive:$i $outDir
 	echo -e "\033[32m 下载$i到$outFilePath完成... \033[0m"
 	#zip解压
 	unzip -o -d / $outFilePath 

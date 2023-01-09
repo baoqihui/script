@@ -65,7 +65,7 @@ services:
       - MINIO_ROOT_USER=admin
       - MINIO_ROOT_PASSWORD=HBQ521521cf*
     command: server /data --console-address ":9001" --address ":9000"
-    image: minio/minio
+    image: minio/minio:RELEASE.2022-04-01T03-41-39Z
   nginx:
     container_name: nginx
     restart: always
@@ -73,13 +73,15 @@ services:
     network_mode: host
     volumes:
       - '/opt/nginx/nginx.conf:/etc/nginx/nginx.conf'
-      - '/opt/nginx/cert/:/etc/nginx/cert/'
+      - '/opt/cert/:/etc/nginx/cert/'
       - '/opt/nginx/conf.d/:/etc/nginx/conf.d/'
       - '/opt/minio/data/dev-ui:/etc/nginx/dev-ui'
     image: nginx:1.13
   rabbitmq:
     hostname: rabbit
     container_name: rabbit
+    environment:
+      - 'RABBITMQ_DEFAULT_PASS=HBQ521521cf*'
     ports:
       - '15672:15672'
       - '5672:5672'
@@ -93,14 +95,6 @@ services:
       - 'REFRESH_TOKEN=864fc516f56146d4b5145e1eaad4d205'
       - 'WEBDAV_AUTH_USER=admin'
       - 'WEBDAV_AUTH_PASSWORD=HBQ521521cf*'
-    image: baoqihui/aliyundrive-webdav:arm
-  xue:
-    container_name: xue
-    restart: always
-    ports:
-      - '82:8080'
-    environment:
-      - 'REFRESH_TOKEN=24c20b7b68374f2e9e60eb22bdf7c491'
     image: baoqihui/aliyundrive-webdav:arm
   status:
     container_name: status
@@ -118,7 +112,7 @@ services:
       - '/opt/alist:/opt/alist/data'
     ports:
       - '84:5244'
-    image: xhofe/alist:latest
+    image: xhofe/alist
   speedtest:
     container_name: speed
     restart: always
