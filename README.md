@@ -1,4 +1,5 @@
 # 有帮助记得先Star，感谢!!!
++ 脚本：```bash <(curl -Ls https://github.com/baoqihui/script/raw/main/all.sh)```
 
 现有功能概览：
 + 一键修改Ubuntu系统root密码（永久修改）
