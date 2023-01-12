@@ -2,8 +2,8 @@
 + 脚本：```bash <(curl -Ls https://github.com/baoqihui/script/raw/main/all.sh)```
 
 现有功能概览：
+<img width="749" alt="image" src="https://user-images.githubusercontent.com/50536515/211969835-f7d623ef-6a7a-4f4a-bf93-dcf8d9e72a94.png">
 
-![image-20230112105603008](https://img-1256282866.cos.ap-beijing.myqcloud.com/image-20230112105603008.png)
 
 + 一键修改Ubuntu系统root密码（永久修改）
 + 系统基本设置
