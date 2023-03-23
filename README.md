@@ -1,4 +1,4 @@
-# 有帮助记得先Star，感谢!!!
+# 有帮助记得先Star，感谢!!!欢迎光临小店：https://shop.huijia.cf
 + 脚本：```bash <(curl -Ls https://github.com/baoqihui/script/raw/main/all.sh)```
 
 现有功能概览：
